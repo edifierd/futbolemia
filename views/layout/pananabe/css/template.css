@@ -1,0 +1,114 @@
+
+
+/* BOTON EN ESTADO ACTIVO */
+.navbar-default .nav-justified > .active > a, 
+.navbar-default .nav-justified > .active > a:hover, 
+.navbar-default .nav-justified > .active > a:focus {
+	color: #FDD003;
+	text-decoration:underline;
+	background-color: transparent;
+}
+
+/*color texto boton link */
+.navbar-default .nav-justified > li > a{
+	color: #000;
+	border-right-width: 1px;
+	border-right-style:solid;
+	border-right-color: #000;
+	
+	border-left-width: 1px;
+	border-left-style:solid;
+	border-left-color: #000;
+	
+
+}
+/*color texto boton hover */
+.navbar-default .nav-justified > li > a:hover{
+	color:  #FDD003;
+	background-color: transparent;
+	text-decoration:underline;
+}
+
+/*Fondo de boton dropdawn*/
+.navbar-default .navbar-toggle,
+.navbar-default .nav .open>a,
+.navbar-default .nav .open>a:hover, 
+.navbar-default .nav .open>a:focus {
+   background-color: transparent;
+   color: #000;
+}
+
+/*Dropdawn Menu Font color*/
+.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+	color: #000;
+}
+
+/* Dropdown menu background color*/
+.nav-justified > li > .dropdown-menu { 
+	background-color: #CCC;
+	border: none;
+}
+
+/* Dropdown menu BOTON background color*/
+.nav-justified > li > .dropdown-menu > li > a,
+.nav-justified > li > .dropdown-menu > li > a:link,
+.nav-justified > li > .dropdown-menu > li > a:focus { 
+	color: #000;
+	background-color: transparent;;
+}
+/*
+.nav-justified > li > .dropdown-menu > li > a{
+	color: #000;
+	background-color: #9F3;
+}*/
+.nav-justified > li > .dropdown-menu > li > a:hover { 
+	color: #FDD003;
+	background-color: transparent;
+}
+
+
+
+/*color boton dropdawn*/
+.navbar-default .nav-justified .open .dropdown-menu > li > a:hover {
+	color: #FDD003;
+}
+
+
+.nav.nav-tabs > li.dropdown.active.open > a, 
+.nav.nav-tabs > li.dropdown.active.open > ul.dropdown-menu a:hover,
+.nav.nav-tabs > li.dropdown.open > a, 
+.nav.nav-tabs > li.dropdown.open > ul.dropdown-menu a:hover
+{
+  color: #000;
+  background-color: #b91773;
+  border-color: transparent;
+}
+
+
+
+/* ESTILOS BARRA INFERIOR DE MENU */
+
+a.redes,
+a.redes:link,
+a.redes:focus{
+	color:#000;
+	text-decoration: none;
+	font-weight:bold;
+}
+a.redes:hover {
+	color: #303401;
+}
+
+/* ESTILOS PARA TODO EL SITIO */
+
+a,
+a:link,
+a:focus{
+	color:#000;
+	text-decoration: none;
+}
+a:hover {
+	color: #FDD003;
+}
+
+

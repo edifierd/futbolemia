@@ -1,0 +1,38 @@
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+   <url>
+      <loc>http://www.pananabe.com.ar/</loc>
+      <changefreq>monthly</changefreq>
+      <image:image>
+         <image:loc>
+            http://www.pananabe.com.ar/views/layout/pananabe/img/logo.png
+         </image:loc>
+      </image:image>
+   </url>
+   
+   <url>
+      <loc>http://www.pananabe.com.ar/prenda/hombre</loc>
+      <changefreq>monthly</changefreq>
+      <image:image>
+         <image:loc>
+            http://www.pananabe.com.ar/views/index/img/hombre.jpg
+         </image:loc>
+      </image:image>
+   </url>
+   
+   <url>
+      <loc>http://www.pananabe.com.ar/prenda/todo</loc>
+      <changefreq>monthly</changefreq>
+   </url>
+   
+   <url>
+      <loc>http://www.pananabe.com.ar/prenda/tabla_de_talles</loc>
+      <changefreq>never</changefreq>
+   </url>
+   
+   <url>
+      <loc>http://www.pananabe.com.ar/contacto</loc>
+      <changefreq>never</changefreq>
+   </url>
+   
+</urlset>

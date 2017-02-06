@@ -1,0 +1,15 @@
+
+a.botonIndex,
+a.botonIndex:link,
+a.botonIndex:focus{
+	color:#000;
+	font-weight:bold;
+	text-decoration:none;
+	margin-left: auto;
+	margin-right: auto;
+}
+a.botonIndex:hover {
+	color: #060;
+	
+}
+
