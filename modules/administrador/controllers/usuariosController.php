@@ -21,6 +21,8 @@ class usuariosController extends administradorController
         $this->_view->assign('titulo', 'Iniciar Sesion');
         
         if($this->getInt('enviar') == 1){
+			
+			//usar array_merge para --- ver tambien application/Registry
             $this->_view->assign('datos', $_POST);
             
             if(!$this->getAlphaNum('usuario')){
@@ -73,17 +75,13 @@ class usuariosController extends administradorController
         if(!Session::get('autenticado')){
 			$this->redireccionar('administrador');
 		}
+		
+		$this->_acl->acceso('control_usuarios');
         
         $this->_view->assign('titulo', 'Registro');
         
         if($this->getInt('enviar') == 1){ //Si recibo los datos creo el nuevo usuario
             $this->_view->assign('datos', $_POST);
-            
-            if(!$this->getSql('nombre')){
-                $this->_view->assign('_error', 'Debe introducir su nombre');
-                $this->_view->renderizar('registro', 'registro');
-                exit;
-            }
             
             if(!$this->getAlphaNum('usuario')){
                 $this->_view->assign('_error', 'Debe introducir su nombre usuario');
@@ -108,6 +106,24 @@ class usuariosController extends administradorController
                 $this->_view->renderizar('registro', 'registro');
                 exit;
             }
+			
+			if(!$this->getTexto('nombre')){
+                $this->_view->assign('_error', 'Debe introducir su nombre');
+                $this->_view->renderizar('registro', 'registro');
+                exit;
+            }
+			
+			if(!$this->getTexto('apellido')){
+                $this->_view->assign('_error', 'Debe introducir su apellido');
+                $this->_view->renderizar('registro', 'registro');
+                exit;
+            }
+			
+			if(!$this->getDni('dni')){
+                $this->_view->assign('_error', 'No es un numero de DNI valido');
+                $this->_view->renderizar('registro', 'registro');
+                exit;
+            }
             
             if(!$this->getSql('pass')){
                 $this->_view->assign('_error', 'Debe introducir su password');
@@ -120,16 +136,14 @@ class usuariosController extends administradorController
                 $this->_view->renderizar('registro', 'registro');
                 exit;
             }
-            
-            $this->getLibrary('class.phpmailer');
-            $mail = new PHPMailer();
-			
-            $this->_registro->registrarUsuario(
-                    $this->getSql('nombre'),
-                    $this->getAlphaNum('usuario'),
-                    $this->getSql('pass'),
-                    $this->getPostParam('email')
-                    );
+
+			$datos['usuario'] = $this->getAlphaNum('usuario');
+			$datos['email'] = $this->getPostParam('email');
+			$datos['nombre'] = $this->getTexto('nombre');
+			$datos['apellido'] = $this->getTexto('apellido');
+			$datos['dni'] = $this->getDni('dni');
+			$datos['password'] = $this->getPostParam('confirmar');
+            $this->_registro->registrarUsuario($datos);
             
             $usuario = $this->_registro->verificarUsuario($this->getAlphaNum('usuario'));
 			
@@ -140,6 +154,9 @@ class usuariosController extends administradorController
             }
 			
 			/* CUANDO SE DESEA USAR LA ACTIVACION DE CUENTA POR CORREO 
+			
+			$this->getLibrary('class.phpmailer');
+            $mail = new PHPMailer();
 			
             $mail->From = 'www.mvc.dlancedu.com';
             $mail->FromName = 'Tutorial MVC';
@@ -161,14 +178,13 @@ class usuariosController extends administradorController
 			
 			$this->activar($usuario['id'],$usuario['codigo']);
 			$this->_view->assign('datos', false);
-            $this->_view->assign('_mensaje', 'Registro Completado, revise su email para activar su cuenta');
+            $this->_view->assign('_mensaje', 'Registro Completado exitosamente');
         }        
         
         $this->_view->renderizar('registro', 'registro');
     }
 
     public function activar($id, $codigo){
-		
         if(!$this->filtrarInt($id) || !$this->filtrarInt($codigo)){
             $this->_view->assign('_error', 'Esta cuenta no existe');
             $this->_view->renderizar('activar', 'registro');
@@ -218,6 +234,8 @@ class usuariosController extends administradorController
 			$this->redireccionar('administrador');
 		}
 		
+		$this->_acl->acceso('control_usuarios');
+		
         $this->_view->setJs(array('prueba'));
         $this->_view->assign('titulo', 'Usuarios');
 		$this->_view->assign('marcado', '');
@@ -230,6 +248,8 @@ class usuariosController extends administradorController
 		if(!Session::get('autenticado')){
 			$this->redireccionar('administrador');
 		}
+		
+		$this->_acl->acceso('control_usuarios');
 		
         $id = $this->filtrarInt($usuarioID);
         

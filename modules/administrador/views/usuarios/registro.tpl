@@ -5,11 +5,6 @@
         <input type="hidden" value="1" name="enviar" />
 
         <p>
-            <label>Nombre: </label>
-            <input type="text" name="nombre" value="{$datos.nombre|default:""}" />
-        </p>
-
-        <p>
             <label>Usuario: </label>
             <input type="text" name="usuario" value="{$datos.usuario|default:""}" />
         </p>
@@ -17,6 +12,21 @@
         <p>
             <label>Email: </label>
             <input type="text" name="email" value="{$datos.email|default:""}" />
+        </p>
+        
+        <p>
+            <label>Nombre: </label>
+            <input type="text" name="nombre" value="{$datos.nombre|default:""}" />
+        </p>
+        
+        <p>
+            <label>Apellido: </label>
+            <input type="text" name="apellido" value="{$datos.apellido|default:""}" />
+        </p>
+        
+        <p>
+            <label>DNI: </label>
+            <input type="text" name="dni" value="{$datos.dni|default:""}" />
         </p>
 
         <p>

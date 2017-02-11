@@ -3,7 +3,7 @@
 class loginModel extends Model
 {
     public function __construct() {
-        parent::__construct();
+        parent::__construct('usuarios');
     }
     
     public function getUsuario($usuario, $password)

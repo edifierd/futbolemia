@@ -2,8 +2,21 @@
 
 class registroModel extends Model
 {
+	private $_item;
+	
     public function __construct() {
-        parent::__construct();
+        parent::__construct('usuarios');
+		
+		//AGREGO EL ITEM AL USUARIO
+		$user_type_model = USER_TYPE . 'Model';
+		$ruta_user_type_model = ROOT . 'modules' . DS . 'administrador' . DS . 'models' . DS . $user_type_model . '.php';
+        if(is_readable($ruta_user_type_model)){
+            require_once $ruta_user_type_model;
+            $this->_item = new $user_type_model;
+        }
+        else {
+            throw new Exception('Error en USUARIO TYPE --> '.USER_TYPE);
+        }
     }
     
     public function verificarUsuario($usuario)
@@ -28,25 +41,28 @@ class registroModel extends Model
         return false;
     }
     
-    public function registrarUsuario($nombre, $usuario, $password, $email)
-    {
+    public function registrarUsuario($datos){
+
+		$item_id = $this->_item->setDatos($datos);
+		
+		//CREO EL ITEM Y LUEGO SE LO ASIGNO AL USUARIO
+		
     	$random = rand(1782598471, 9999999999);
 		
         $this->_db->prepare(
                 "insert into usuarios values" .
-                "(null, :nombre, :usuario, :password, :email, 1, 0, now(), :codigo)"
+                "(null, :usuario, :password, :email, 2, 0, now(), :codigo, :item_id)"
                 )
                 ->execute(array(
-                    ':nombre' => $nombre,
-                    ':usuario' => $usuario,
-                    ':password' => Hash::getHash('sha1', $password, HASH_KEY),
-                    ':email' => $email,
-                    ':codigo' => $random
+                    ':usuario' => $datos['usuario'],
+                    ':password' => Hash::getHash('sha1', $datos['password'], HASH_KEY),
+                    ':email' => $datos['email'],
+                    ':codigo' => $random,
+					':item_id' => $item_id
                 ));
     }
     
-    public function getUsuario($id, $codigo)
-	{
+    public function getUsuario($id, $codigo){
 		$usuario = $this->_db->query(
 					"select * from usuarios where id = $id and codigo = '$codigo'"
 					);

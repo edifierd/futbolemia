@@ -2,9 +2,8 @@
 
 class userModel extends Model
 {
-    public function __construct()
-    {
-        parent::__construct();
+    public function __construct(){
+        parent::__construct('usuarios');
     }
     
     public function getUsuarios()

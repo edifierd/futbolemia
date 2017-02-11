@@ -84,6 +84,20 @@ abstract class Controller
         
         return 0;
     }
+	
+	protected function getDni($clave)
+    {
+        if(isset($_POST[$clave]) && !empty($_POST[$clave])){
+            $_POST[$clave] = filter_input(INPUT_POST, $clave, FILTER_VALIDATE_INT);
+			if (strlen($_POST[$clave]) == 8){
+            	return $_POST[$clave];
+			} else {
+				return 0;
+			}
+        }
+        
+        return 0;
+    }
     
     protected function redireccionar($ruta = false)
     {

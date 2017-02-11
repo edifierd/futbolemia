@@ -59,14 +59,19 @@
                 <li>
                     <a href="#">Contact</a>
                 </li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuarios<span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li class="dropdown-header">Manejo de usuarios</li>
-                    <li><a href="{$_layoutParams.root}administrador/usuarios/registro">Nuevo Usuario</a></li>
-                    <li><a href="{$_layoutParams.root}administrador/usuarios/listado">Listado Usuarios</a></li>
-                  </ul>
-                </li>
+                {if $_acl->permiso('control_usuarios')}
+                	<li class="dropdown">
+                  		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuarios y Permisos<span class="caret"></span></a>
+                  		<ul class="dropdown-menu" role="menu">
+                    		<li class="dropdown-header">Manejo de usuarios</li>
+                    		<li><a href="{$_layoutParams.root}administrador/usuarios/registro">Nuevo Usuario</a></li>
+                    		<li><a href="{$_layoutParams.root}administrador/usuarios/listado">Listado Usuarios</a></li>
+                            <li class="dropdown-header">ACL</li>
+                    		<li><a href="{$_layoutParams.root}administrador/acl/roles">Roles</a></li>
+                    		<li><a href="{$_layoutParams.root}administrador/acl/permisos">Permisos</a></li>
+                  		</ul>
+                	</li>
+                {/if}
                 <li>
                     <a href="{$_layoutParams.root}administrador/usuarios/cerrar">Cerrar Sesión</a>
                 </li>
