@@ -4,14 +4,13 @@ class aclController extends administradorController
 {
     private $_aclm;
     
-    public function __construct() 
-    {
+    public function __construct(){
         parent::__construct();
         $this->_aclm = $this->loadModel('acl');
     }
     
-    public function index()
-    {
+    public function index(){
+		$this->_acl->acceso('control_usuarios');
         $this->_view->assign('titulo', 'Listas de acceso');
         $this->_view->renderizar('index', 'acl');
     }
@@ -90,6 +89,8 @@ class aclController extends administradorController
         $this->_view->assign('permisos', $this->_aclm->getPermisosRole($id));
         $this->_view->renderizar('permisos_role');
     }
+	
+	// ---------------- ROLES ---------------- //
     
     public function nuevo_role(){
 		$this->_acl->acceso('control_usuarios');
@@ -114,8 +115,49 @@ class aclController extends administradorController
 	
 	public function edit_role($id_role){
 		
+		$this->_acl->acceso('control_usuarios');
+		
 		$id = $this->filtrarInt($id_role);
+		        
+        if(!$id){
+            $this->redireccionar('administrador/acl/roles');
+        }
+		
+		$role = $this->_aclm->getRole($id);
+		if(!$role){
+			$this->redireccionar('administrador/acl/roles');
+		}
+		
+		$this->_view->assign('titulo', 'Modificar Role');
         
+        if($this->getInt('guardar') == 1){
+            $this->_view->assign('datos', $_POST);
+            
+            if(!$this->getSql('role')){
+                $this->_view->assign('_error', 'Debe introducir el nombre del role');
+                $this->_view->renderizar('edit_role', 'acl');
+                exit;
+            }
+			
+            if(!$this->_aclm->editRole($id,$this->getSql('role'))){
+				$this->_view->assign('_error', 'No se puedo editar. Intente nuevamente.');
+                $this->_view->renderizar('edit_role', 'acl');
+                exit;
+			}
+            $this->redireccionar('administrador/acl/roles');
+        } else {
+			$this->_view->assign('datos', $role);
+		}
+        
+        $this->_view->renderizar('edit_role', 'acl');
+    }
+	
+	public function delete_role($id_role){
+		
+		$this->_acl->acceso('control_usuarios');
+		
+		$id = $this->filtrarInt($id_role);
+		        
         if(!$id){
             $this->redireccionar('administrador/acl/roles');
         }
@@ -124,25 +166,16 @@ class aclController extends administradorController
 			$this->redireccionar('administrador/acl/roles');
 		}
 		
-		$this->_acl->acceso('control_usuarios');
+        if(!$this->_aclm->deleteRole($id)){
+			$this->_view->assign('_error', 'No se puedo eliminar. Intente nuevamente.');
+			$this->_view->renderizar('roles', 'acl');
+            exit;
+		}
 		
-        $this->_view->assign('titulo', 'Modificar Role');
-        
-        if($this->getInt('guardar') == 1){
-            $this->_view->assign('datos', $_POST);
-            
-            if(!$this->getSql('role')){
-                $this->_view->assign('_error', 'Debe introducir el nombre del role');
-                $this->_view->renderizar('nuevo_role', 'acl');
-                exit;
-            }
-            
-            $this->_aclm->insertarRole($this->getSql('role'));
-            $this->redireccionar('administrador/acl/roles');
-        }
-        
-        $this->_view->renderizar('nuevo_role', 'acl');
+		$this->redireccionar('administrador/acl/roles');
     }
+	
+	// ---------------- PERMISOS ---------------- //
     
     public function permisos(){
 		$this->_acl->acceso('control_usuarios');
@@ -150,7 +183,7 @@ class aclController extends administradorController
         $this->_view->assign('permisos', $this->_aclm->getPermisos());
         $this->_view->renderizar('permisos', 'acl');
     }
-    
+	
     public function nuevo_permiso(){
 		$this->_acl->acceso('control_usuarios');
 		
@@ -180,6 +213,80 @@ class aclController extends administradorController
         }
         
         $this->_view->renderizar('nuevo_permiso', 'acl');
+    }
+	
+	public function edit_permiso($id_permiso){
+		$this->_acl->acceso('control_usuarios');
+		
+		$id = $this->filtrarInt($id_permiso);
+		        
+        if(!$id){
+            $this->redireccionar('administrador/acl/permisos');
+        }
+		
+		$permiso = $this->_aclm->getPermiso($id);
+		if(!$permiso){
+			$this->redireccionar('administrador/acl/permisos');
+		}
+		
+        $this->_view->assign('titulo', 'Editar Permiso');
+        
+        if($this->getInt('guardar') == 1){
+            $this->_view->assign('datos', $_POST);
+            
+            if(!$this->getSql('permiso')){
+                $this->_view->assign('_error', 'Debe introducir el nombre del permiso');
+                $this->_view->renderizar('edit_permiso', 'acl');
+                exit;
+            }
+            
+            if(!$this->getAlphaNum('key')){
+                $this->_view->assign('_error', 'Debe introducir el key del permiso');
+                $this->_view->renderizar('edit_permiso', 'acl');
+                exit;
+            }
+            
+            $rta = $this->_aclm->editPermiso(
+					$id,
+                    $this->getSql('permiso'), 
+                    $this->getAlphaNum('key')
+                    );
+					
+			if(!$rta){
+				$this->_view->assign('_error', 'No se puedo editar. Intente nuevamente.');
+                $this->_view->renderizar('edit_permiso', 'acl');
+                exit;
+			}
+            
+            $this->redireccionar('administrador/acl/permisos');
+        } else {
+			$this->_view->assign('datos', $permiso);
+		}
+        
+        $this->_view->renderizar('edit_permiso', 'acl');
+    }
+	
+	public function delete_permiso($id_permiso){
+		
+		$this->_acl->acceso('control_usuarios');
+		
+		$id = $this->filtrarInt($id_permiso);
+		        
+        if(!$id){
+            $this->redireccionar('administrador/acl/permisos');
+        }
+		
+		if(!$this->_aclm->getPermiso($id)){
+			$this->redireccionar('administrador/acl/permisos');
+		}
+		
+        if(!$this->_aclm->deletePermiso($id)){
+			$this->_view->assign('_error', 'No se puedo eliminar. Intente nuevamente.');
+			$this->_view->renderizar('roles', 'acl');
+            exit;
+		}
+		
+		$this->redireccionar('administrador/acl/permisos');
     }
 
     

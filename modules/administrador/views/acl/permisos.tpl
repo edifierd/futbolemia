@@ -7,6 +7,7 @@
         <th>Permiso</th>
         <th>Llave</th>
         <th></th>
+        <th></th>
     </tr>
     
     {foreach item=rl from=$permisos}
@@ -15,7 +16,12 @@
             <td>{$rl.id_permiso}</td>
             <td>{$rl.permiso}</td>
             <td>{$rl.key}</td>
-            <td>Editar</td>
+            <td>
+            	<a href="{$_layoutParams.root}administrador/acl/edit_permiso/{$rl.id_permiso}" style="color:#090;">Editar</a>
+            </td>
+            <td>
+            	<a href="{$_layoutParams.root}administrador/acl/delete_permiso/{$rl.id_permiso}" style=" color:#C00">Eliminar</a>
+            </td>
         </tr>
         
     {/foreach}

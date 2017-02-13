@@ -7,6 +7,7 @@
             <th>Role</th>
             <th></th>
             <th></th>
+            <th></th>
         </tr>
         
         {foreach item=rl from=$roles}
@@ -16,7 +17,12 @@
                 <td>
                     <a href="{$_layoutParams.root}administrador/acl/permisos_role/{$rl.id_role}">Permisos</a>
                 </td>
-                <td>Editar</td>
+                <td>
+                	<a href="{$_layoutParams.root}administrador/acl/edit_role/{$rl.id_role}" style="color:#090;">Editar</a>
+                </td>
+                <td>
+                	<a href="{$_layoutParams.root}administrador/acl/delete_role/{$rl.id_role}" style="color:#F00;">Eliminar</a>
+                </td>
             </tr>
         {/foreach}
     </table>

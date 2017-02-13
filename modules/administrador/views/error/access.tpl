@@ -7,6 +7,6 @@
 
 {if (!Session::get('autenticado'))}
 
-| <a href="{$_layoutParams.root}administrador/login">Iniciar Sesi&oacute;n</a>
+| <a href="{$_layoutParams.root}administrador/usuarios/login">Iniciar Sesi&oacute;n</a>
 
 {/if}

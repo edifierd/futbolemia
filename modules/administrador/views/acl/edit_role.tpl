@@ -5,9 +5,8 @@
 
 <h2>Editar Role</h2>
 
-<form name="form1" method="post" action="">
+<form name="form1" method="post" action="{$_layoutParams.root}administrador/acl/edit_role/{$datos.id_role}">
     <input type="hidden" value="1" name="guardar">
-    <input type="hidden" value="1" name="id_role">
     
     <table class="table table-bordered" style="width: 350px;">
         <tr>
