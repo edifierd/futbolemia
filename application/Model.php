@@ -40,6 +40,9 @@ class Model
 		return $usuario->fetch();
 	}
 	
+	public function error(){
+		print_r($this->_db->errorInfo());
+	}
 	
 }
 

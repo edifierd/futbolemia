@@ -75,8 +75,7 @@ abstract class Controller
         return '';
     }
     
-    protected function getInt($clave)
-    {
+    protected function getInt($clave){
         if(isset($_POST[$clave]) && !empty($_POST[$clave])){
             $_POST[$clave] = filter_input(INPUT_POST, $clave, FILTER_VALIDATE_INT);
             return $_POST[$clave];
@@ -85,8 +84,7 @@ abstract class Controller
         return 0;
     }
 	
-	protected function getDni($clave)
-    {
+	protected function getDni($clave){
         if(isset($_POST[$clave]) && !empty($_POST[$clave])){
             $_POST[$clave] = filter_input(INPUT_POST, $clave, FILTER_VALIDATE_INT);
 			if (strlen($_POST[$clave]) == 8){
@@ -95,8 +93,6 @@ abstract class Controller
 				return 0;
 			}
         }
-        
-        return 0;
     }
     
     protected function redireccionar($ruta = false)
@@ -111,8 +107,7 @@ abstract class Controller
         }
     }
 
-    protected function filtrarInt($int)
-    {
+    protected function filtrarInt($int){
         $int = (int) $int;
         
         if(is_int($int)){
@@ -123,8 +118,7 @@ abstract class Controller
         }
     }
     
-    protected function getPostParam($clave)
-    {	
+    protected function getPostParam($clave){	
     	if(isset($_POST[$clave])){
            	return $_POST[$clave];
         } else {
@@ -133,8 +127,7 @@ abstract class Controller
     }
 	
 	
-	protected function getParams()
-    {
+	protected function getParams(){
         $params = $this->_request->getArgs();
 		if(isset($params) && !empty($params)){
 			return $params;
@@ -142,8 +135,7 @@ abstract class Controller
 		return false;
     }
     
-    protected function getSql($clave)
-    {
+    protected function getSql($clave){
         if(isset($_POST[$clave]) && !empty($_POST[$clave])){
             $_POST[$clave] = strip_tags($_POST[$clave]);
             
@@ -155,23 +147,37 @@ abstract class Controller
         }
     }
     
-    protected function getAlphaNum($clave)
-    {
+    protected function getAlphaNum($clave,$trim = false){
         if(isset($_POST[$clave]) && !empty($_POST[$clave])){
             $_POST[$clave] = (string) preg_replace('/[^A-Z0-9_]/i', '', $_POST[$clave]);
-            return trim($_POST[$clave]);
+			if ($trim == true){
+            	return trim($_POST[$clave]);
+			} else {
+				return $_POST[$clave];
+			}
         }
         
     }
     
-    public function validarEmail($email)
-    {
+    public function validarEmail($email){
         if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
             return false;
         }
         
         return true;
     }
+	
+	public function validarDate($str){ 
+    	trim($str); 
+        $trozos = explode ("-", $str); 
+        $año=$trozos[0]; 
+        $mes=$trozos[1]; 
+        $dia=$trozos[2];      
+        if(checkdate ($mes,$dia,$año)){ 
+        	return true; 
+        } 
+        return false; 
+	}  
     
     protected function formatPermiso($clave)
     {

@@ -35,30 +35,26 @@
                        Admin Panel
                     </a>
                 </li>
+                {if $_acl->permiso('control_alumnos')}
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Prendas<span class="caret"></span></a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Alumnos<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
-                    <li class="dropdown-header">Administracion de prendas</li>
-                    <li><a href="{$_layoutParams.root}administrador/prenda/cargarGenero">Cargar</a></li>
-                    <li><a href="#">Modificar</a></li>
-                    <li><a href="#">Eliminar</a></li>
+                    <li class="dropdown-header">Alumnos</li>
+                    <li><a href="{$_layoutParams.root}administrador/alumnos">Listado</a></li>
+                    <li><a href="{$_layoutParams.root}administrador/alumnos/nuevo">Nuevo</a></li>
                   </ul>
                 </li>
-                <li>
-                    <a href="#">About</a>
+                {/if}
+                {if $_acl->permiso('control_grupos')}
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Grupos<span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li class="dropdown-header">Administración de Grupos</li>
+                    <li><a href="{$_layoutParams.root}administrador/grupos">Listado</a></li>
+                    <li><a href="{$_layoutParams.root}administrador/grupos/nuevo">Nuevo Grupo</a></li>
+                  </ul>
                 </li>
-                <li>
-                    <a href="#">Events</a>
-                </li>
-                <li>
-                    <a href="#">Team</a>
-                </li>
-                <li>
-                    <a href="#">Services</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
-                </li>
+                {/if}
                 {if $_acl->permiso('control_usuarios')}
                 	<li class="dropdown">
                   		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuarios y Permisos<span class="caret"></span></a>
