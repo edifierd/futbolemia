@@ -1,40 +1,45 @@
-<div class="btn-group">
-	<a href="{$_layoutParams.root}administrador/alumnos/nuevo" class="btn btn-default"> Nuevo Alumno</a>
-</div>
-
 <h3>Listado de Alumnos</h3><br>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+  	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    	<ul class="nav navbar-nav">
+        	        <li><a href="{$_layoutParams.root}administrador/alumnos/nuevo" > Nuevo Alumno</a></li>
+   	    </ul>
+        <form class="navbar-form navbar-left" role="search" method="post" action="">
+        	<input type="hidden" value="1" name="buscar" />
+  			<div class="form-group">
+            	<select id="sede" name="sede" style="height:32px;">
+                	<option value="todos" >Todos</option>
+            		<option value="La Cumbre" >La Cumbre</option>
+                    <option value="Los Hornos" >Los Hornos</option>
+                    <option value="El Retiro" >El Retiro</option>
+				</select>
+    			<input type="text" class="form-control" placeholder="Nombre o Apellido o DNI..." name="casillero" id="casillero">
+  			</div>
+  			<button type="submit" class="btn btn-default">Buscar</button>
+		</form>
+    </div>
+  </div>
+</nav>
 
 <table class="table table-striped">
 	<tr>
-		<th>Id</th>
-    	<th>Nombre</th>
-    	<th>Apellido</th>
+    	<th>ID</th>
+    	<th>Apellido Nombre </th>
     	<th>DNI</th>
-    	<th>Nacimiento</th>
-        <th>Colegio</th>
-        <th>Observacion Medica</th>
-        <th>Obra Social</th>
-        <th>Número Afiliado</th>
-        <th>Notas</th>
         <th>Sede y Grupo inscripto</th>
-        <th>Acciones</th>
+        <th colspan="2" style="text-align:center;">Acciones</th>
     </tr>
 
     {foreach from=$alumnos item=a}
     <tr>
     	<td>{$a.id_alumno}</td>
-		<td>{$a.nombre}</td>
-        <td>{$a.apellido}</td>
+		<td><a href="{$_layoutParams.root}administrador/alumnos/show/{$a.id_alumno}">{$a.apellido} {$a.nombre}</a></td>
         <td>{$a.dni}</td>
-        <td>{$a.nacimiento}</td>
-        <td>{$a.colegio}</td>
-        <td>{$a.observacion_medica}</td>
-        <td>{$a.obra_social}</td>
-        <td>{$a.num_afiliado}</td>
-        <td>{$a.notas}</td>
-        <td>{$a.id_grupo}</td>
-        <td><a href="#" class="btn btn-danger btn-xs">Eliminar</a></td>
-    </tr>
+        <td>{$a.sede} - {$a.tipo} - {$a.horario} </td>
+        <td><a href="{$_layoutParams.root}administrador/alumnos/show/{$a.id_alumno}" class="btn btn-primary btn-xs">Ver Perfil</a></td>
+        <td><a href="{$_layoutParams.root}administrador/alumnos/delete/{$a.id_alumno}" class="btn btn-danger btn-xs">Eliminar</a></td>    </tr>
 	{/foreach}
 
 </table>

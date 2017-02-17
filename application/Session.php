@@ -138,7 +138,7 @@ class Session
             return;
         }
         
-        if(time() - Session::get('tiempo') > (SESSION_TIME * 60)){
+        if(time() - Session::get('tiempo') > (SESSION_TIME * 120)){
             Session::destroy();
             header('location:' . BASE_URL . 'administrador/error/access/8080');
         }

@@ -298,25 +298,3 @@ html { height: 100%;}
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ESTILOS BARRA INFERIOR DE MENU */
-
-.nav >li >a{
-	color: #FFF;
-}
-
-.nav >li >a:hover{
-	color: #000;
-}

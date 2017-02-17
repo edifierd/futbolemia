@@ -1,9 +1,9 @@
 <?php
 
-class alumnosModel extends Model{
+class responsablesModel extends Model{
 	
     public function __construct() {
-        parent::__construct('alumnos');
+        parent::__construct('responsables');
     }
 	
 	public function insertarAlumno($dni, $nombre, $apellido, $nacimiento, $colegio, $obra_social, $numero_afiliado, $observacion_medica, $notas, $id_grupo){

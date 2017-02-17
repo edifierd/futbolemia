@@ -1,6 +1,6 @@
 <?php
 
-class alumnosController extends administradorController{
+class responsablesController extends administradorController{
 	
 	private $_alumnos;
 	private $_grupos;

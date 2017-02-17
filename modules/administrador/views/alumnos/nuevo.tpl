@@ -51,12 +51,12 @@
         
         <p>
             <label>Observacion Medica: </label>
-            <input type="text" name="observacion_medica" value="{$datos.observacion_medica|default:""}" />
+            <textarea name="observacion_medica" />{$datos.observacion_medica|default:""}</textarea>
         </p> 
         
         <p>
             <label>Notas: </label>
-            <input type="text" name="notas" value="{$datos.notas|default:""}"/>
+            <textarea name="notas" />{$datos.notas|default:""}</textarea>
         </p> 
 
         <p>

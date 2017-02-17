@@ -122,7 +122,7 @@ abstract class Controller
     	if(isset($_POST[$clave])){
            	return $_POST[$clave];
         } else {
-			return "<br> error de parametro POST[ ".$clave." ] (Controller linea 116) <br>";
+			return "<br> error de parametro POST[ ".$clave." ] (Controller linea 121) <br>";
 		}
     }
 	

@@ -88,7 +88,7 @@
             </button>
             {/if}
             
-            <div class="container">
+            <div class="" style="margin-left: 25px;"> <!-- Elimine la clase container !!!!!!!!!!!!!!!!!!!!!!!!! -->
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                     	<div class="col-md-11" >

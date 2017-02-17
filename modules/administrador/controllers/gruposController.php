@@ -44,7 +44,7 @@ class gruposController extends administradorController{
                 exit;
 			}
 			
-			if(!$this->getAlphaNum('horario')){
+			if(!$this->getTexto('horario')){
                 $this->_view->assign('_error', 'Indique el horario en que se dicta la clase');
                 $this->_view->renderizar('nuevo', '');
                 exit;
@@ -60,7 +60,7 @@ class gruposController extends administradorController{
 								$this->getTexto('sede'),
 								$this->getTexto('tipo'),
 								$this->getPostParam('dias'),
-								$this->getAlphaNum('horario')
+								$this->getTexto('horario')
 								)){
 				$this->_view->assign('_error', 'No se guardo el grupo.');
 			}
