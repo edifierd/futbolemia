@@ -20,10 +20,7 @@ class alumnosModel extends Model{
 	
 	public function getAll(){
         $datos = $this->_db->query("SELECT * FROM alumnos a INNER JOIN grupos g ON a.id_grupo = g.id_grupo WHERE a.estado = 'a' ");
-		if ($datos->rowCount() > 0){
-        	return $datos->fetchall();
-		}
-		return false;
+		return $datos->fetchall();
     }
 	
 	public function getAlumno($id_alumno){
@@ -47,28 +44,37 @@ class alumnosModel extends Model{
     }
 	
 	public function find($sede,$casillero = false){
-		if($sede == 'todos'){
-			if(!$casillero){
-				$datos = $this->_db->query("SELECT * FROM alumnos a INNER JOIN grupos g ON a.id_grupo = g.id_grupo WHERE a.estado = 'a' ");
-			} else {
-				$datos = $this->_db->query("SELECT * FROM alumnos a INNER JOIN grupos g ON a.id_grupo = g.id_grupo WHERE a.nombre LIKE '%".$casillero."%'
-																													  OR a.apellido LIKE '%".$casillero."%'
-																													  OR a.dni LIKE '%".$casillero."%'
-																													  AND a.estado = 'a' ");
-			}
+		if(!$casillero){
+			$consulta = "SELECT * FROM alumnos a INNER JOIN grupos g ON a.id_grupo = g.id_grupo WHERE a.estado = 'a'";
+		} else if($this->esDni($casillero)){
+			$consulta = "SELECT * FROM alumnos a INNER JOIN grupos g ON a.id_grupo = g.id_grupo WHERE a.estado = 'a' AND a.dni LIKE '%".$this->esDni($casillero)."%'";
 		} else {
-			$datos = $this->_db->query("SELECT * FROM alumnos a INNER JOIN grupos g ON a.id_grupo = g.id_grupo WHERE a.estado = 'a' AND g.sede = '".$sede."'");
-			$datos = $this->_db->query("SELECT * FROM alumnos a INNER JOIN grupos g ON a.id_grupo = g.id_grupo WHERE a.nombre LIKE '%".$casillero."%'
-																													  OR a.apellido LIKE '%".$casillero."%'
-																													  OR a.dni LIKE '%".$casillero."%'
-																													  AND a.estado = 'a' 
-																													  AND g.sede = '".$sede."'");
+			$palabras = explode(" ", $casillero);
+			$consulta = "SELECT * FROM alumnos a INNER JOIN grupos g ON a.id_grupo = g.id_grupo 
+						 WHERE a.id_alumno IN (SELECT al.id_alumno FROM alumnos al WHERE concat_ws(' ',al.apellido,al.nombre) LIKE '%".$palabras[0]."%' )";
+			for ($i = 1; $i < sizeof($palabras); $i++) {
+   				$consulta = $consulta." AND a.id_alumno IN (SELECT al.id_alumno FROM alumnos al WHERE concat_ws(' ',al.apellido,al.nombre) LIKE '%".$palabras[$i]."%' )";
+			}
+			$consulta = $consulta." AND a.estado = 'a'"; //Selecciono aquellos usuarios activos
 		}
-		if ($datos->rowCount() > 0){
-        	return $datos->fetchall();
+		if($sede != 'todos'){
+			$consulta = $consulta." AND g.sede = '".$sede."'"; //Selecciono aquellos pertenecientes a una sede especifica
+		}
+		$datos = $this->_db->query($consulta); //Ejecuto la consulta
+        return $datos->fetchall();
+	}
+	
+	// ---------- FUNCIONES AUXILIARES ---------- //
+	
+	protected function esDni($dni){
+		if (!filter_var($dni, FILTER_VALIDATE_INT) === false) {
+    		$dni = filter_var($dni, FILTER_VALIDATE_INT);
+			if (strlen($dni) == 8){
+           		return $dni;
+			} 
 		}
 		return false;
-	}
+    }
 	
 	
 }

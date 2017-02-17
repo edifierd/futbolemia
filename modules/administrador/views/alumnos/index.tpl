@@ -31,15 +31,21 @@
         <th>Sede y Grupo inscripto</th>
         <th colspan="2" style="text-align:center;">Acciones</th>
     </tr>
-
-    {foreach from=$alumnos item=a}
-    <tr>
-    	<td>{$a.id_alumno}</td>
-		<td><a href="{$_layoutParams.root}administrador/alumnos/show/{$a.id_alumno}">{$a.apellido} {$a.nombre}</a></td>
-        <td>{$a.dni}</td>
-        <td>{$a.sede} - {$a.tipo} - {$a.horario} </td>
-        <td><a href="{$_layoutParams.root}administrador/alumnos/show/{$a.id_alumno}" class="btn btn-primary btn-xs">Ver Perfil</a></td>
-        <td><a href="{$_layoutParams.root}administrador/alumnos/delete/{$a.id_alumno}" class="btn btn-danger btn-xs">Eliminar</a></td>    </tr>
-	{/foreach}
+	
+    {if isset($alumnos) && count($alumnos)}
+    	{foreach from=$alumnos item=a}
+    		<tr>
+    			<td>{$a.id_alumno}</td>
+				<td><a href="{$_layoutParams.root}administrador/alumnos/show/{$a.id_alumno}">{$a.apellido} {$a.nombre}</a></td>
+        		<td>{$a.dni}</td>
+        		<td>{$a.sede} - {$a.tipo} - {$a.horario} </td>
+        		<td><a href="{$_layoutParams.root}administrador/alumnos/show/{$a.id_alumno}" class="btn btn-primary btn-xs">Ver Perfil</a></td>
+        		<td><a href="{$_layoutParams.root}administrador/alumnos/delete/{$a.id_alumno}" class="btn btn-danger btn-xs">Eliminar</a></td>    </tr>
+		{/foreach}
+	{else}
+    	<tr>
+        	<td colspan="6" style="text-align:center; padding-top: 22px;"><h3>No se encontraron alumnos</h3></td>
+        </tr>
+	{/if}
 
 </table>

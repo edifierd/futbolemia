@@ -72,7 +72,7 @@ class gruposController extends administradorController{
 	}
 	
 	public function delete_grupo($id_grupo){
-		$this->_acl->acceso('control_grupos');
+		$this->_acl->acceso('control_usuarios');
 		
 		$id = $this->filtrarInt($id_grupo);
 		        

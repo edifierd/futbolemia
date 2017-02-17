@@ -14,7 +14,7 @@ class alumnosController extends administradorController{
     public function index(){
 		$this->_acl->acceso('control_alumnos');
 		if($this->getInt('buscar') == 1){
-			if($this->getAlphaNum('casillero')){
+			if($this->getTexto('casillero')){
 				$alumnos = $this->_alumnos->find($this->getTexto('sede'),$this->getTexto('casillero'));
 			}else{
 				$alumnos = $this->_alumnos->find($this->getTexto('sede'));
@@ -28,6 +28,7 @@ class alumnosController extends administradorController{
     }
 	
 	public function show($id_alumno){
+		$this->_acl->acceso('control_alumnos');
 		$this->_view->assign('titulo', 'Nuevo Alumno');
 		$alumno = $this->_alumnos->getAlumno($id_alumno);
 		if(!$alumno){
@@ -93,17 +94,13 @@ class alumnosController extends administradorController{
 			if(!$this->getTexto('obra_social')){
 				$obra_social = '';
 			} else {
-				$this->_view->assign('_error', 'No parece ser el nombre de una Obra Social.');
-                $this->_view->renderizar('nuevo', 'alumno');
-                exit;
+				$obra_social = $this->getTexto('obra_social');
 			}
-			
+						
 			if(!$this->getAlphaNum('numero_afiliado')){
 				$numero_afiliado = '';
 			} else {
-				$this->_view->assign('_error', 'No parece ser un número de afiliado valido.');
-                $this->_view->renderizar('nuevo', 'alumno');
-                exit;
+				$numero_afiliado = $this->getAlphaNum('numero_afiliado');
 			}
 			
 			if(!$this->getTexto('observacion_medica')){
