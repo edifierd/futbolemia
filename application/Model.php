@@ -44,6 +44,18 @@ class Model
 		print_r($this->_db->errorInfo());
 	}
 	
+		// ---------- FUNCIONES AUXILIARES ---------- //
+	
+	protected function esDni($dni){
+		if (!filter_var($dni, FILTER_VALIDATE_INT) === false) {
+    		$dni = filter_var($dni, FILTER_VALIDATE_INT);
+			if (strlen($dni) > 6 && strlen($dni) < 9){
+           		return $dni;
+			} 
+		}
+		return false;
+    }
+	
 }
 
 ?>

@@ -9,6 +9,7 @@
         <link rel="icon" type="image/png" href="{$_layoutParams.ruta_img}icono.ico" />
         <link href="{$_layoutParams.ruta_css}bootstrap.min.css" rel="stylesheet" type="text/css"> 
         <link href="{$_layoutParams.ruta_css}bootstrap-select.min.css" rel="stylesheet" type="text/css"> 
+        <link href="{$_layoutParams.ruta_css}font-awesome.min.css" rel="stylesheet" type="text/css"> 
         <link href="{$_layoutParams.ruta_css}template.css" rel="stylesheet" type="text/css">   
         
         {if isset($_layoutParams.css) && count($_layoutParams.css)}
@@ -52,6 +53,15 @@
                     <li class="dropdown-header">Administración de Grupos</li>
                     <li><a href="{$_layoutParams.root}administrador/grupos">Listado</a></li>
                     <li><a href="{$_layoutParams.root}administrador/grupos/nuevo">Nuevo Grupo</a></li>
+                  </ul>
+                </li>
+                {/if}
+                {if $_acl->permiso('control_responsables')}
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Responsables Alumnos<span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li class="dropdown-header">Administración de Responsables</li>
+                    <li><a href="{$_layoutParams.root}administrador/responsables">Listado</a></li>
                   </ul>
                 </li>
                 {/if}

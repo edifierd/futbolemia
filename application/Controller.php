@@ -52,9 +52,19 @@ abstract class Controller
             throw new Exception('Error de modelo');
         }
     }
+	
+	protected function redireccionar($ruta = false){
+        if($ruta){
+            header('location:' . BASE_URL . $ruta);
+            exit;
+        }
+        else{
+            header('location:' . BASE_URL);
+            exit;
+        }
+    }
     
-    protected function getLibrary($libreria)
-    {
+    protected function getLibrary($libreria){
         $rutaLibreria = ROOT . 'libs' . DS . $libreria . '.php';
         
         if(is_readable($rutaLibreria)){
@@ -87,23 +97,11 @@ abstract class Controller
 	protected function getDni($clave){
         if(isset($_POST[$clave]) && !empty($_POST[$clave])){
             $_POST[$clave] = filter_input(INPUT_POST, $clave, FILTER_VALIDATE_INT);
-			if (strlen($_POST[$clave]) == 8){
+			if (strlen($_POST[$clave]) > 6 && strlen($_POST[$clave]) < 9){
             	return $_POST[$clave];
 			} else {
 				return 0;
 			}
-        }
-    }
-    
-    protected function redireccionar($ruta = false)
-    {
-        if($ruta){
-            header('location:' . BASE_URL . $ruta);
-            exit;
-        }
-        else{
-            header('location:' . BASE_URL);
-            exit;
         }
     }
 

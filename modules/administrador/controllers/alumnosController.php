@@ -36,6 +36,7 @@ class alumnosController extends administradorController{
 			exit;
 		}
 		$this->_view->assign('alumno', $this->_alumnos->getAlumno($id_alumno));
+		$this->_view->assign('responsables', $this->_alumnos->getResponsables($id_alumno));
 		$this->_view->renderizar('show', '');
 	}
 	
@@ -56,7 +57,7 @@ class alumnosController extends administradorController{
             }
 			
 			if($this->getDni('dni') == 0 or !$this->getDni('dni')){
-                $this->_view->assign('_error', 'Debe introducir un numero valido de DNI del alumno.');
+                $this->_view->assign('_error', 'Debe introducir un número valido de DNI del alumno.');
                 $this->_view->renderizar('nuevo', 'alumno');
                 exit;
             }

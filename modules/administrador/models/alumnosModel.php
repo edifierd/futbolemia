@@ -64,18 +64,11 @@ class alumnosModel extends Model{
         return $datos->fetchall();
 	}
 	
-	// ---------- FUNCIONES AUXILIARES ---------- //
-	
-	protected function esDni($dni){
-		if (!filter_var($dni, FILTER_VALIDATE_INT) === false) {
-    		$dni = filter_var($dni, FILTER_VALIDATE_INT);
-			if (strlen($dni) == 8){
-           		return $dni;
-			} 
-		}
-		return false;
-    }
-	
+	public function getResponsables($id_alumno){
+		$consulta = "SELECT * FROM alumnos_responsables ar INNER JOIN responsables r ON ar.id_responsable = r.id_responsable WHERE ar.id_alumno = ".$id_alumno;
+		$datos = $this->_db->query($consulta); //Ejecuto la consulta
+        return $datos->fetchall();
+	}
 	
 }
 

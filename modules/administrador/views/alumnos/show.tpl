@@ -1,8 +1,8 @@
 
 
 <ul class="nav nav-tabs" style="margin-bottom:15px;">
-  <li role="presentation" class="active"><a href="#">Modificar Perfil</a></li>
-  <li role="presentation"><a href="#">Agregar Responsable</a></li>
+  <li role="presentation"><a href="#">Modificar Perfil</a></li>
+  <li role="presentation"><a href="{$_layoutParams.root}administrador/responsables/listado/{$alumno.id_alumno}">Agregar Responsable</a></li>
   <li role="presentation"><a href="#">Pagos</a></li>
   <li role="presentation"><a href="#">Asistencias</a></li>
 </ul>
@@ -47,8 +47,28 @@
 		</div>
         
         <div class="panel panel-default">
-  			<div class="panel-heading">Responsables</div>
+  			<div class="panel-heading">
+            	Responsables <a href="{$_layoutParams.root}administrador/responsables/listado/{$alumno.id_alumno}" class="btn btn-primary btn-xs" style="margin-left:10px;">Agregar NUEVO</a>
+            </div>
  			<div class="panel-body">
+            	<ul class="list-group">
+            	{foreach from=$responsables item=r}
+                	<div class="row" style="margin:2px; margin-bottom:5px; border: solid 1px #CCCCCC;">
+                    	<div class="col-xs-10">
+                    		<h4>{$r.nombre} {$r.apellido} - {$r.parentesco}</h4>
+                        	Teléfono Fijo: {$r.tel_fijo} <br />
+                        	Teléfono Celular {$r.tel_celular} <br />
+                        	Dirección: {$r.direccion} <br />
+                        </div>
+                        <div class="col-xs-2">
+                        	<a href="{$_layoutParams.root}administrador/responsables/edit/{$r.id_responsable}" 
+                               class="btn btn-primary btn-xs" style="margin-top: 10px;"><i class="fa fa-pencil fa-2x"></i></a>
+                        	<a href="{$_layoutParams.root}administrador/responsables/delete/{$r.id_responsable}" 
+                               class="btn btn-danger btn-xs" style="margin-top: 10px;"><i class="fa fa-trash fa-2x"></i></a>
+                       	</div>
+                     </div>
+				{/foreach}
+               	</ul>
   			</div>
 		</div>
     </div>

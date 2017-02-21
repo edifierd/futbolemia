@@ -1,46 +1,56 @@
-<h2>Dar de alta grupo</h2>
+<h2>Dar de alta Responsable</h2>
 
 <div class="well span5">
     <form name="form1" method="post" action="" class="form">
         <input type="hidden" value="1" name="guardar" />
         
-        <p>
-            <label>Sede: </label>
-            <select id="sede" name="sede" >
+         <p>
+            <label>Parentesco: </label>
+            <select id="parentesco" name="parentesco" >
             	<option value="null" >Seleccione...</option>
-        		<option value="La Cumbre" >La Cumbre</option>
-                <option value="Los Hornos" >Los Hornos</option>
-                <option value="El Retiro" >El Retiro</option>
+        		<option value="padre" >Padre</option>
+                <option value="madre" >Madre</option>
+                <option value="hermano" >Hermano</option>
+                <option value="abuelo" >Abuelo</option>
+                <option value="tio" >Tío</option>
 			</select>
+        </p>
+        
+        <p>
+            <label>Nombre: </label>
+            <input type="text" name="nombre" value="{$datos.nombre|default:""}" />
         </p>
 
         <p>
-            <label>Tipo: </label>
-            <select id="tipo" name="tipo" >
-            	<option value="null" >Seleccione...</option>
-        		<option value="Jardin" >Jardin</option>
-                <option value="1y2" >1° y 2° Grado</option>
-                <option value="3y4" >3° y 4° Grado</option>
-				<option value="5y6" >5° y 6° Grado</option>
-			</select>
+            <label>Apellido: </label>
+            <input type="text" name="apellido" value="{$datos.apellido|default:""}" />
         </p>
 
         <p>
-            <label>Dias: </label>
-            <select id="dias[]" name="dias[]" class="selectpicker" title="Seleccione multiples dias..." multiple>
-        		<option value="Lu" >Lunes</option>
-                <option value="Ma" >Martes</option>
-                <option value="Mi" >Miercoles</option>
-                <option value="Ju" >Jueves</option>
-                <option value="Vi" >Viernes</option>
-                <option value="Sa" >Sabados</option>
-			</select>
+            <label>DNI: </label>
+            <input type="text" name="dni" value="{$datos.dni|default:""}" />
         </p>
-
+        
         <p>
-            <label>Horario: </label>
-            <input type="text" name="horario" value="{$datos.horario|default:""}" />
+            <label>Telefono Fijo: </label>
+            <input type="text" name="tel_fijo" value="{$datos.tel_fijo|default:""}" />
         </p>
+        
+        <p>
+            <label>Telefono Celular: </label>
+            <input type="text" name="tel_celular" value="{$datos.tel_celular|default:""}" />
+        </p>
+        
+        <p>
+            <label>Dirección: </label>
+            <input type="text" name="direccion" value="{$datos.direccion|default:""}" />
+        </p>
+        
+        <p>
+            <label>Correo: </label>
+            <input type="email" name="direccion" value="{$datos.email|default:""}" />
+        </p>
+ 
 
         <p>
             <button type="submit" class="btn btn-primary">Enviar</button>
