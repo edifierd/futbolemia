@@ -14,9 +14,18 @@ class responsablesModel extends Model{
 		return $rta;
 	}
 	
-	public function delete($id){
-        return $this->_db->query("UPDATE alumnos SET `estado` = 'e' WHERE `id_alumno` = ".$id);
+	public function delete($id_responsable,$id_alumno){
+        return $this->_db->query("DELETE FROM alumnos_responsables WHERE `id_alumno` = ".$id_alumno." AND `id_responsable` = ".$id_responsable);
     }
+	
+	public function edit($id_responsable,$nombre,$apellido,$tel_fijo,$tel_celular,$direccion,$correo){
+		$id_responsable = (int) $id_responsable;
+        
+		$sql = "UPDATE responsables SET `nombre` = '".$nombre."',`apellido` = '".$apellido."',`tel_fijo` = ".$tel_fijo.", `tel_celular` = ".$tel_celular.",`direccion` = '".$direccion."',
+										`correo` = '".$correo."' WHERE `id_responsable` = ".$id_responsable;
+        $this->_db->query($sql);
+		
+	}
 	
 	public function agregarResponsable($id_responsable,$id_alumno){
 		$rta = $this->_db->query("INSERT INTO alumnos_responsables VALUES(null,".$id_alumno.",".$id_responsable.")");

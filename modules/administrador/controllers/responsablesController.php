@@ -101,7 +101,7 @@ class responsablesController extends administradorController{
                 exit;
 			}
 			
-			if($this->validarEmail($this->getTexto('email'))){
+			if(!$this->validarEmail($this->getTexto('email'))){
 				$this->_view->assign('_error', 'No se ha ingresado un correo valido.');
                 $this->_view->renderizar('nuevo', 'alumno');
                 exit;
@@ -151,20 +151,93 @@ class responsablesController extends administradorController{
 		$this->redireccionar('administrador/alumnos/show/'.$id_alumno);
 	}
 	
-	public function delete($id){
-		$alumno = $this->_responsables->getAlumno($id);
-		if(!$alumno){
-			$this->redireccionar('administrador/alumnos');
-			exit;
+	public function delete($id_responsable,$id_alumno){
+		$this->_acl->acceso('control_responsables');
+		
+		if(!$this->_responsables->getResponsable($id_responsable)){
+			$this->_view->assign('_error', 'Algo salio mal. Por favor intente nuevamente.');
+            $this->redireccionar('administrador/alumnos/show/'.$id_alumno);
+            exit;
 		}
 		
-		if(!$this->_responsables->delete($id)){
+		if(!$this->_alumnos->getAlumno($id_alumno)){
+			$this->_view->assign('_error', 'Algo salio mal. Por favor intente nuevamente.');
+            $this->redireccionar('administrador/alumnos/show/'.$id_alumno);
+            exit;
+		}
+		
+		if(!$this->_responsables->delete($id_responsable,$id_alumno)){
 			$this->_view->assign('_mensaje', 'No se ha podido eliminar de BD');
-			$this->_view->renderizar('index');
+			$this->redireccionar('administrador/alumnos/show/'.$id_alumno);
 			exit;
 		}
 		
-		$this->redireccionar('administrador/alumnos');
+		$this->redireccionar('administrador/alumnos/show/'.$id_alumno);
+	}
+	
+	public function edit($id_responsable,$id_alumno){
+		$this->_acl->acceso('control_responsables');
+		
+        $this->_view->assign('titulo', 'Modificar Responsable');
+		        
+        if($this->getInt('guardar') == 1){
+            $this->_view->assign('datos', $_POST);
+			
+			if(!$this->getTexto('nombre')){
+				$this->_view->assign('_error', 'No se ha ingresado un Nombre valido.');
+                $this->_view->renderizar('edit', 'alumno');
+                exit;
+			}
+			
+			if(!$this->getTexto('apellido')){
+				$this->_view->assign('_error', 'No se ha ingresado un Apellido valido.');
+                $this->_view->renderizar('edit', 'alumno');
+                exit;
+			}
+			
+			if(!$this->getAlphaNum('tel_fijo')){
+				$this->_view->assign('_error', 'Debe indicar un teléfono fijo.');
+                $this->_view->renderizar('edit', '');
+                exit;
+			}
+			
+			if(!$this->getAlphaNum('tel_celular')){
+				$this->_view->assign('_error', 'Debe indicar un teléfono celular.');
+                $this->_view->renderizar('edit', '');
+                exit;
+			}
+			
+			if(!$this->getTexto('direccion')){
+				$this->_view->assign('_error', 'No se ha ingresado una dirección.');
+                $this->_view->renderizar('edit', 'alumno');
+                exit;
+			}
+			
+			
+			if(!$this->validarEmail($this->getPostParam('correo'))){
+				$this->_view->assign('_error', 'No se ha ingresado un correo valido.');
+                $this->_view->renderizar('edit', 'alumno');
+                exit;
+			}
+			
+            if(!$this->_responsables->edit(
+								$id_responsable,
+								$this->getTexto('nombre'),
+								$this->getTexto('apellido'),
+								$this->getAlphaNum('tel_fijo'),
+								$this->getAlphaNum('tel_celular'),
+								$this->getTexto('direccion'),
+								$this->getPostParam('correo')
+							)){
+				$this->_view->assign('_error', 'No se pudo modificar al responsable.');
+			}
+			            
+            $this->redireccionar('administrador/alumnos/show/'.$id_alumno);
+        } else {
+			$this->_view->assign('datos', $this->_responsables->getResponsable($id_responsable));
+		}
+        
+        $this->_view->renderizar('edit', '');
 	}
 	
 	

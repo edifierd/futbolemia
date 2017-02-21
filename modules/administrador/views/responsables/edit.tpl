@@ -1,19 +1,13 @@
-<h2>Dar de alta Responsable</h2>
+<h2>Modificar responsable</h2>
 
 <div class="well span5">
     <form name="form1" method="post" action="" class="form">
         <input type="hidden" value="1" name="guardar" />
-        
-         <p>
-            <label>Parentesco: </label>
-            <select id="parentesco" name="parentesco" >
-            	<option value="null" >Seleccione...</option>
-        		<option value="padre" >Padre</option>
-                <option value="madre" >Madre</option>
-                <option value="hermano" >Hermano</option>
-                <option value="abuelo" >Abuelo</option>
-                <option value="tio" >Tío</option>
-			</select>
+        <input type="hidden" value="{$datos.parentesco}" name="parentesco" />
+        <input type="hidden" value="{$datos.dni}" name="dni" />
+        <p>
+        	<label>Parentesco: </label>
+            <label>{$datos.parentesco} </label>
         </p>
         
         <p>
@@ -28,7 +22,7 @@
 
         <p>
             <label>DNI: </label>
-            <input type="text" name="dni" value="{$datos.dni|default:""}" />
+            <label>{$datos.dni} </label>
         </p>
         
         <p>
@@ -48,12 +42,12 @@
         
         <p>
             <label>Correo: </label>
-            <input type="email" name="email" value="{$datos.email|default:""}" />
+            <input type="email" name="correo" value="{$datos.correo|default:""}" />
         </p>
  
 
         <p>
-            <button type="submit" class="btn btn-primary">Enviar</button>
+            <button type="submit" class="btn btn-primary">Modificar</button>
         </p>
     </form>
 </div>

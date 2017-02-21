@@ -61,9 +61,9 @@
                         	Dirección: {$r.direccion} <br />
                         </div>
                         <div class="col-xs-2">
-                        	<a href="{$_layoutParams.root}administrador/responsables/edit/{$r.id_responsable}" 
+                        	<a href="{$_layoutParams.root}administrador/responsables/edit/{$r.id_responsable}/{$alumno.id_alumno}" 
                                class="btn btn-primary btn-xs" style="margin-top: 10px;"><i class="fa fa-pencil fa-2x"></i></a>
-                        	<a href="{$_layoutParams.root}administrador/responsables/delete/{$r.id_responsable}" 
+                        	<a href="{$_layoutParams.root}administrador/responsables/delete/{$r.id_responsable}/{$alumno.id_alumno}" 
                                class="btn btn-danger btn-xs" style="margin-top: 10px;"><i class="fa fa-trash fa-2x"></i></a>
                        	</div>
                      </div>

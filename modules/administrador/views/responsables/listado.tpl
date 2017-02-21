@@ -4,6 +4,7 @@
   <div class="container-fluid">
   	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     	<ul class="nav navbar-nav">
+        	<li><a href="{$_layoutParams.root}administrador/alumnos/show/{$alumno.id_alumno}" > <i class="fa fa-arrow-left fa-lg"></i> Atras</a></li>
         	{if isset($alumno.id_alumno)}
         		<li><a href="{$_layoutParams.root}administrador/responsables/nuevo/{$alumno.id_alumno}" > Nuevo Responsable</a></li>
             {/if}
