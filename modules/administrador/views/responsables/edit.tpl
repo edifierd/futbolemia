@@ -11,6 +11,11 @@
         </p>
         
         <p>
+            <label>DNI: </label>
+            <label>{$datos.dni} </label>
+        </p>
+        
+        <p>
             <label>Nombre: </label>
             <input type="text" name="nombre" value="{$datos.nombre|default:""}" />
         </p>
@@ -18,11 +23,6 @@
         <p>
             <label>Apellido: </label>
             <input type="text" name="apellido" value="{$datos.apellido|default:""}" />
-        </p>
-
-        <p>
-            <label>DNI: </label>
-            <label>{$datos.dni} </label>
         </p>
         
         <p>
@@ -47,7 +47,8 @@
  
 
         <p>
-            <button type="submit" class="btn btn-primary">Modificar</button>
+            <button type="submit" class="btn btn-primary">Modificar</button> 
+            <a href="{$_layoutParams.root}administrador/alumnos/show/{$id_alumno}" class="btn btn-danger" style="margin-left:25px;">Cancelar</a>
         </p>
     </form>
 </div>

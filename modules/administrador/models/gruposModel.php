@@ -30,6 +30,11 @@ class gruposModel extends Model
 		return $datos->fetch();
 	}
 	
+	public function getGruposMenos($id_grupo){
+		$datos = $this->_db->query("SELECT * FROM grupos WHERE id_grupo != ".$id_grupo." ORDER BY sede DESC, tipo DESC");
+		return $datos->fetchall();
+	}
+	
 	
 	// ---------- VALIDACIONES ---------- //
 	

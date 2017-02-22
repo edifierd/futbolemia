@@ -236,7 +236,7 @@ class responsablesController extends administradorController{
         } else {
 			$this->_view->assign('datos', $this->_responsables->getResponsable($id_responsable));
 		}
-        
+        $this->_view->assign('id_alumno', $id_alumno);
         $this->_view->renderizar('edit', '');
 	}
 	

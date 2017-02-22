@@ -40,7 +40,11 @@
         		<td>{$a.dni}</td>
         		<td>{$a.sede} - {$a.tipo} - {$a.horario} </td>
         		<td><a href="{$_layoutParams.root}administrador/alumnos/show/{$a.id_alumno}" class="btn btn-primary btn-xs">Ver Perfil</a></td>
-        		<td><a href="{$_layoutParams.root}administrador/alumnos/delete/{$a.id_alumno}" class="btn btn-danger btn-xs">Eliminar</a></td>    </tr>
+        		<td><a href="{$_layoutParams.root}administrador/alumnos/delete/{$a.id_alumno}" class="btn btn-danger btn-xs" onClick="javascript: return confirm('¿Estas seguro?');">
+                		Eliminar
+                    </a>
+                </td>
+            </tr>
 		{/foreach}
 	{else}
     	<tr>

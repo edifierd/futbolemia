@@ -1,7 +1,7 @@
 
 
 <ul class="nav nav-tabs" style="margin-bottom:15px;">
-  <li role="presentation"><a href="#">Modificar Perfil</a></li>
+  <li role="presentation"><a href="{$_layoutParams.root}administrador/alumnos/edit/{$alumno.id_alumno}">Modificar Perfil</a></li>
   <li role="presentation"><a href="{$_layoutParams.root}administrador/responsables/listado/{$alumno.id_alumno}">Agregar Responsable</a></li>
   <li role="presentation"><a href="#">Pagos</a></li>
   <li role="presentation"><a href="#">Asistencias</a></li>
@@ -15,20 +15,27 @@
     			<ul class="list-group">
   					<li class="list-group-item">Apellido y Nombre: <b>{$alumno.apellido} {$alumno.nombre}</b></li>
   					<li class="list-group-item">DNI: {$alumno.dni}</li>
-  					<li class="list-group-item">Fecha de Nacimiento: {$alumno.nacimiento}</li>
-  					<li class="list-group-item">Colegio: {$alumno.colegio}</li>
+  					<li class="list-group-item">Fecha de Nacimiento:  {$alumno.nacimiento|date_format:"%d-%m-%Y"}</li>
+  					<li class="list-group-item">Colegio: {$alumno.colegio} </li>
         			<li class="list-group-item">Obra Social: {$alumno.obra_social} </li>
         			<li class="list-group-item">Número Afiliado: {$alumno.num_afiliado} </li>
-        			<li class="list-group-item">Observacion Medica: {$alumno.observacion_medica|nl2br}</li>
+        			<li class="list-group-item" style="height:auto">Observacion Medica: <br /> {$alumno.observacion_medica|nl2br}</li>
 				</ul>
   			</div>
 		</div>
             
 		<div class="panel panel-default">
-  			<div class="panel-heading">NOTAS</div>
- 			<div class="panel-body">
-				{$alumno.notas|nl2br}
-  			</div>
+  			<div class="panel-heading">
+            	<form name="form1" method="post" action="" class="form">
+                	NOTAS 
+                	<button type="submit" class="btn btn-primary btn-xs" style="margin-left:10px;" >Guardar</button>
+            </div>
+ 		    <div class="panel-body">
+        			<input type="hidden" value="1" name="guardar" />
+               		<textarea name="notas" style="width:100%; min-height:150px;"/>{$alumno.notas}</textarea>
+                </form>
+                <!--{$alumno.notas|nl2br} Esto sirve para mostrar los saltos de linea-->
+            </div>
 		</div>
 	</div>
     
@@ -63,8 +70,8 @@
                         <div class="col-xs-2">
                         	<a href="{$_layoutParams.root}administrador/responsables/edit/{$r.id_responsable}/{$alumno.id_alumno}" 
                                class="btn btn-primary btn-xs" style="margin-top: 10px;"><i class="fa fa-pencil fa-2x"></i></a>
-                        	<a href="{$_layoutParams.root}administrador/responsables/delete/{$r.id_responsable}/{$alumno.id_alumno}" 
-                               class="btn btn-danger btn-xs" style="margin-top: 10px;"><i class="fa fa-trash fa-2x"></i></a>
+                        	<a href="{$_layoutParams.root}administrador/responsables/delete/{$r.id_responsable}/{$alumno.id_alumno}" onClick="javascript: return confirm('¿Estas seguro?');"
+                               class="btn btn-danger btn-xs" style="margin-top: 10px;" ><i class="fa fa-trash fa-2x"></i></a>
                        	</div>
                      </div>
 				{/foreach}

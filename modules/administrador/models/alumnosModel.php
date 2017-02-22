@@ -16,7 +16,20 @@ class alumnosModel extends Model{
         return $this->_db->query("UPDATE alumnos SET `estado` = 'e' WHERE `id_alumno` = ".$id);
     }
 	
+	public function edit($id_alumno,$nacimiento,$colegio,$obra_social,$numero_afiliado,$observacion_medica,$id_grupo){
+		$id_alumno = (int) $id_alumno;
+        
+		$sql = "UPDATE alumnos SET `nacimiento` = '".$nacimiento."',`colegio` = '".$colegio."',`obra_social` = '".$obra_social."', `num_afiliado` = ".$numero_afiliado.",`observacion_medica` = '".$observacion_medica."',`id_grupo` = ".$id_grupo." WHERE `id_alumno` = ".$id_alumno;
+        return $this->_db->query($sql);
+	}
+	
 	// ---------- GETTERS AND SETTERS ---------- //
+	
+	public function setNota($id_alumno,$nota){
+		$id_alumno = (int) $id_alumno;
+		$sql = "UPDATE alumnos SET `notas` = '".$nota."' WHERE `id_alumno` = ".$id_alumno;
+        return $this->_db->query($sql);
+	}
 	
 	public function getAll(){
         $datos = $this->_db->query("SELECT * FROM alumnos a INNER JOIN grupos g ON a.id_grupo = g.id_grupo WHERE a.estado = 'a' ");

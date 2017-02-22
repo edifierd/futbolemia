@@ -29,14 +29,24 @@ class alumnosController extends administradorController{
 	
 	public function show($id_alumno){
 		$this->_acl->acceso('control_alumnos');
-		$this->_view->assign('titulo', 'Nuevo Alumno');
+		
 		$alumno = $this->_alumnos->getAlumno($id_alumno);
 		if(!$alumno){
 			$this->redireccionar('administrador/alumnos');
 			exit;
 		}
+		
+		if($this->getInt('guardar') == 1){
+			if($this->_alumnos->setNota($id_alumno, $this->getTexto('notas'))){
+				$this->_view->assign('_emensaje', 'Nota guardada correctamente.');
+			} else {
+				$this->_view->assign('_error', 'Algo salio mal. No se guardo la nota.');
+			}
+		}
+		
 		$this->_view->assign('alumno', $this->_alumnos->getAlumno($id_alumno));
 		$this->_view->assign('responsables', $this->_alumnos->getResponsables($id_alumno));
+		$this->_view->assign('titulo', 'Perfil de '.$alumno['apellido']." ".$alumno['nombre']);
 		$this->_view->renderizar('show', '');
 	}
 	
@@ -139,19 +149,83 @@ class alumnosController extends administradorController{
 	}
 	
 	public function delete($id){
+		$this->_acl->acceso('control_alumnos');
 		$alumno = $this->_alumnos->getAlumno($id);
 		if(!$alumno){
 			$this->redireccionar('administrador/alumnos');
 			exit;
-		}
-		
+		}	
 		if(!$this->_alumnos->delete($id)){
 			$this->_view->assign('_mensaje', 'No se ha podido eliminar de BD');
 			$this->_view->renderizar('index');
 			exit;
 		}
-		
 		$this->redireccionar('administrador/alumnos');
+	}
+	
+	public function edit($id_alumno){
+		$this->_acl->acceso('control_alumnos');
+		
+		$alumno = $this->_alumnos->getAlumno($id_alumno);
+		if(!$alumno){
+			$this->redireccionar('administrador/alumnos');
+		}
+		
+		if($this->getInt('guardar') == 1){
+            $this->_view->assign('datos', $_POST);
+			
+			if(!$this->validarDate($this->getPostParam('nacimiento'))){
+				$this->_view->assign('_error', 'No es una fecha de nacimiento valida.');
+                $this->_view->renderizar('edit', 'alumno');
+                exit;
+			}
+			
+			if(!$this->getTexto('colegio')){
+				$this->_view->assign('_error', 'No parece ser el nombre de un colegio.');
+                $this->_view->renderizar('edit', 'alumno');
+                exit;
+			}
+			
+			if(!$this->getTexto('obra_social')){
+				$obra_social = '';
+			} else {
+				$obra_social = $this->getTexto('obra_social');
+			}
+						
+			if(!$this->getAlphaNum('num_afiliado')){
+				$numero_afiliado = '';
+			} else {
+				$numero_afiliado = $this->getAlphaNum('num_afiliado');
+			}
+			
+			if(!$this->getTexto('observacion_medica')){
+				$observacion_medica = '';
+			} else {
+				$observacion_medica = $this->getTexto('observacion_medica');
+			}
+			
+			if(!$this->_alumnos->edit($id_alumno,
+									  $this->getPostParam('nacimiento'),
+									  $this->getTexto('colegio'),
+								      $obra_social,
+								      $numero_afiliado,
+								      $observacion_medica,
+									  $this->getInt('grupo')
+								  )){
+				$this->_view->assign('_error', 'No se pudo modificar al alumno. Intente nuevamente.');
+			} else {
+				$this->redireccionar('administrador/alumnos/show/'.$id_alumno);
+			}
+
+		} else {
+			$this->_view->assign('datos', $alumno);
+		}
+		
+		$this->_view->assign('grupo', $this->_grupos->getGrupo($alumno['id_grupo']));
+		$this->_view->assign('grupos', $this->_grupos->getGruposMenos($alumno['id_grupo']));
+		$this->_view->assign('id_alumno', $id_alumno);
+		$this->_view->assign('titulo', 'Editar Alumno');
+		$this->_view->renderizar('edit', '');
 	}
 	
 	
