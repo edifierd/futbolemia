@@ -5,6 +5,11 @@
         <input type="hidden" value="1" name="guardar" />
         
          <p>
+            <label>DNI: </label>
+            <input type="text" name="dni" value="{$datos.dni|default:""}" />
+         </p>
+        
+         <p>
             <label>Parentesco: </label>
             <select id="parentesco" name="parentesco" >
             	<option value="null" >Seleccione...</option>
@@ -24,11 +29,6 @@
         <p>
             <label>Apellido: </label>
             <input type="text" name="apellido" value="{$datos.apellido|default:""}" />
-        </p>
-
-        <p>
-            <label>DNI: </label>
-            <input type="text" name="dni" value="{$datos.dni|default:""}" />
         </p>
         
         <p>

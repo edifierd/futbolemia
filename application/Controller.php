@@ -154,8 +154,18 @@ abstract class Controller
 				return $_POST[$clave];
 			}
         }
-        
     }
+	
+	public function getDia($fecha){
+		$array_dias['Sunday'] = "Do";
+		$array_dias['Monday'] = "Lu";
+		$array_dias['Tuesday'] = "Ma";
+		$array_dias['Wednesday'] = "Mi";
+		$array_dias['Thursday'] = "Ju";
+		$array_dias['Friday'] = "Vi";
+		$array_dias['Saturday'] = "Sa";
+		return $array_dias[date('l', strtotime($fecha))];
+	}
     
     public function validarEmail($email){
         if(!filter_var($email, FILTER_VALIDATE_EMAIL)){

@@ -28,7 +28,8 @@
     			<td>{$r.id_responsable}</td>
 				<td><a href="{$_layoutParams.root}administrador/responsables/show/{$r.id_responsable}">{$r.apellido} {$r.nombre}</a></td>
         		<td>{$r.dni}</td>
-                <td></td>
+                <td><a href="{$_layoutParams.root}administrador/responsables/edit/{$r.id_responsable}" 
+                               class="btn btn-primary btn-xs" ><i class="fa fa-pencil fa-2x"></i></a></td>
 			</tr>
 		{/foreach}
 	{else}

@@ -92,6 +92,27 @@ class gruposController extends administradorController{
 		
 		$this->redireccionar('administrador/grupos');
     }
+	
+	public function show($id_grupo){
+		$this->_acl->acceso('control_usuarios');
+		
+		$id = $this->filtrarInt($id_grupo);
+		        
+        if(!$id){
+            $this->redireccionar('administrador/grupos');
+        }
+		
+		$grupo = $this->_grupos->getGrupo($id);
+		if(!$grupo){
+			$this->redireccionar('administrador/grupos');
+		}
+		
+		$this->_view->assign('alumnos', $this->_grupos->getAlumnosGrupo($id));
+		$this->_view->assign('grupo', $grupo);
+		$this->_view->renderizar('show', '');
+	}
+	
+	
     
     
 }

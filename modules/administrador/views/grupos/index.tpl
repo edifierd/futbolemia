@@ -1,7 +1,9 @@
 
 <div class="btn-group">
+	<a href="javascript:history.back()" class="btn btn-default"> <i class="fa fa-arrow-left fa-lg"></i> Atras</a></li>
 	<a href="{$_layoutParams.root}administrador/grupos/nuevo" class="btn btn-default"> Nuevo Grupo</a>
 </div>
+
 
 <h3>Listado de Grupos Futbolemia</h3><br>
 
@@ -13,18 +15,19 @@
     	<th>Tipo Grupo</th>
     	<th>Dias</th>
     	<th>Horario</th>
-        <th>Acciones</th>
+        <th colspan="2" style="text-align:center;">Acciones</th>
     </tr>
 	
     {if isset($grupos) && count($grupos)}
     	{foreach from=$grupos item=g}
     	<tr>
     		<td>{$g.id_grupo}</td>
-        	<td>{$g.sede}</td>
+        	<td><a href="{$_layoutParams.root}administrador/grupos/show/{$g.id_grupo}">{$g.sede}</a></td>
         	<td>{$g.tipo}</td>
         	<td>{$g.dias}</td>
        		<td>{$g.horario}</td>
-        	<td><a href="{$_layoutParams.root}administrador/grupos/delete_grupo/{$g.id_grupo}" class="btn btn-danger btn-xs">Eliminar</a></td>
+            <td style="text-align:center"><a href="{$_layoutParams.root}administrador/grupos/show/{$g.id_grupo}" class="btn btn-primary btn-xs">Ver Grupo</a></td>
+        	<td style="text-align:center"><a href="{$_layoutParams.root}administrador/grupos/delete_grupo/{$g.id_grupo}" class="btn btn-danger btn-xs">Eliminar</a></td>
     	</tr>
 		{/foreach}
     {else}

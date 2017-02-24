@@ -13,14 +13,19 @@ class alumnosModel extends Model{
 	}
 	
 	public function delete($id){
-        return $this->_db->query("UPDATE alumnos SET `estado` = 'e' WHERE `id_alumno` = ".$id);
+        return $this->_db->query("UPDATE alumnos SET `estado` = 'e', `id_grupo` = 1 WHERE `id_alumno` = ".$id);
     }
 	
 	public function edit($id_alumno,$nacimiento,$colegio,$obra_social,$numero_afiliado,$observacion_medica,$id_grupo){
 		$id_alumno = (int) $id_alumno;
         
-		$sql = "UPDATE alumnos SET `nacimiento` = '".$nacimiento."',`colegio` = '".$colegio."',`obra_social` = '".$obra_social."', `num_afiliado` = ".$numero_afiliado.",`observacion_medica` = '".$observacion_medica."',`id_grupo` = ".$id_grupo." WHERE `id_alumno` = ".$id_alumno;
-        return $this->_db->query($sql);
+		$sql = "UPDATE alumnos SET `nacimiento` = '".$nacimiento."',`colegio` = '".$colegio."',`obra_social` = '".$obra_social."', `num_afiliado` = '".$numero_afiliado."',`observacion_medica` = '".$observacion_medica."',`id_grupo` = ".$id_grupo." WHERE `id_alumno` = ".$id_alumno;
+        $sql = $this->_db->query($sql);
+		return $sql;
+	}
+	
+	public function reactivar($id){
+		return $this->_db->query("UPDATE alumnos SET `estado` = 'a' WHERE `id_alumno` = ".$id);
 	}
 	
 	// ---------- GETTERS AND SETTERS ---------- //
@@ -32,13 +37,13 @@ class alumnosModel extends Model{
 	}
 	
 	public function getAll(){
-        $datos = $this->_db->query("SELECT * FROM alumnos a INNER JOIN grupos g ON a.id_grupo = g.id_grupo WHERE a.estado = 'a' ");
+        $datos = $this->_db->query("SELECT * FROM alumnos a INNER JOIN grupos g ON a.id_grupo = g.id_grupo ORDER BY estado ASC ");
 		return $datos->fetchall();
     }
 	
 	public function getAlumno($id_alumno){
         $datos = $this->_db->query(
-                "SELECT * FROM alumnos a INNER JOIN grupos g ON a.id_grupo = g.id_grupo WHERE a.id_alumno = ".$id_alumno." AND a.estado = 'a' "
+                "SELECT * FROM alumnos a INNER JOIN grupos g ON a.id_grupo = g.id_grupo WHERE a.id_alumno = ".$id_alumno
                 );
 		if ($datos->rowCount() > 0){
         	return $datos->fetch();
@@ -58,9 +63,9 @@ class alumnosModel extends Model{
 	
 	public function find($sede,$casillero = false){
 		if(!$casillero){
-			$consulta = "SELECT * FROM alumnos a INNER JOIN grupos g ON a.id_grupo = g.id_grupo WHERE a.estado = 'a'";
+			$consulta = "SELECT * FROM alumnos a INNER JOIN grupos g ON a.id_grupo = g.id_grupo ";
 		} else if($this->esDni($casillero)){
-			$consulta = "SELECT * FROM alumnos a INNER JOIN grupos g ON a.id_grupo = g.id_grupo WHERE a.estado = 'a' AND a.dni LIKE '%".$this->esDni($casillero)."%'";
+			$consulta = "SELECT * FROM alumnos a INNER JOIN grupos g ON a.id_grupo = g.id_grupo WHERE a.dni LIKE '%".$this->esDni($casillero)."%'";
 		} else {
 			$palabras = explode(" ", $casillero);
 			$consulta = "SELECT * FROM alumnos a INNER JOIN grupos g ON a.id_grupo = g.id_grupo 
@@ -68,11 +73,12 @@ class alumnosModel extends Model{
 			for ($i = 1; $i < sizeof($palabras); $i++) {
    				$consulta = $consulta." AND a.id_alumno IN (SELECT al.id_alumno FROM alumnos al WHERE concat_ws(' ',al.apellido,al.nombre) LIKE '%".$palabras[$i]."%' )";
 			}
-			$consulta = $consulta." AND a.estado = 'a'"; //Selecciono aquellos usuarios activos
+			//$consulta = $consulta." AND a.estado = 'a'"; //Selecciono aquellos usuarios activos
 		}
 		if($sede != 'todos'){
 			$consulta = $consulta." AND g.sede = '".$sede."'"; //Selecciono aquellos pertenecientes a una sede especifica
 		}
+		$consulta = $consulta."ORDER BY estado ASC";
 		$datos = $this->_db->query($consulta); //Ejecuto la consulta
         return $datos->fetchall();
 	}

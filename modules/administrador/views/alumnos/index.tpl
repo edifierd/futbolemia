@@ -4,7 +4,8 @@
   <div class="container-fluid">
   	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     	<ul class="nav navbar-nav">
-        	        <li><a href="{$_layoutParams.root}administrador/alumnos/nuevo" > Nuevo Alumno</a></li>
+        	<li><a href="javascript:history.back()" > <i class="fa fa-arrow-left fa-lg"></i> Atras</a></li>
+        	<li><a href="{$_layoutParams.root}administrador/alumnos/nuevo" > Nuevo Alumno</a></li>
    	    </ul>
         <form class="navbar-form navbar-left" role="search" method="post" action="">
         	<input type="hidden" value="1" name="buscar" />
@@ -34,17 +35,30 @@
 	
     {if isset($alumnos) && count($alumnos)}
     	{foreach from=$alumnos item=a}
+        	{if $a.estado == 'a'}
     		<tr>
     			<td>{$a.id_alumno}</td>
 				<td><a href="{$_layoutParams.root}administrador/alumnos/show/{$a.id_alumno}">{$a.apellido} {$a.nombre}</a></td>
         		<td>{$a.dni}</td>
         		<td>{$a.sede} - {$a.tipo} - {$a.horario} </td>
-        		<td><a href="{$_layoutParams.root}administrador/alumnos/show/{$a.id_alumno}" class="btn btn-primary btn-xs">Ver Perfil</a></td>
-        		<td><a href="{$_layoutParams.root}administrador/alumnos/delete/{$a.id_alumno}" class="btn btn-danger btn-xs" onClick="javascript: return confirm('¿Estas seguro?');">
-                		Eliminar
+        		<td style="text-align:center;"><a href="{$_layoutParams.root}administrador/alumnos/show/{$a.id_alumno}" class="btn btn-primary btn-xs" >Ver Perfil</a></td>
+        		<td style="text-align:center;">
+                	<a href="{$_layoutParams.root}administrador/alumnos/delete/{$a.id_alumno}" class="btn btn-danger btn-xs" onClick="javascript: return confirm('¿Estas seguro?');" >
+                		Suspender
                     </a>
                 </td>
             </tr>
+            {else}
+			<tr style="text-decoration:line-through;">
+    			<td>{$a.id_alumno}</td>
+				<td><a href="{$_layoutParams.root}administrador/alumnos/show/{$a.id_alumno}">{$a.apellido} {$a.nombre}</a></td>
+        		<td>{$a.dni}</td>
+        		<td>{$a.sede} - {$a.tipo} - {$a.horario} </td>
+        		<td colspan="2" style="text-align:center;">
+                	<a href="{$_layoutParams.root}administrador/alumnos/reactivar/{$a.id_alumno}" class="btn btn-success btn-xs">Reactivar</a>
+                </td>
+            </tr>
+           	{/if}
 		{/foreach}
 	{else}
     	<tr>

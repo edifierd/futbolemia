@@ -14,6 +14,7 @@ class alumnosController extends administradorController{
     public function index(){
 		$this->_acl->acceso('control_alumnos');
 		if($this->getInt('buscar') == 1){
+			$this->_view->assign('datos', $_POST);
 			if($this->getTexto('casillero')){
 				$alumnos = $this->_alumnos->find($this->getTexto('sede'),$this->getTexto('casillero'));
 			}else{
@@ -156,7 +157,7 @@ class alumnosController extends administradorController{
 			exit;
 		}	
 		if(!$this->_alumnos->delete($id)){
-			$this->_view->assign('_mensaje', 'No se ha podido eliminar de BD');
+			$this->_view->assign('_error', 'No se ha podido eliminar de BD');
 			$this->_view->renderizar('index');
 			exit;
 		}
@@ -170,6 +171,15 @@ class alumnosController extends administradorController{
 		if(!$alumno){
 			$this->redireccionar('administrador/alumnos');
 		}
+		
+		$this->_view->assign('grupo', $this->_grupos->getGrupo($alumno['id_grupo']));
+		$this->_view->assign('grupos', $this->_grupos->getGruposMenos($alumno['id_grupo']));
+		$this->_view->assign('id_alumno', $id_alumno);
+		$this->_view->assign('nombre', $alumno['nombre']);
+		$this->_view->assign('apellido', $alumno['apellido']);
+		$this->_view->assign('dni', $alumno['dni']);
+		$this->_view->assign('datos', $alumno);
+		$this->_view->assign('titulo', 'Editar Alumno');
 		
 		if($this->getInt('guardar') == 1){
             $this->_view->assign('datos', $_POST);
@@ -217,18 +227,24 @@ class alumnosController extends administradorController{
 				$this->redireccionar('administrador/alumnos/show/'.$id_alumno);
 			}
 
-		} else {
-			$this->_view->assign('datos', $alumno);
-		}
-		
-		$this->_view->assign('grupo', $this->_grupos->getGrupo($alumno['id_grupo']));
-		$this->_view->assign('grupos', $this->_grupos->getGruposMenos($alumno['id_grupo']));
-		$this->_view->assign('id_alumno', $id_alumno);
-		$this->_view->assign('titulo', 'Editar Alumno');
+		} 
 		$this->_view->renderizar('edit', '');
 	}
 	
-	
+	public function reactivar($id){
+		$this->_acl->acceso('control_alumnos');
+		$alumno = $this->_alumnos->getAlumno($id);
+		if(!$alumno){
+			$this->redireccionar('administrador/alumnos');
+			exit;
+		}	
+		if(!$this->_alumnos->reactivar($id)){
+			$this->_view->assign('_error', 'No se ha podido reactivar el alumno de la BD');
+			$this->_view->renderizar('index');
+			exit;
+		}
+		$this->redireccionar('administrador/alumnos/show/'.$id);
+	}
     
     
 }

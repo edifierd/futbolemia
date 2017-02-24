@@ -8,20 +8,23 @@ class gruposModel extends Model
 	
 	public function insertarGrupo($sede, $tipo, $dias, $hoario){
 		$rta = $this->_db->query("INSERT INTO grupos VALUES(null,'".$sede."','".$tipo."','".implode(",", $dias)."','".$hoario."')");
-		$this->error();
 		return $rta;
 	}
 	
 	public function deleteGrupo($id){
         $id = (int) $id;
-		$rta = $this->_db->query("DELETE FROM grupos WHERE id_grupo = $id");
-        return $rta;
+		$sql2 = $this->_db->query("UPDATE alumnos SET `estado` = 'e', `id_grupo` = 1 WHERE `id_grupo` = ".$id);
+		if($sql2){
+			$rta = $this->_db->query("DELETE FROM grupos WHERE id_grupo = $id");
+			return $rta;
+		}
+        return false;
     }
 	
 	// ---------- GETTERS AND SETTERS ---------- //
     
     public function getGrupos(){
-		$datos = $this->_db->query("SELECT * FROM grupos ORDER BY sede DESC, tipo DESC");
+		$datos = $this->_db->query("SELECT * FROM grupos WHERE id_grupo != 1 ORDER BY sede DESC, tipo DESC");
 		return $datos->fetchall();
 	}
 	
@@ -31,7 +34,12 @@ class gruposModel extends Model
 	}
 	
 	public function getGruposMenos($id_grupo){
-		$datos = $this->_db->query("SELECT * FROM grupos WHERE id_grupo != ".$id_grupo." ORDER BY sede DESC, tipo DESC");
+		$datos = $this->_db->query("SELECT * FROM grupos WHERE id_grupo != ".$id_grupo." AND id_grupo != 1 ORDER BY sede DESC, tipo DESC");
+		return $datos->fetchall();
+	}
+	
+	public function getAlumnosGrupo($id_grupo){
+		$datos = $this->_db->query("SELECT * FROM alumnos WHERE id_grupo = ".$id_grupo." AND id_grupo != 1 ");
 		return $datos->fetchall();
 	}
 	
@@ -39,7 +47,7 @@ class gruposModel extends Model
 	// ---------- VALIDACIONES ---------- //
 	
 	public function getGrupoBy($sede, $tipo, $dias){
-		$datos = $this->_db->query("SELECT * FROM grupos WHERE sede = '".$sede."' AND tipo = '".$tipo."' AND dias LIKE '".implode(",", $dias)."'");
+		$datos = $this->_db->query("SELECT * FROM grupos WHERE sede = '".$sede."' AND tipo = '".$tipo."' AND dias LIKE '".implode(",", $dias)."' AND id_grupo != 1 ");
 		
 		if ($datos->rowCount() > 0){
         	return $datos->fetch();

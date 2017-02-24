@@ -7,12 +7,12 @@
         <input type="hidden" value="{$datos.dni}" name="dni" />
         <p>
         	<label>Parentesco: </label>
-            <label>{$datos.parentesco} </label>
+            <label>{$parentesco} </label>
         </p>
         
         <p>
             <label>DNI: </label>
-            <label>{$datos.dni} </label>
+            <label>{$dni} </label>
         </p>
         
         <p>
@@ -48,7 +48,7 @@
 
         <p>
             <button type="submit" class="btn btn-primary">Modificar</button> 
-            <a href="{$_layoutParams.root}administrador/alumnos/show/{$id_alumno}" class="btn btn-danger" style="margin-left:25px;">Cancelar</a>
+            <a href="javascript:history.back()" class="btn btn-danger" style="margin-left:25px;">Cancelar</a>
         </p>
     </form>
 </div>

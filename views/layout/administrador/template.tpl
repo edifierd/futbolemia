@@ -47,13 +47,10 @@
                 </li>
                 {/if}
                 {if $_acl->permiso('control_grupos')}
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Grupos<span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li class="dropdown-header">Administración de Grupos</li>
-                    <li><a href="{$_layoutParams.root}administrador/grupos">Listado</a></li>
-                    <li><a href="{$_layoutParams.root}administrador/grupos/nuevo">Nuevo Grupo</a></li>
-                  </ul>
+                <li >
+                    <a href="{$_layoutParams.root}administrador/grupos" style="color:#FFF;">
+                       Grupos / Sedes
+                    </a>
                 </li>
                 {/if}
                 {if $_acl->permiso('control_responsables')}

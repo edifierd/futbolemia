@@ -23,8 +23,7 @@ class responsablesModel extends Model{
         
 		$sql = "UPDATE responsables SET `nombre` = '".$nombre."',`apellido` = '".$apellido."',`tel_fijo` = ".$tel_fijo.", `tel_celular` = ".$tel_celular.",`direccion` = '".$direccion."',
 										`correo` = '".$correo."' WHERE `id_responsable` = ".$id_responsable;
-        $this->_db->query($sql);
-		
+        return $this->_db->query($sql);
 	}
 	
 	public function agregarResponsable($id_responsable,$id_alumno){
@@ -64,6 +63,11 @@ class responsablesModel extends Model{
 		}
 		return false;
     }
+	
+	public function getAlumnosACargo($id_responsable){
+		$sql = "SELECT * FROM alumnos a INNER JOIN alumnos_responsables ar ON ar.id_alumno = a.id_alumno WHERE ar.id_responsable = ".$id_responsable;
+		return $this->_db->query($sql);
+	}
 	
 	public function find($casillero, $id_alumno = false){
 		if($this->esDni($casillero)){

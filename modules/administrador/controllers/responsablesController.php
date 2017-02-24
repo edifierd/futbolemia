@@ -175,11 +175,21 @@ class responsablesController extends administradorController{
 		$this->redireccionar('administrador/alumnos/show/'.$id_alumno);
 	}
 	
-	public function edit($id_responsable,$id_alumno){
+	public function edit($id_responsable,$id_alumno = false){
 		$this->_acl->acceso('control_responsables');
 		
-        $this->_view->assign('titulo', 'Modificar Responsable');
-		        
+		$responsable = $this->_responsables->getResponsable($id_responsable);
+		if(!$responsable){
+			$this->_view->assign('_error', 'Algo salio mal. Por favor intente nuevamente.');
+            $this->redireccionar('administrador/alumnos/show/'.$id_alumno);
+            exit;
+		}
+		
+		$this->_view->assign('id_alumno', $id_alumno);
+		$this->_view->assign('parentesco', $responsable['parentesco']);
+		$this->_view->assign('dni', $responsable['dni']);
+		$this->_view->assign('titulo', 'Modificar Responsable');
+				        
         if($this->getInt('guardar') == 1){
             $this->_view->assign('datos', $_POST);
 			
@@ -231,13 +241,32 @@ class responsablesController extends administradorController{
 							)){
 				$this->_view->assign('_error', 'No se pudo modificar al responsable.');
 			}
-			            
-            $this->redireccionar('administrador/alumnos/show/'.$id_alumno);
+			
+			if(!$id_alumno){
+				$this->redireccionar('administrador/responsables');
+			} else {
+            	$this->redireccionar('administrador/alumnos/show/'.$id_alumno);
+			}
         } else {
-			$this->_view->assign('datos', $this->_responsables->getResponsable($id_responsable));
+			$this->_view->assign('datos', $responsable);
 		}
-        $this->_view->assign('id_alumno', $id_alumno);
         $this->_view->renderizar('edit', '');
+	}
+	
+	public function show($id_responsable){
+		$this->_acl->acceso('control_responsables');
+		
+		$responsable = $this->_responsables->getResponsable($id_responsable);
+		if(!$responsable){
+			$this->_view->assign('_error', 'Algo salio mal. Por favor intente nuevamente.');
+            $this->redireccionar('administrador/responsables');
+            exit;
+		}
+		
+		$this->_view->assign('responsable', $responsable);
+		$this->_view->assign('alumnosACargo', $this->_responsables->getAlumnosACargo($id_responsable));
+        $this->_view->assign('titulo', 'Perfil de '.$responsable['apellido']." ".$responsable['nombre']);
+        $this->_view->renderizar('show');
 	}
 	
 	
