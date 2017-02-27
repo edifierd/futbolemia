@@ -33,17 +33,14 @@
             <ul class="nav sidebar-nav">
                 <li class="sidebar-brand">
                     <a href="{$_layoutParams.root}administrador" style="color:#FFF;">
-                       Admin Panel
+                       Administración
                     </a>
                 </li>
                 {if $_acl->permiso('control_alumnos')}
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Alumnos<span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li class="dropdown-header">Alumnos</li>
-                    <li><a href="{$_layoutParams.root}administrador/alumnos">Listado</a></li>
-                    <li><a href="{$_layoutParams.root}administrador/alumnos/nuevo">Nuevo</a></li>
-                  </ul>
+                <li >
+                    <a href="{$_layoutParams.root}administrador/alumnos" style="color:#FFF;">
+                       Alumnos
+                    </a>
                 </li>
                 {/if}
                 {if $_acl->permiso('control_grupos')}
@@ -54,12 +51,10 @@
                 </li>
                 {/if}
                 {if $_acl->permiso('control_responsables')}
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Responsables Alumnos<span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li class="dropdown-header">Administración de Responsables</li>
-                    <li><a href="{$_layoutParams.root}administrador/responsables">Listado</a></li>
-                  </ul>
+                <li >
+                    <a href="{$_layoutParams.root}administrador/responsables" style="color:#FFF;">
+                       Responsables Alumnos
+                    </a>
                 </li>
                 {/if}
                 {if $_acl->permiso('control_usuarios')}

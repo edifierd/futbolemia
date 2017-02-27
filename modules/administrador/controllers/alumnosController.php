@@ -31,6 +31,7 @@ class alumnosController extends administradorController{
 	public function show($id_alumno){
 		$this->_acl->acceso('control_alumnos');
 		
+		$id_alumno = $this->filtrarInt($id_alumno);
 		$alumno = $this->_alumnos->getAlumno($id_alumno);
 		if(!$alumno){
 			$this->redireccionar('administrador/alumnos');

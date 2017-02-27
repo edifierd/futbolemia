@@ -39,7 +39,7 @@ class gruposModel extends Model
 	}
 	
 	public function getAlumnosGrupo($id_grupo){
-		$datos = $this->_db->query("SELECT * FROM alumnos WHERE id_grupo = ".$id_grupo." AND id_grupo != 1 ");
+		$datos = $this->_db->query("SELECT * FROM alumnos WHERE id_grupo = ".$id_grupo." AND id_grupo != 1 ORDER BY apellido ASC, nombre ASC");
 		return $datos->fetchall();
 	}
 	

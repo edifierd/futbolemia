@@ -7,8 +7,8 @@
   {if $alumno.estado == 'a'}
   <li role="presentation"><a href="{$_layoutParams.root}administrador/alumnos/edit/{$alumno.id_alumno}">Modificar Perfil</a></li>
   <li role="presentation"><a href="{$_layoutParams.root}administrador/responsables/listado/{$alumno.id_alumno}">Agregar Responsable</a></li>
-  <li role="presentation"><a href="#">Pagos</a></li>
-  <li role="presentation"><a href="#">Asistencias</a></li>
+  <li role="presentation"><a href="{$_layoutParams.root}administrador/cuotas/alumno/{$alumno.id_alumno}">Pagos</a></li>
+  <li role="presentation"><a href="{$_layoutParams.root}administrador/asistencias/alumno/{$alumno.id_alumno}">Asistencias</a></li>
   <li role="presentation">
   	<a href="{$_layoutParams.root}administrador/alumnos/delete/{$alumno.id_alumno}" style="color:#900;" onClick="javascript: return confirm('¿Estas seguro?');">Suspender</a>
   </li>
@@ -54,11 +54,16 @@
     
     <div class="col-sm-5">
     	<div class="panel panel-default">
-  			<div class="panel-heading">Sede </div>
+  			<div class="panel-heading">
+            	Sede
+                {if $alumno.estado == 'a'}
+                	<a href="{$_layoutParams.root}administrador/grupos/show/{$alumno.id_grupo}" class="btn btn-primary btn-xs" style="margin-left:10px;">Ver Grupo</a>
+                {/if}
+            </div>
  			<div class="panel-body">
             	{if $alumno.estado == 'a'}
             	<ul class="list-group">
-  					<li class="list-group-item">Nombre Sede: {$alumno.sede}</li>
+  					<li class="list-group-item">Nombre Sede: <a href="{$_layoutParams.root}administrador/grupos/show/{$alumno.id_grupo}"> {$alumno.sede}</a></li>
   					<li class="list-group-item">Grupo: {$alumno.tipo}</li>
   					<li class="list-group-item">Dias: {$alumno.dias}</li>
   					<li class="list-group-item">Horario: {$alumno.horario}</li>

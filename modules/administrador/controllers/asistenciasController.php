@@ -4,17 +4,18 @@ class asistenciasController extends administradorController{
 	
 	private $_asistencias;
 	private $_grupos;
+	private $_alumnos;
 	
     public function __construct() {
         parent::__construct();
 		$this->_asistencias = $this->loadModel('asistencias');
 		$this->_grupos = $this->loadModel('grupos');
+		$this->_alumnos = $this->loadModel('alumnos');
     }
     
     public function index(){
-		$this->_acl->acceso('control_grupos');
-		
-		
+		$this->_acl->acceso('control_asistencias');
+
         $this->_view->renderizar('index');
     }
 	
@@ -72,10 +73,34 @@ class asistenciasController extends administradorController{
                 	exit;
 				}
 			}
+			$this->_view->assign('_mensaje', 'Se tomo asistencia exitosamente.');
+		}
+		$this->_view->renderizar('tomarAsistencia', '');
+	}
+	
+	public function alumno($id_alumno){
+		$this->_acl->acceso('control_asistencias');
+		
+		$id_alumno = $this->filtrarInt($id_alumno);
+		$alumno = $this->_alumnos->getAlumno($id_alumno);
+		if(!$alumno){
+			$this->redireccionar('administrador/alumnos');
+			exit;
 		}
 		
-		$this->_view->renderizar('tomarAsistencia', '');
-		
+		if(($this->getInt('buscar') == 1) and ($this->getInt('anio'))){
+			$año = $this->getInt('anio');
+		} else {
+			$año = $año = date("Y");
+		}
+		$asistencias = $this->_asistencias->getAsistenciasAlumno($id_alumno,$año);
+
+		$this->_view->assign('asistencias', $asistencias);
+		$this->_view->assign('alumno', $alumno);
+		$this->_view->assign('listaAnios', $this->getListaAnios(50));
+		$this->_view->assign('anioActual', $año);
+		$this->_view->assign('titulo', 'Asistencias de '.$alumno['apellido']." ".$alumno['nombre']);
+        $this->_view->renderizar('alumno', '');
 	}
 	
 	

@@ -49,7 +49,7 @@ abstract class Controller
             return $modelo;
         }
         else {
-            throw new Exception('Error de modelo');
+            throw new Exception('Error de modelo - No se ha enconado el nombre de modelo indicado a cargar.');
         }
     }
 	
@@ -165,6 +165,34 @@ abstract class Controller
 		$array_dias['Friday'] = "Vi";
 		$array_dias['Saturday'] = "Sa";
 		return $array_dias[date('l', strtotime($fecha))];
+	}
+	
+	public function getListaAnios($atrasa=0,$adelanta=0){
+		if($atrasa == 0){
+			$atrasa = 100;
+		}
+    	$anios = array();
+    	for($i = date("Y"); $i >= date("Y") - $atrasa; $i--){
+        	$anios[] = array($i, $i + $adelanta);
+    	}
+    	return $anios;
+	}
+	
+	public function getListaMeses(){
+		$meses = array();
+		$meses[1] = "Enero";
+		$meses[2] = "Febrero";
+		$meses[3] = "Marzo";
+		$meses[4] = "Abril";
+		$meses[5] = "Mayo";
+		$meses[6] = "Junio";
+		$meses[7] = "Julio";
+		$meses[8] = "Agosto";
+		$meses[9] = "Septiembre";
+		$meses[10] = "Octubre";
+		$meses[11] = "Noviembre";
+		$meses[12] = "Diciembre";
+		return $meses;
 	}
     
     public function validarEmail($email){

@@ -109,6 +109,7 @@ class gruposController extends administradorController{
 		
 		$this->_view->assign('alumnos', $this->_grupos->getAlumnosGrupo($id));
 		$this->_view->assign('grupo', $grupo);
+		$this->_view->assign('titulo', "Alumnos de ".$grupo['sede']."-".$grupo['tipo'] );
 		$this->_view->renderizar('show', '');
 	}
 	

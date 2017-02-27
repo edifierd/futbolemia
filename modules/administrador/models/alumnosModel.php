@@ -7,7 +7,7 @@ class alumnosModel extends Model{
     }
 	
 	public function insertarAlumno($dni, $nombre, $apellido, $nacimiento, $colegio, $obra_social, $numero_afiliado, $observacion_medica, $notas, $id_grupo){
-		$fecha_actual=date(DATE_ATOM);;
+		$fecha_actual=date(DATE_ATOM);
 		$rta = $this->_db->query("INSERT INTO alumnos VALUES(null,'".$nombre."','".$apellido."',".$dni.",'".$nacimiento."','".$colegio."','".$observacion_medica."','".$obra_social."','".$numero_afiliado."',null,'".$notas."','".$fecha_actual."','a',".$id_grupo.")");
 		return $rta;
 	}
@@ -37,7 +37,7 @@ class alumnosModel extends Model{
 	}
 	
 	public function getAll(){
-        $datos = $this->_db->query("SELECT * FROM alumnos a INNER JOIN grupos g ON a.id_grupo = g.id_grupo ORDER BY estado ASC ");
+        $datos = $this->_db->query("SELECT * FROM alumnos a INNER JOIN grupos g ON a.id_grupo = g.id_grupo ORDER BY a.estado ASC, a.apellido ASC, a.nombre ASC ");
 		return $datos->fetchall();
     }
 	
@@ -78,7 +78,7 @@ class alumnosModel extends Model{
 		if($sede != 'todos'){
 			$consulta = $consulta." AND g.sede = '".$sede."'"; //Selecciono aquellos pertenecientes a una sede especifica
 		}
-		$consulta = $consulta."ORDER BY estado ASC";
+		$consulta = $consulta."ORDER BY a.estado ASC, a.apellido ASC, a.nombre ASC";
 		$datos = $this->_db->query($consulta); //Ejecuto la consulta
         return $datos->fetchall();
 	}

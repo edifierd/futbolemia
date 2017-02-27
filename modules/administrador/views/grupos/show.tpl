@@ -12,6 +12,7 @@
     	<th>ID</th>
     	<th>Apellido Nombre </th>
         <th>DNI</th>
+        <th style="text-align:center;">Acciones</th>
     </tr>
 	
     {if isset($alumnos) && count($alumnos)}
@@ -20,6 +21,7 @@
     			<td>{$a.id_alumno}</td>
 				<td><a href="{$_layoutParams.root}administrador/alumnos/show/{$a.id_alumno}">{$a.apellido} {$a.nombre}</a></td>
         		<td>{$a.dni}</td>
+                <td style="text-align:center;"><a href="{$_layoutParams.root}administrador/asistencias/alumno/{$a.id_alumno}" class="btn btn-primary btn-xs">Asistencias Alumno</a></td>
             </tr>
 		{/foreach}
 	{else}
