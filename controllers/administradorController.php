@@ -9,6 +9,9 @@ class administradorController extends Controller {
     
     public function index(){
 	}
+	
+	public function getModel($nombre){
+	}
 }
 
 ?>

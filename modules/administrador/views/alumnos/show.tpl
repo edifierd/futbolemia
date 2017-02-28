@@ -50,6 +50,21 @@
                 <!--{$alumno.notas|nl2br} Esto sirve para mostrar los saltos de linea-->
             </div>
 		</div>
+        
+        <div class="panel panel-default">
+  			<div class="panel-heading">
+            	Certificado de aptitud física
+            </div>
+ 		    <div class="panel-body" style="text-align:center;">
+        		{if $alumno.certificado_fisico != ''}
+                	<a href="{$_layoutParams.root}public/img/alumnos/{$alumno.certificado_fisico}" target="_blank" title="Clic para Ampliar imagen">
+                    	<img src="{$_layoutParams.root}public/img/alumnos/{$alumno.certificado_fisico}" style="width:100%; height:auto;"/>
+                    </a>
+                {else}
+                	<h3 style="color:#C00;">No se guardo ningun certificado.</h3>
+                {/if}
+            </div>
+		</div>
 	</div>
     
     <div class="col-sm-5">

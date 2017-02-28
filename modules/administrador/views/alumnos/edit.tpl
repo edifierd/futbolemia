@@ -1,6 +1,8 @@
 <h2>Modificar datos alumno</h2>
 
 <div class="well span5">
+	<div class="row">
+    <div class="col-md-6">
     <form name="form1" method="post" action="" class="form">
         <input type="hidden" value="1" name="guardar" />
         
@@ -44,6 +46,15 @@
             <input type="text" name="num_afiliado" value="{$datos.num_afiliado|default:""}" />
         </p>   
         
+     </div>
+     <div class="col-md-6">
+     	<label>Certificado de aptitud física: </label>
+        <input id="imagen1" type="file" accept="image/*" onchange="mostrarFoto(enviar('imagen1','alumnos',new Array({$id_alumno},'borrar')),1,'alumnos'); "/>
+        <img src="{$_layoutParams.root}public/img/alumnos/{$datos.certificado_fisico}" id="imagen1Foto" height="100"/>
+     </div>
+     
+     <div class="col-md-12">
+        
         <p>
             <label>Observacion Medica: </label>
             <textarea name="observacion_medica" style="width:100%; min-height:150px;"/>{$datos.observacion_medica|default:""}</textarea>
@@ -53,5 +64,7 @@
             <button type="submit" class="btn btn-primary">Modificar</button>
             <a href="javascript:history.back()" class="btn btn-danger" style="margin-left:25px;">Cancelar</a>
         </p>
+    </p>
     </form>
+    </div>
 </div>

@@ -2,6 +2,10 @@
 
 class alumnosModel extends Model{
 	
+	public function hello(){
+		return "hola desde el modelo Alumnos";
+	}
+	
     public function __construct() {
         parent::__construct('alumnos');
     }
@@ -21,6 +25,13 @@ class alumnosModel extends Model{
         
 		$sql = "UPDATE alumnos SET `nacimiento` = '".$nacimiento."',`colegio` = '".$colegio."',`obra_social` = '".$obra_social."', `num_afiliado` = '".$numero_afiliado."',`observacion_medica` = '".$observacion_medica."',`id_grupo` = ".$id_grupo." WHERE `id_alumno` = ".$id_alumno;
         $sql = $this->_db->query($sql);
+		return $sql;
+	}
+	
+	public function modificarImagen($nombreImagen, $datosAuxiliares){
+		$id_alumno = (int) $datosAuxiliares[0];
+		$sql = "UPDATE alumnos SET `certificado_fisico` = '".$nombreImagen."' WHERE `id_alumno` = ".$id_alumno;
+		$sql = $this->_db->query($sql);
 		return $sql;
 	}
 	

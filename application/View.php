@@ -206,17 +206,22 @@ class View extends Smarty
         }
     }
     
-    public function setJsPlugin(array $js)
-    {
+    public function setJsPlugin(array $js,$dir = false){
+		
         if(is_array($js) && count($js)){
             for($i=0; $i < count($js); $i++){
-                $this->_jsPlugin[] = BASE_URL . 'public/js/' .  $js[$i] . '.js';
+				if (!$dir){
+                	$this->_jsPlugin[] = BASE_URL . 'public/js/' .  $js[$i] . '.js';
+				} else {
+					$this->_jsPlugin[] = BASE_URL . 'public/js/' .  $dir . '/' .  $js[$i] . '.js';
+				}
             }
         } 
         else {
             throw new Exception('Error de js plugin');
         }
     }
+	
     
     public function setTemplate($template)
     {

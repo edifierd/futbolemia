@@ -10,6 +10,12 @@ class alumnosController extends administradorController{
 		$this->_alumnos = $this->loadModel('alumnos');
 		$this->_grupos = $this->loadModel('grupos');
     }
+	
+	public function getModel($nombre){
+		if($nombre == 'alumnos'){
+			return $this->_alumnos;
+		}
+	}
     
     public function index(){
 		$this->_acl->acceso('control_alumnos');
@@ -165,7 +171,8 @@ class alumnosController extends administradorController{
 		$this->redireccionar('administrador/alumnos');
 	}
 	
-	public function edit($id_alumno){
+	public function edit($id_alumno){	
+		
 		$this->_acl->acceso('control_alumnos');
 		
 		$alumno = $this->_alumnos->getAlumno($id_alumno);
@@ -180,6 +187,7 @@ class alumnosController extends administradorController{
 		$this->_view->assign('apellido', $alumno['apellido']);
 		$this->_view->assign('dni', $alumno['dni']);
 		$this->_view->assign('datos', $alumno);
+		$this->_view->setJsPlugin(array('canvas-to-blob.min','resize','process','validaciones'),'imgUploader');
 		$this->_view->assign('titulo', 'Editar Alumno');
 		
 		if($this->getInt('guardar') == 1){

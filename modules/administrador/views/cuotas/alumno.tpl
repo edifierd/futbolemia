@@ -39,7 +39,7 @@
         		{if $cuotas[$i] == 'impago'} 
            	 		Adeuda
             	{else}
-            		Pagado ({$cuotas[$i].fecha_pago})
+            		Pagado ({$cuotas[$i].fecha_pago|date_format:"%d-%m-%Y"})
             	{/if}
         	</td>
         	<td>

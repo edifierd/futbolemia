@@ -27,6 +27,8 @@ abstract class Controller
     }
     
     abstract public function index();
+	
+	abstract public function getModel($nombre);
     
     protected function loadModel($modelo, $modulo = false)
     {
@@ -68,10 +70,9 @@ abstract class Controller
         $rutaLibreria = ROOT . 'libs' . DS . $libreria . '.php';
         
         if(is_readable($rutaLibreria)){
-            require_once $rutaLibreria;
-        }
-        else{
-            throw new Exception('Error de libreria');
+           	require_once $rutaLibreria;
+        } else{
+           throw new Exception('Error de libreria');
         }
     }
     
@@ -215,14 +216,72 @@ abstract class Controller
         return false; 
 	}  
     
-    protected function formatPermiso($clave)
-    {
+    protected function formatPermiso($clave){
+		
         if(isset($_POST[$clave]) && !empty($_POST[$clave])){
             $_POST[$clave] = (string) preg_replace('/[^A-Z_]/i', '', $_POST[$clave]);
             return trim($_POST[$clave]);
         }
-        
     }
+	
+	public function uploader(){
+		/*Controlador
+		$controlador = "alumnos";
+		$modelo = $this->getModel($controlador);
+		$modelo->modificarImagen("fede.jpg",array(1)); 
+		exit;*/
+		
+		// Recuperando imagem em base64
+		// Exemplo: data:image/png;base64,AAAFBfj42Pj4
+		$imagen = $_POST['imagen'];
+		
+		// Separando tipo dos datos da imagen
+		// $tipo: data:image/png
+		// $datos: base64,AAAFBfj42Pj4
+		list($tipo, $datos) = explode(';', $imagen);
+
+		// Isolando apenas o tipo da imagen
+		// $tipo: image/png
+		list(, $tipo) = explode(':', $tipo);
+		
+
+		// Isolando apenas os datos da imagen
+		// $datos: AAAFBfj42Pj4
+		list(, $datos) = explode(',', $datos);
+
+		//Convertendo base64 para imagen
+	    $datos = base64_decode($datos);
+
+		//Gerando nombre aleatório para a imagen
+		$nombre = 'upl_' . $_POST['nombre'];
+		
+		//Controlador
+		$controlador = $_POST['controlador'];
+		$modelo = $this->getModel($controlador);
+		
+		//Ruta
+		$ruta = ROOT . 'public' . DS . 'img' . DS . $controlador . DS;
+
+		
+		// Salvando imagen em disco
+		if (file_put_contents($ruta."{$nombre}.jpg", $datos)){
+		
+			//$parametro = json_decode(stripslashes($_POST['datos']),true);
+			$parametro = $_POST['datos'];
+
+			$modelo->modificarImagen($nombre.".jpg",$parametro[0]); 
+			//$modelo->modificarImagen($parametro[0],array(1)); 
+			// El modelo debe contener este metodo en el cual recibe el nombre de la imagen y un Array de datos auxiliares
+			
+			$thumb = new upload($ruta."{$nombre}.jpg");
+            $thumb->image_resize = true;
+            $thumb->image_y = $thumb->image_dst_y / 2;
+            $thumb->image_x = $thumb->image_dst_x / 2;
+            $thumb->file_name_body_pre = 'thumb_';
+            $thumb->process($ruta . 'thumb' . DS);
+				
+		}
+	}
 }
 
 ?>
