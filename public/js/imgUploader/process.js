@@ -45,10 +45,10 @@ function enviar(inputName, controlador, data) {
 	if (imagenes.length > 0) {   
 
 		// Definindo progresso de carregamento
-		$('#progresso').attr('aria-valuenow', 0).css('width', '0%');
+		//$('#progresso').attr('aria-valuenow', 0).css('width', '0%');
 
 		// Escondendo campo de imagen
-		$('#'+inputName).hide();
+		//$('#'+inputName).hide();
 				
 		// Iniciando redimensionamento
 		imagen_actual = 0;

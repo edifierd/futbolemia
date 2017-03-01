@@ -30,6 +30,11 @@ class alumnosModel extends Model{
 	
 	public function modificarImagen($nombreImagen, $datosAuxiliares){
 		$id_alumno = (int) $datosAuxiliares[0];
+		
+		$alumno = $this->getAlumno($id_alumno);
+		unlink(ROOT.'public/img/alumnos/'.$alumno['certificado_fisico']);
+		unlink(ROOT.'public/img/alumnos/thumb/thumb_'.$alumno['certificado_fisico']);
+		
 		$sql = "UPDATE alumnos SET `certificado_fisico` = '".$nombreImagen."' WHERE `id_alumno` = ".$id_alumno;
 		$sql = $this->_db->query($sql);
 		return $sql;

@@ -48,9 +48,19 @@
         
      </div>
      <div class="col-md-6">
-     	<label>Certificado de aptitud física: </label>
-        <input id="imagen1" type="file" accept="image/*" onchange="mostrarFoto(enviar('imagen1','alumnos',new Array({$id_alumno},'borrar')),1,'alumnos'); "/>
-        <img src="{$_layoutParams.root}public/img/alumnos/{$datos.certificado_fisico}" id="imagen1Foto" height="100"/>
+     	<div class="row">
+        	<div class="col-md-12">
+            	<label>Certificado de aptitud física: (SOLO IMAGENES .jpg .png)</label>
+                <input id="imagen1" type="file" accept="image/*" onchange="mostrarFoto(enviar('imagen1','alumnos',new Array({$id_alumno},'borrar')),1,'alumnos'); "/>
+            </div>
+            <div class="col-md-12">
+            	{if $datos.certificado_fisico != ''}
+            		<img src="{$_layoutParams.root}public/img/alumnos/{$datos.certificado_fisico}" id="imagen1Foto" style="width:50%; height:auto; margin-top:15px;"/>
+                {else}
+                	<img src="{$_layoutParams.root}public/img/sin_imagen.png" id="imagen1Foto" style="width:50%; height:auto; margin-top:15px;"/>
+                {/if}
+            </div>
+         </div>
      </div>
      
      <div class="col-md-12">

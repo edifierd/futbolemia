@@ -3,7 +3,7 @@
 {/if}
 
 <ul class="nav nav-tabs" style="margin-bottom:15px;">
-  <li><a href="{$_layoutParams.root}administrador/alumnos/show/{$alumno.id_alumno}" > <i class="fa fa-arrow-left fa-lg"></i> Atras</a></li>
+  <li><a href="{$_layoutParams.root}administrador/alumnos" > <i class="fa fa-arrow-left fa-lg"></i> Atras</a></li>
   {if $alumno.estado == 'a'}
   <li role="presentation"><a href="{$_layoutParams.root}administrador/alumnos/edit/{$alumno.id_alumno}">Modificar Perfil</a></li>
   <li role="presentation"><a href="{$_layoutParams.root}administrador/responsables/listado/{$alumno.id_alumno}">Agregar Responsable</a></li>
