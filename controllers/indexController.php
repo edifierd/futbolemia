@@ -37,6 +37,10 @@ class indexController extends Controller
         $this->_view->renderizar('index', 'inicio');
     }
 	
+	public function getModel(){
+		
+	}
+	
 }
 
 ?>

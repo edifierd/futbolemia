@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="index.tpl" server="lezindumentaria.com/public_html/" local="131310017746471628" remote="131310563400000000" Dst="0" />
-<file name="nuevo_role.tpl" server="lezindumentaria.com/public_html/" local="131310017746471628" remote="131310563400000000" Dst="0" />
-<file name="nuevo_permiso.tpl" server="lezindumentaria.com/public_html/" local="131310017746471628" remote="131310563400000000" Dst="0" />
-<file name="permisos.tpl" server="lezindumentaria.com/public_html/" local="131310017746471628" remote="131310563400000000" Dst="0" />
-<file name="roles.tpl" server="lezindumentaria.com/public_html/" local="131310017746627874" remote="131310564000000000" Dst="0" />
-<file name="permisos_role.tpl" server="lezindumentaria.com/public_html/" local="131310017746627874" remote="131310564000000000" Dst="0" />
+<file name="index.tpl" server="lezindumentaria.com/public_html/" local="131312382932223015" remote="131328003000000000" Dst="0" />
+<file name="nuevo_role.tpl" server="lezindumentaria.com/public_html/" local="131312421810095268" remote="131328003000000000" Dst="0" />
+<file name="nuevo_permiso.tpl" server="lezindumentaria.com/public_html/" local="131310017746471628" remote="131328003000000000" Dst="0" />
+<file name="permisos.tpl" server="lezindumentaria.com/public_html/" local="131314970061373364" remote="131328003000000000" Dst="0" />
+<file name="roles.tpl" server="lezindumentaria.com/public_html/" local="131314894611877695" remote="131328003000000000" Dst="0" />
+<file name="permisos_role.tpl" server="lezindumentaria.com/public_html/" local="131310017746627874" remote="131328003000000000" Dst="0" />
+<file name="edit_permiso.tpl" server="lezindumentaria.com/public_html/" local="131314944500023564" remote="131328003000000000" Dst="0" />
+<file name="edit_role.tpl" server="lezindumentaria.com/public_html/" local="131314907412600055" remote="131328003000000000" Dst="0" />
 </dwsync>

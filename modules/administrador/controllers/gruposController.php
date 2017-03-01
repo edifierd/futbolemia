@@ -94,7 +94,7 @@ class gruposController extends administradorController{
     }
 	
 	public function show($id_grupo){
-		$this->_acl->acceso('control_usuarios');
+		$this->_acl->acceso('control_grupos');
 		
 		$id = $this->filtrarInt($id_grupo);
 		        
