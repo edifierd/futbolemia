@@ -59,6 +59,7 @@ class alumnosController extends administradorController{
 	}
 	
 	public function nuevo(){
+		
 		$this->_acl->acceso('control_alumnos');
 		
         $this->_view->assign('titulo', 'Nuevo Alumno');

@@ -25,6 +25,8 @@
     	<th>ID</th>
     	<th>Apellido Nombre </th>
     	<th>DNI</th>
+        <th>Correo</th>
+        <th>Teléfono Celular</th>
         <th>Agregar como responsable del alumno:</th>
     </tr>
 	
@@ -32,8 +34,10 @@
     	{foreach from=$responsables item=r}
     		<tr>
     			<td>{$r.id_responsable}</td>
-				<td><a href="{$_layoutParams.root}administrador/responsables/show/{$r.id_responsable}">{$r.apellido} {$r.nombre}</a></td>
+				<td>{$r.apellido} {$r.nombre}</td>
         		<td>{$r.dni}</td>
+                <td>{$r.correo}</td>
+                <td>{$r.tel_celular}</td>
         		<td>Responsable de: <a href="{$_layoutParams.root}administrador/responsables/asignar_alumno/{$r.id_responsable}/{$alumno.id_alumno}" class="btn btn-danger btn-xs">{$alumno.apellido} {$alumno.nombre}</a></td>    </tr>
 		{/foreach}
 	{else}

@@ -3,10 +3,14 @@
 class gruposController extends administradorController{
 	
 	private $_grupos;
+	private $_asistencias;
+	private $_cuotas;
 	
     public function __construct() {
         parent::__construct();
 		$this->_grupos = $this->loadModel('grupos');
+		$this->_asistencias = $this->loadModel('asistencias');
+		$this->_cuotas = $this->loadModel('cuotas');
     }
     
     public function index(){
@@ -98,7 +102,7 @@ class gruposController extends administradorController{
 		
 		$id = $this->filtrarInt($id_grupo);
 		        
-        if(!$id){
+        if(!$id or $id == 1){
             $this->redireccionar('administrador/grupos');
         }
 		
@@ -108,6 +112,8 @@ class gruposController extends administradorController{
 		}
 		
 		$this->_view->assign('alumnos', $this->_grupos->getAlumnosGrupo($id));
+		$this->_view->assign('asistenciasModel', $this->_asistencias);
+		$this->_view->assign('cuotasModel', $this->_cuotas);
 		$this->_view->assign('grupo', $grupo);
 		$this->_view->assign('titulo', "Alumnos de ".$grupo['sede']."-".$grupo['tipo'] );
 		$this->_view->renderizar('show', '');

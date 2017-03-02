@@ -5,7 +5,7 @@
   <div class="container-fluid">
   	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     	<ul class="nav navbar-nav">
-        	<li><a href="javascript:history.back()" > <i class="fa fa-arrow-left fa-lg"></i> Atras</a></li>
+        	<li><a href="{$_layoutParams.root}administrador/alumnos/show/{$alumno.id_alumno}" > <i class="fa fa-arrow-left fa-lg"></i> Atras</a></li>
    	    </ul>
         <form class="navbar-form navbar-left" role="search" method="post" action="">
         	<input type="hidden" value="1" name="buscar" />
@@ -52,9 +52,7 @@
                 	<b>$ {$cuotas[$i].monto}</b>
             	{/if}
         	</td><td>
-        		{if $cuotas[$i] == 'impago' && count($asistencias[$i]) > 0} 
         		<button type="submit" class="btn btn-primary" onClick="javascript: return confirm('¿Estas seguro?');">Pagar</button>
-                {/if}
     		</form>
         	</td>
     	</tr>

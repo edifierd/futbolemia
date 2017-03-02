@@ -1,5 +1,5 @@
 <div class="btn-group">
-	<a href="javascript:history.back()" class="btn btn-default"> <i class="fa fa-arrow-left fa-lg"></i> Atras</a></li>
+	<a href="{$_layoutParams.root}administrador/grupos/show/{$grupo.id_grupo}" class="btn btn-default"> <i class="fa fa-arrow-left fa-lg"></i> Atras</a></li>
 </div>
 
 <h3>Tomar asistencia en {$grupo.sede} {$grupo.tipo} - {$grupo.dias} - {$grupo.horario} </h3><br>

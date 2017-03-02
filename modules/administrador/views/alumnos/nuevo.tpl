@@ -1,4 +1,4 @@
-<h2>Dar de alta alumno</h2>
+<h2>Dar de alta nuevo alumno</h2>
 
 <div class="well span5">
     <form name="form1" method="post" action="" class="form">
@@ -31,7 +31,7 @@
 
         <p>
             <label>Fecha de Nacimiento: </label>
-            <input type="date" name="nacimiento" value="{$datos.nacimiento|default:""}" />
+            <input type="date" name="nacimiento" value="{$datos.nacimiento|default:""}" /> <em>(Formato fecha aaaa-mm-dd)</em>
         </p>
         
         <p>

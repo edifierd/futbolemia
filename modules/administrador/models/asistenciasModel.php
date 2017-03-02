@@ -25,30 +25,71 @@ class asistenciasModel extends Model{
 
 	// ---------- GETTERS AND SETTERS ---------- //
     
-	public function getAsistenciasAlumno($id_alumno,$año = false){
+	public function getAsistenciasAlumno($id_alumno,$año = false,$mes = false){
 		if(!$año){
 			$año = date("Y");
 		}
-		$asistenciasMes = array();
-		for($i=1; $i<=12;$i++){
-			$datos = $this->_db->query("SELECT * FROM asistencias a INNER JOIN grupos g ON a.id_grupo = g.id_grupo WHERE id_alumno = ".$id_alumno." AND YEAR(fecha) = '".$año."' AND MONTH(fecha) = '".$i."' ");
-			$asistenciasMes[$i] = $datos->fetchall();
+		if(!$mes){
+			$asistenciasMes = array();
+			for($i=1; $i<=12;$i++){
+				$datos = $this->_db->query(
+				   "SELECT * FROM asistencias a INNER JOIN grupos g ON a.id_grupo = g.id_grupo WHERE id_alumno = ".$id_alumno." AND YEAR(fecha) = '".$año."' AND MONTH(fecha) = '".$i."' "
+				);
+				$asistenciasMes[$i] = $datos->fetchall();
+			}
+		} else {
+			$datos = $this->_db->query(
+				"SELECT * FROM asistencias a INNER JOIN grupos g ON a.id_grupo = g.id_grupo WHERE id_alumno = ".$id_alumno." AND YEAR(fecha) = '".$año."' AND MONTH(fecha) = '".$mes."' "
+			);
+			$asistenciasMes = $datos->fetchall();
 		}
 		return $asistenciasMes;
 	}
 	
-	public function getCantAsistenciasAlumno($id_alumno,$año = false){
-		//SELECT a.fecha, a.valor,g.id_grupo,g.sede,g.tipo, count(IF(a.valor = 'presente', 1, NULL)) as cantAsistencias FROM asistencias a INNER JOIN grupos g ON a.id_grupo = g.id_grupo WHERE id_alumno = 1 AND YEAR(fecha) = '2017' AND MONTH(fecha) = '3'
+	public function getCantAsistenciasAlumno($id_alumno,$año = false,$mes = false){
 		if(!$año){
 			$año = date("Y");
 		}
-		$asistenciasMes = array();
-		for($i=1; $i<=12;$i++){
+		if(!$mes){
+			$asistenciasMes = array();
+			for($i=1; $i<=12;$i++){
+				$datos = $this->_db->query("SELECT count(IF(valor = 'presente', 1, NULL)) as cantidad 
+											FROM asistencias 
+											WHERE id_alumno = ".$id_alumno." AND YEAR(fecha) = '".$año."' AND MONTH(fecha) = '".$i."' ");
+				$datos = $datos->fetch();
+				$asistenciasMes[$i] = $datos['cantidad'];
+			}
+		} else {
+			$mes = date("m");
 			$datos = $this->_db->query("SELECT count(IF(valor = 'presente', 1, NULL)) as cantidad 
-										FROM asistencias 
-										WHERE id_alumno = ".$id_alumno." AND YEAR(fecha) = '".$año."' AND MONTH(fecha) = '".$i."' ");
+											FROM asistencias 
+											WHERE id_alumno = ".$id_alumno." AND YEAR(fecha) = '".$año."' AND MONTH(fecha) = '".$mes."' ");
 			$datos = $datos->fetch();
-			$asistenciasMes[$i] = $datos['cantidad'];
+			$asistenciasMes = $datos['cantidad'];
+		}
+		return $asistenciasMes;
+	}
+	
+	public function getCantClasesAlumno($id_alumno,$año = false,$mes = false){
+		if(!$año){
+			$año = date("Y");
+		}
+		if(!$mes){
+			$asistenciasMes = array();
+			for($i=1; $i<=12;$i++){
+				$datos = $this->_db->query("SELECT count(id_alumno) as cantidad 
+											FROM asistencias 
+											WHERE id_alumno = ".$id_alumno." AND YEAR(fecha) = '".$año."' AND MONTH(fecha) = '".$i."' ");
+				$datos = $datos->fetch();
+				$asistenciasMes[$i] = $datos['cantidad'];
+			}
+		} else {
+			$mes = date("m");
+			$datos = $this->_db->query("SELECT count(id_alumno) as cantidad 
+											FROM asistencias 
+											WHERE id_alumno = ".$id_alumno." AND YEAR(fecha) = '".$año."' AND MONTH(fecha) = '".$mes."' ");
+			$datos = $datos->fetch();
+			$asistenciasMes = $datos['cantidad'];
 		}
 		return $asistenciasMes;
 	}

@@ -59,6 +59,12 @@ class responsablesController extends administradorController{
                 exit;
 			}
 			
+			if(($this->getTexto('parentesco') == 'otro') and (!$this->getTexto('otroParentesco'))){
+				$this->_view->assign('_error', 'Debe indicar un parentesco al seleccionar "otro".');
+                $this->_view->renderizar('nuevo', '');
+                exit;
+			}
+			
 			if(!$this->getTexto('nombre')){
 				$this->_view->assign('_error', 'No se ha ingresado un Nombre valido.');
                 $this->_view->renderizar('nuevo', 'alumno');

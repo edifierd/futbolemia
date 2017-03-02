@@ -10,18 +10,35 @@
 <table class="table table-striped">
 	<tr>
     	<th>ID</th>
-    	<th>Apellido Nombre </th>
-        <th>DNI</th>
-        <th style="text-align:center;">Acciones</th>
+    	<th style="text-align:center;">Apellido Nombre </th>
+        <th style="text-align:center;">Asistencias Mes Actual</th>
+        <th style="text-align:center;">Cuota del Mes</th>
+        <th colspan="2" style="text-align:center;">Acciones</th>
     </tr>
 	
     {if isset($alumnos) && count($alumnos)}
     	{foreach from=$alumnos item=a}
-    		<tr>
+    		<tr style="text-align:center;">
     			<td>{$a.id_alumno}</td>
 				<td><a href="{$_layoutParams.root}administrador/alumnos/show/{$a.id_alumno}">{$a.apellido} {$a.nombre}</a></td>
-        		<td>{$a.dni}</td>
+        		<td>
+                 <b>{$asistenciasModel->getCantAsistenciasAlumno($a.id_alumno,false,true)}</b> asistencias de 
+                 <b>{$asistenciasModel->getCantClasesAlumno($a.id_alumno,false,true)}</b> clases.
+                </td>
+                <td>
+                	{if $cuotasModel->getCuotasAlumno($a.id_alumno,false,true) == 'impago'}
+                    	<b style="color:#900">Adeuda</b>
+                    {else}
+                    	<b style="color:#390">Pago</b>
+                    {/if}
+                </td>
                 <td style="text-align:center;"><a href="{$_layoutParams.root}administrador/asistencias/alumno/{$a.id_alumno}" class="btn btn-primary btn-xs">Asistencias Alumno</a></td>
+                <td style="text-align:center;">
+                	<a href="{$_layoutParams.root}administrador/alumnos/delete/{$alumno.id_alumno}" class="btn btn-danger btn-xs" 
+                       onClick="javascript: return confirm('¿Estas seguro?');">
+                    	Suspender
+                    </a>
+                </td>
             </tr>
 		{/foreach}
 	{else}

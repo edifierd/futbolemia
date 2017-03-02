@@ -39,7 +39,7 @@
 
         <p>
             <label>Horario: </label>
-            <input type="text" name="horario" value="{$datos.horario|default:""}" />
+            <input type="text" name="horario" value="{$datos.horario|default:"de 17:30 a 19:00"}" />
         </p>
 
         <p>
