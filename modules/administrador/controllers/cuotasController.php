@@ -38,7 +38,7 @@ class cuotasController extends administradorController{
 		if(($this->getInt('buscar') == 1) and ($this->getInt('anio'))){
 			$año = $this->getInt('anio');
 		} else {
-			$año = $año = date("Y");
+			$año = date("Y");
 		}
 		
 		$this->_view->assign('alumno', $alumno);

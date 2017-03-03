@@ -44,7 +44,7 @@ class Model
 		print_r($this->_db->errorInfo());
 	}
 	
-		// ---------- FUNCIONES AUXILIARES ---------- //
+	// ---------- FUNCIONES AUXILIARES ---------- //
 	
 	protected function esDni($dni){
 		if (!filter_var($dni, FILTER_VALIDATE_INT) === false) {
@@ -55,6 +55,10 @@ class Model
 		}
 		return false;
     }
+	
+	public function fecha(){
+		return date(DATE_ATOM);
+	}
 	
 }
 

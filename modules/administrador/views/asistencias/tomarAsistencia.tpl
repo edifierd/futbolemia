@@ -37,7 +37,9 @@
 	{/if}
     	<tr>
         	<td colspan="3" style="text-align:center;">
+            	{if isset($alumnos) && count($alumnos)}
             	<button type="submit" class="btn btn-primary">Enviar</button>
+                {/if}
             </td>
         </tr>
     </form>

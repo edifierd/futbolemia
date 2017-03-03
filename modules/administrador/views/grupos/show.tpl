@@ -34,7 +34,7 @@
                 </td>
                 <td style="text-align:center;"><a href="{$_layoutParams.root}administrador/asistencias/alumno/{$a.id_alumno}" class="btn btn-primary btn-xs">Asistencias Alumno</a></td>
                 <td style="text-align:center;">
-                	<a href="{$_layoutParams.root}administrador/alumnos/delete/{$alumno.id_alumno}" class="btn btn-danger btn-xs" 
+                	<a href="{$_layoutParams.root}administrador/alumnos/delete/{$a.id_alumno}" class="btn btn-danger btn-xs" 
                        onClick="javascript: return confirm('¿Estas seguro?');">
                     	Suspender
                     </a>

@@ -57,6 +57,13 @@
                     </a>
                 </li>
                 {/if}
+                {if $_acl->permiso('control_reportes')}
+                <li >
+                    <a href="{$_layoutParams.root}administrador/reportes" style="color:#FFF;">
+                       Reportes
+                    </a>
+                </li>
+                {/if}
                 {if $_acl->permiso('control_usuarios')}
                 	<li class="dropdown">
                   		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuarios y Permisos<span class="caret"></span></a>

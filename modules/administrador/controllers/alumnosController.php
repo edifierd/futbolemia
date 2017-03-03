@@ -4,11 +4,13 @@ class alumnosController extends administradorController{
 	
 	private $_alumnos;
 	private $_grupos;
+	private $_reportes;
 	
     public function __construct() {
         parent::__construct();
 		$this->_alumnos = $this->loadModel('alumnos');
 		$this->_grupos = $this->loadModel('grupos');
+		$this->_reportes = $this->loadModel('reportes');
     }
 	
 	public function getModel($nombre){
@@ -59,11 +61,9 @@ class alumnosController extends administradorController{
 	}
 	
 	public function nuevo(){
-		
 		$this->_acl->acceso('control_alumnos');
 		
         $this->_view->assign('titulo', 'Nuevo Alumno');
-		
 		$this->_view->assign('grupos', $this->_grupos->getGrupos());
         
         if($this->getInt('guardar') == 1){
@@ -151,26 +151,13 @@ class alumnosController extends administradorController{
 			}
 			            
 			$alumno = $this->_alumnos->getAlumnoByDni($this->getDni('dni'));
+			$this->_reportes->nuevoAlumno($alumno['id_grupo']);
             $this->redireccionar('administrador/alumnos/show/'.$alumno['id_alumno']);
         }
         
         $this->_view->renderizar('nuevo', '');
 	}
 	
-	public function delete($id){
-		$this->_acl->acceso('control_alumnos');
-		$alumno = $this->_alumnos->getAlumno($id);
-		if(!$alumno){
-			$this->redireccionar('administrador/alumnos');
-			exit;
-		}	
-		if(!$this->_alumnos->delete($id)){
-			$this->_view->assign('_error', 'No se ha podido eliminar de BD');
-			$this->_view->renderizar('index');
-			exit;
-		}
-		$this->redireccionar('administrador/alumnos');
-	}
 	
 	public function edit($id_alumno){	
 		
@@ -241,19 +228,57 @@ class alumnosController extends administradorController{
 		$this->_view->renderizar('edit', '');
 	}
 	
-	public function reactivar($id){
+	
+	public function delete($id){ //ESTO ES SUPENDER (Un eliminar logico)
 		$this->_acl->acceso('control_alumnos');
 		$alumno = $this->_alumnos->getAlumno($id);
 		if(!$alumno){
 			$this->redireccionar('administrador/alumnos');
 			exit;
 		}	
-		if(!$this->_alumnos->reactivar($id)){
-			$this->_view->assign('_error', 'No se ha podido reactivar el alumno de la BD');
+		if(!$this->_alumnos->delete($id)){
+			$this->_view->assign('_error', 'No se ha podido eliminar de BD');
 			$this->_view->renderizar('index');
 			exit;
 		}
-		$this->redireccionar('administrador/alumnos/show/'.$id);
+		
+		$this->_reportes->dejoAlumno($alumno['id_grupo']);
+		
+		$this->redireccionar('administrador/alumnos');
+	}
+	
+	public function reactivar($id){
+		$this->_acl->acceso('control_alumnos');
+		$alumno = $this->_alumnos->getAlumno($id);
+		if(!$alumno){
+			$this->redireccionar('administrador/alumnos');
+			exit;
+		}
+		$this->_view->assign('alumno', $alumno);
+		$this->_view->assign('grupo', $this->_grupos->getGrupo($alumno['id_grupo']));
+		$this->_view->assign('grupos', $this->_grupos->getGruposMenos($alumno['id_grupo']));
+		$this->_view->assign('titulo', 'Reactivar Alumno');
+		
+		if($this->getInt('guardar') == 1){
+			if($this->getInt('grupo') == 0){
+                $this->_view->assign('_error', 'Debe seleccionar un grupo de una Sede.');
+                $this->_view->renderizar('reactivar', '');
+                exit;
+            }
+			
+			if(!$this->_alumnos->reactivar($id,$this->getInt('grupo'))){
+				$this->_view->assign('_error', 'No se ha podido reactivar el alumno de la BD');
+				$this->_view->renderizar('index');
+				exit;
+			}
+			
+			$alumno = $this->_alumnos->getAlumno($id);
+			$this->_reportes->volvioAlumno($alumno['id_grupo']);
+			
+			$this->redireccionar('administrador/alumnos/show/'.$id);
+		}
+		
+		$this->_view->renderizar('reactivar', '');
 	}
     
     

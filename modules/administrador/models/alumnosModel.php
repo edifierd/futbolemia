@@ -22,7 +22,6 @@ class alumnosModel extends Model{
 	
 	public function edit($id_alumno,$nacimiento,$colegio,$obra_social,$numero_afiliado,$observacion_medica,$id_grupo){
 		$id_alumno = (int) $id_alumno;
-        
 		$sql = "UPDATE alumnos SET `nacimiento` = '".$nacimiento."',`colegio` = '".$colegio."',`obra_social` = '".$obra_social."', `num_afiliado` = '".$numero_afiliado."',`observacion_medica` = '".$observacion_medica."',`id_grupo` = ".$id_grupo." WHERE `id_alumno` = ".$id_alumno;
         $sql = $this->_db->query($sql);
 		return $sql;
@@ -40,8 +39,8 @@ class alumnosModel extends Model{
 		return $sql;
 	}
 	
-	public function reactivar($id){
-		return $this->_db->query("UPDATE alumnos SET `estado` = 'a' WHERE `id_alumno` = ".$id);
+	public function reactivar($id_alumno,$id_grupo){
+		return $this->_db->query("UPDATE alumnos SET `estado` = 'a', `id_grupo` = ".$id_grupo." WHERE `id_alumno` = ".$id_alumno);
 	}
 	
 	// ---------- GETTERS AND SETTERS ---------- //
