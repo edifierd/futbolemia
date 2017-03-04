@@ -32,13 +32,17 @@ class reportesModel extends Model{
 		
 		// CHICOS QUE ADEUDAN //
 		$chicosAdeudan = $this->chicosAdeudan($id_grupo,$año,$mes);
+		
+		// MONTO RECAUDADO //
+		$recaudado = $this->montoRecaudado($id_grupo,$año,$mes);
 																	  
 		$sql = "UPDATE reportes SET `chicos` = ".$cantChicos.",
 									`dif_mes` = ".$diferenciaMes.",
 									`dif_anual` = ".$diferenciaAño.",
 									`siguen` = ".$chicosSiguen.",
 									`pagaron` = ".$chicosPagaron.",
-									`deben` = ".$chicosAdeudan."
+									`deben` = ".$chicosAdeudan.",
+									`recaudado` = ".$recaudado."	
 		        WHERE `id_reporte` = ".$id_reporte;
         $sql = $this->_db->query($sql);	
 		return $sql;
@@ -114,6 +118,14 @@ class reportesModel extends Model{
 	    $cantChicos = $cantChicos->fetch();	
 		return $cantChicos['cant'];
 	}
+	
+	public function montoRecaudado($id_grupo,$año,$mes){
+		$recaudado = $this->_db->query("SELECT SUM(c.monto) AS recaudado 
+										FROM alumnos a INNER JOIN grupos g ON  a.id_grupo = g.id_grupo INNER JOIN cuotas c ON c.id_alumno = a.id_alumno
+										WHERE g.id_grupo = ".$id_grupo." AND YEAR(c.fecha_mes) = '".$año."' AND MONTH(c.fecha_mes) = '".$mes."'");
+		$recaudado = $recaudado->fetch();	
+		return $recaudado['recaudado'];
+	}
 
 	public function nuevoAlumno($id_grupo){
 		$año = date("Y");
@@ -157,6 +169,17 @@ class reportesModel extends Model{
 		}
 	}
 	
+	public function generarReportesAñoSedes($año,$mes){
+		$datos = $this->_db->query("SELECT * FROM grupos ");
+		$grupos = $datos->fetchall();
+		foreach ($grupos as $grupo) {
+			$datos = $this->_db->query( "SELECT * FROM reportes WHERE id_grupo = ".$grupo['id_grupo']." AND YEAR(fecha) = '".$año."' AND MONTH(fecha) = '".$mes."' " );
+	    	if ($datos->rowCount() == 0){
+				$rta = $this->_db->query("INSERT INTO reportes (id_reporte,fecha,id_grupo) VALUES(null,'".$año."-".$mes."-01',".$grupo['id_grupo'].")");
+			}
+		}
+	}
+	
 
 	// ---------- GETTERS AND SETTERS ---------- //
     
@@ -166,7 +189,7 @@ class reportesModel extends Model{
 		}
 		if(!$mes){
 			$reportes = array();
-			for($i=1; $i<=12;$i++){
+			for($i=3; $i<=12;$i++){
 				$datos = $this->_db->query(
 					  "SELECT * FROM reportes r INNER JOIN grupos g ON r.id_grupo = g.id_grupo WHERE g.sede = '".$sede."' AND YEAR(fecha) = '".$año."' AND MONTH(fecha) = '".$i."' "
 				);
@@ -188,11 +211,12 @@ class reportesModel extends Model{
 		}
 		if(!$mes){
 			$reportes = array();
-			for($i=1; $i<=12;$i++){
+			for($i=3; $i<=12;$i++){
 				$datos = $this->_db->query(
 					  "SELECT IFNULL(SUM(r.chicos),0) AS chicos, IFNULL(SUM(r.dif_mes),0) AS dif_mes, IFNULL(SUM(r.dif_anual),0) AS dif_anual, 
 					          IFNULL(SUM(r.nuevos),0) AS nuevos, IFNULL(SUM(r.siguen),0) AS siguen, IFNULL(SUM(r.dejaron),0) AS dejaron, 
-							  IFNULL(SUM(r.volvieron),0) AS volvieron, IFNULL(SUM(r.pagaron),0) AS pagaron, IFNULL(SUM(r.deben),0) AS deben 
+							  IFNULL(SUM(r.volvieron),0) AS volvieron, IFNULL(SUM(r.pagaron),0) AS pagaron, IFNULL(SUM(r.deben),0) AS deben,
+							  IFNULL(SUM(r.recaudado),0) AS recaudado  
 					   FROM reportes r INNER JOIN grupos g ON r.id_grupo = g.id_grupo 
 					   WHERE g.sede = '".$sede."' AND YEAR(fecha) = '".$año."' AND MONTH(fecha) = '".$i."'" );
 				$reportes[$i] = $datos->fetch();
@@ -210,7 +234,6 @@ class reportesModel extends Model{
 	
 	
 	
-	// ---------- VALIDACIONES ---------- //
 	
 
 	

@@ -20,6 +20,7 @@
         <th style="text-align:center;">VOLVIERON</th>
         <th style="text-align:center;">PAGARON</th>
         <th style="text-align:center;">DEBEN</th>
+        <th style="text-align:center;">RECAUDADO</th>
     </tr>
     {foreach from=$reportes item=r}
     	<tr>
@@ -31,6 +32,11 @@
             <td>{$r.volvieron}</td>
             <td>{$r.pagaron}</td>
             <td>{$r.deben}</td>
+            {if $r.recaudado > 0}
+            	<td style="color:#3C0;">$ {$r.recaudado}</td>
+            {else}
+            	<td style="color:#C00;">$ {$r.recaudado}</td>
+            {/if}
     	</tr>
    {/foreach}
 </table>

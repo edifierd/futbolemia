@@ -20,7 +20,7 @@ class cuotasModel extends Model{
 		}
 		if(!$mes){
 			$cuotasMes = array();
-			for($i=1; $i<=12;$i++){
+			for($i=3; $i<=12;$i++){
 				$datos = $this->_db->query("SELECT * FROM cuotas WHERE id_alumno = ".$id_alumno." AND YEAR(fecha_mes) = '".$año."' AND MONTH(fecha_mes) = '".$i."' ");
 				if ($datos->rowCount() > 0){
 					$cuotasMes[$i] = $datos->fetch();

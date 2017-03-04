@@ -31,15 +31,15 @@
     	<th style="text-align:center;">MONTO</th>
     	<th style="text-align:center;">ACCION</th>
     </tr>
-    {for $i=1 to 12}
+    {for $i=3 to 12}
     	<tr>
     		<td>{$nombreMes[$i]}</td>
         	<td>{$cantAsistencias[$i]} de {count($asistencias[$i])} Clases
         	<td>
         		{if $cuotas[$i] == 'impago'} 
-           	 		Adeuda
+           	 		<span style="color:#C00;">Adeuda</span>
             	{else}
-            		Pagado ({$cuotas[$i].fecha_pago|date_format:"%d-%m-%Y"})
+            		<span style="color:#090;">Pagado ({$cuotas[$i].fecha_pago|date_format:"%d-%m-%Y"})</span>
             	{/if}
         	</td>
         	<td>
