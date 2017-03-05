@@ -46,6 +46,8 @@ class alumnosController extends administradorController{
 			exit;
 		}
 		
+		$this->permisoSede($alumno['sede']);
+		
 		if($this->getInt('guardar') == 1){
 			if($this->_alumnos->setNota($id_alumno, $this->getTexto('notas'))){
 				$this->_view->assign('_emensaje', 'Nota guardada correctamente.');
@@ -74,6 +76,10 @@ class alumnosController extends administradorController{
                 $this->_view->renderizar('nuevo', '');
                 exit;
             }
+			
+			$grupo = $this->_grupos->getGrupo($this->getInt('grupo'));
+			$this->permisoSede($grupo['sede']);
+			
 			
 			if($this->getDni('dni') == 0 or !$this->getDni('dni')){
                 $this->_view->assign('_error', 'Debe introducir un número valido de DNI del alumno.');
@@ -168,6 +174,8 @@ class alumnosController extends administradorController{
 			$this->redireccionar('administrador/alumnos');
 		}
 		
+		$this->permisoSede($alumno['sede']);
+		
 		$this->_view->assign('grupo', $this->_grupos->getGrupo($alumno['id_grupo']));
 		$this->_view->assign('grupos', $this->_grupos->getGruposMenos($alumno['id_grupo']));
 		$this->_view->assign('id_alumno', $id_alumno);
@@ -235,7 +243,8 @@ class alumnosController extends administradorController{
 		if(!$alumno){
 			$this->redireccionar('administrador/alumnos');
 			exit;
-		}	
+		}
+		$this->permisoSede($alumno['sede']);
 		if(!$this->_alumnos->delete($id)){
 			$this->_view->assign('_error', 'No se ha podido eliminar de BD');
 			$this->_view->renderizar('index');
@@ -254,6 +263,7 @@ class alumnosController extends administradorController{
 			$this->redireccionar('administrador/alumnos');
 			exit;
 		}
+		$this->permisoSede($alumno['sede']);
 		$this->_view->assign('alumno', $alumno);
 		$this->_view->assign('grupo', $this->_grupos->getGrupo($alumno['id_grupo']));
 		$this->_view->assign('grupos', $this->_grupos->getGruposMenos($alumno['id_grupo']));

@@ -3,6 +3,18 @@
 <div class="well span5">
     <form name="form1" method="post" action="" class="form">
         <input type="hidden" value="1" name="enviar" />
+        
+        <p>
+            <label>Grupo / Rol: </label>
+            <select id="rol" name="rol" >
+            	<option value="0" >Seleccione...</option>
+        		{foreach from=$roles item=rl }
+                	{if $rl.id_role != 1}
+						<option value="{$rl.id_role}" >{$rl.role}</option>
+                    {/if}
+				{/foreach}
+			</select> (Estos seran los permisos del usuario en el sistema)
+        </p>
 
         <p>
             <label>Usuario: </label>
@@ -40,7 +52,7 @@
         </p>    
 
         <p>
-            <button type="submit" class="btn btn-primary">Enviar</button>
+            <button type="submit" class="btn btn-primary">Registrar Usuario</button>
         </p>
     </form>
 </div>

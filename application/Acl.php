@@ -20,8 +20,8 @@ class ACL
             else{
                 $this->_id = 0;
             }
-        }
-        
+        }      
+		
         
         $this->_registry = Registry::getInstancia();
         $this->_db = $this->_registry->_db;
@@ -178,6 +178,7 @@ class ACL
     public function permiso($key)
     {
         if(array_key_exists($key, $this->_permisos)){
+
             if($this->_permisos[$key]['valor'] == true || $this->_permisos[$key]['valor'] == 1){
                 return true;
             }

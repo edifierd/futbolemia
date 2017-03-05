@@ -13,16 +13,7 @@ class cuotasController extends administradorController{
 		$this->_asistencias = $this->loadModel('asistencias');
     }
     
-    public function index(){
-		$this->_acl->acceso('control_asistencias');
-
-        $this->_view->renderizar('index');
-    }
-	
-	public function nuevo(){
-		
-		$this->_view->renderizar('nuevo');
-	}
+    public function index(){}
 	
 	public function alumno($id_alumno){
 		$this->_acl->acceso('control_pagos');
@@ -34,6 +25,7 @@ class cuotasController extends administradorController{
 			$this->redireccionar('administrador/alumnos');
 			exit;
 		}
+		$this->permisoSede($alumno['sede']);
 		
 		if(($this->getInt('buscar') == 1) and ($this->getInt('anio'))){
 			$año = $this->getInt('anio');

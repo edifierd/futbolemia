@@ -7,7 +7,9 @@
   {if $alumno.estado == 'a'}
   <li role="presentation"><a href="{$_layoutParams.root}administrador/alumnos/edit/{$alumno.id_alumno}">Modificar Perfil</a></li>
   <li role="presentation"><a href="{$_layoutParams.root}administrador/responsables/listado/{$alumno.id_alumno}">Agregar Responsable</a></li>
-  <li role="presentation"><a href="{$_layoutParams.root}administrador/cuotas/alumno/{$alumno.id_alumno}">Pagos</a></li>
+  {if $_acl->permiso('control_pagos')}
+  	<li role="presentation"><a href="{$_layoutParams.root}administrador/cuotas/alumno/{$alumno.id_alumno}">Pagos</a></li>
+  {/if}
   <li role="presentation"><a href="{$_layoutParams.root}administrador/asistencias/alumno/{$alumno.id_alumno}">Asistencias</a></li>
   <li role="presentation">
   	<a href="{$_layoutParams.root}administrador/alumnos/delete/{$alumno.id_alumno}" style="color:#900;" onClick="javascript: return confirm('¿Estas seguro?');">Suspender</a>

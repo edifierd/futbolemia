@@ -10,20 +10,20 @@ class aclController extends administradorController
     }
     
     public function index(){
-		$this->_acl->acceso('control_usuarios');
+		$this->_acl->acceso('super_usuario');
         $this->_view->assign('titulo', 'Listas de acceso');
         $this->_view->renderizar('index', 'acl');
     }
     
     public function roles(){
-		$this->_acl->acceso('control_usuarios');
+		$this->_acl->acceso('super_usuario');
         $this->_view->assign('titulo', 'Administracion de roles');
         $this->_view->assign('roles', $this->_aclm->getRoles());
         $this->_view->renderizar('roles', 'acl');
     }
        
     public function permisos_role($roleID){
-		$this->_acl->acceso('control_usuarios');
+		$this->_acl->acceso('super_usuario');
 		
         $id = $this->filtrarInt($roleID);
         
@@ -93,7 +93,7 @@ class aclController extends administradorController
 	// ---------------- ROLES ---------------- //
     
     public function nuevo_role(){
-		$this->_acl->acceso('control_usuarios');
+		$this->_acl->acceso('super_usuario');
 		
         $this->_view->assign('titulo', 'Nuevo Role');
         
@@ -115,7 +115,7 @@ class aclController extends administradorController
 	
 	public function edit_role($id_role){
 		
-		$this->_acl->acceso('control_usuarios');
+		$this->_acl->acceso('super_usuario');
 		
 		$id = $this->filtrarInt($id_role);
 		        
@@ -154,7 +154,7 @@ class aclController extends administradorController
 	
 	public function delete_role($id_role){
 		
-		$this->_acl->acceso('control_usuarios');
+		$this->_acl->acceso('super_usuario');
 		
 		$id = $this->filtrarInt($id_role);
 		        
@@ -178,14 +178,14 @@ class aclController extends administradorController
 	// ---------------- PERMISOS ---------------- //
     
     public function permisos(){
-		$this->_acl->acceso('control_usuarios');
+		$this->_acl->acceso('super_usuario');
         $this->_view->assign('titulo', 'Administracion de permisos');
         $this->_view->assign('permisos', $this->_aclm->getPermisos());
         $this->_view->renderizar('permisos', 'acl');
     }
 	
     public function nuevo_permiso(){
-		$this->_acl->acceso('control_usuarios');
+		$this->_acl->acceso('super_usuario');
 		
         $this->_view->assign('titulo', 'Nuevo Permiso');
         
@@ -216,7 +216,7 @@ class aclController extends administradorController
     }
 	
 	public function edit_permiso($id_permiso){
-		$this->_acl->acceso('control_usuarios');
+		$this->_acl->acceso('super_usuario');
 		
 		$id = $this->filtrarInt($id_permiso);
 		        
@@ -268,7 +268,7 @@ class aclController extends administradorController
 	
 	public function delete_permiso($id_permiso){
 		
-		$this->_acl->acceso('control_usuarios');
+		$this->_acl->acceso('super_usuario');
 		
 		$id = $this->filtrarInt($id_permiso);
 		        

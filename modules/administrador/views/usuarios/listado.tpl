@@ -15,8 +15,13 @@
             <td>{$us.usuario}</td>
             <td>{$us.role}</td>
             <td>
+            	{if $_acl->permiso('super_usuario')}
                 <a href="{$_layoutParams.root}administrador/usuarios/permisos/{$us.id}">
                    Permisos
+                </a>
+                {/if}
+                <a href="{$_layoutParams.root}administrador/usuarios/eliminar/{$us.id}" style="color:#F00;" onClick="javascript: return confirm('¿Estas seguro?');">
+                   Eliminar
                 </a>
             </td>
         </tr>

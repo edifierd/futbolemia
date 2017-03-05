@@ -71,11 +71,20 @@
                     		<li class="dropdown-header">Manejo de usuarios</li>
                     		<li><a href="{$_layoutParams.root}administrador/usuarios/registro">Nuevo Usuario</a></li>
                     		<li><a href="{$_layoutParams.root}administrador/usuarios/listado">Listado Usuarios</a></li>
-                            <li class="dropdown-header">ACL</li>
-                    		<li><a href="{$_layoutParams.root}administrador/acl/roles">Roles</a></li>
-                    		<li><a href="{$_layoutParams.root}administrador/acl/permisos">Permisos</a></li>
+                            {if $_acl->permiso('super_usuario')}
+                            	<li class="dropdown-header">ACL</li>
+                    			<li><a href="{$_layoutParams.root}administrador/acl/roles">Roles</a></li>
+                    			<li><a href="{$_layoutParams.root}administrador/acl/permisos">Permisos</a></li>
+                            {/if}
                   		</ul>
                 	</li>
+                {/if}
+                {if $_acl->permiso('control_perfil')}
+                <li >
+                    <a href="{$_layoutParams.root}administrador/usuarios/perfil/{$current_user.id}" style="color:#FFF;">
+                       Mi Perfil
+                    </a>
+                </li>
                 {/if}
                 <li>
                     <a href="{$_layoutParams.root}administrador/usuarios/cerrar">Cerrar Sesión</a>
@@ -87,7 +96,6 @@
 
         <!-- CONTENIDO DE LA PAGINA -->
         <div id="page-content-wrapper">
-        	
             {if $_acl->permiso('admin_access')}
             <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
                 <span class="hamb-top"></span>

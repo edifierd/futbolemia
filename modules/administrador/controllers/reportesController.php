@@ -12,11 +12,11 @@ class reportesController extends administradorController{
     }
 	
 	public function index(){
-		$this->redireccionar('administrador/reportes/lista/'.$año = date("Y").'/Los_Hornos');
+		$this->redireccionar('administrador/reportes/lista');
 	}
     
     public function lista($año=false,$sede=false){
-		$this->_acl->acceso('control_asistencias');
+		$this->_acl->acceso('control_reportes');
 		
 		$this->_view->assign('titulo', 'Reportes estadisticos');
 		$this->_view->assign('listaAnios', $this->getListaAnios(50));
@@ -25,14 +25,19 @@ class reportesController extends administradorController{
 		if($this->getInt('buscar') == 1){
 			$this->_view->assign('sede', $this->getTexto('sede'));
 			$sede = str_replace("_", " ", $this->getTexto('sede'));
+			$this->permisoSede($sede); //PERMISOS PARA ESTA UNICA SEDE
 			$this->_view->assign('anioA', $this->getInt('anio'));
 			$reportes = $this->_reportes->getReportesGeneral($this->getInt('anio'),$sede);
 			$finanzas = $this->_finanzas->getFinanzasSede($this->getInt('anio'),$sede);
 		} else if (!$año and !$sede){
 			$reportes = false;
+			$finanzas = false;
+			$this->_view->assign('sede', '');
+			$this->_view->assign('anioA', '');
 		} else {
 			$this->_view->assign('sede', $sede);
 			$sede = str_replace("_", " ", $sede);
+			$this->permisoSede($sede); //PERMISOS PARA ESTA UNICA SEDE
 			$this->_view->assign('anioA', $año);
 			$reportes = $this->_reportes->getReportesGeneral($año,$sede);
 			$finanzas = $this->_finanzas->getFinanzasSede($año,$sede);
@@ -47,6 +52,7 @@ class reportesController extends administradorController{
 		$this->_acl->acceso('control_reportes');
 		
 		$sedeA = str_replace("_", " ", $sede);
+		$this->permisoSede($sedeA); //PERMISOS PARA ESTA UNICA SEDE
 		
 		for ($i=3; $i <= 12; $i++){
 			$this->_reportes->generarReportesAñoSedes($año,$i); //CREO LOS REPORTES QUE NO HAN SIDO CREADOS
@@ -62,7 +68,9 @@ class reportesController extends administradorController{
 	}
 	
 	public function listaSede($sede,$año,$mes){
+		$this->_acl->acceso('control_reportes');
 		$sedeA = str_replace("_", " ", $sede);
+		$this->permisoSede($sedeA); //PERMISOS PARA ESTA UNICA SEDE
 		$reportes = $this->_reportes->getReportes($año,$sedeA,$mes);
 		$this->_view->assign('anioA', $año);
 		$this->_view->assign('sede', $sede);
@@ -72,8 +80,9 @@ class reportesController extends administradorController{
 	}
 	
 	public function guardarFinanzas($año,$sede){
-		
+		$this->_acl->acceso('control_reportes');
 		$sedeA = str_replace("_", " ", $sede);
+		$this->permisoSede($sedeA); //PERMISOS PARA ESTA UNICA SEDE
 		if($this->getInt('guardar') == 1){
 			$this->_finanzas->setFinanzasSede($this->getInt('id_finanza'),$this->getInt('complejo'),$this->getInt('profesores'),$this->getInt('camisetas'));
 		}

@@ -1,7 +1,9 @@
 
 <div class="btn-group">
 	<a href="javascript:history.back()" class="btn btn-default"> <i class="fa fa-arrow-left fa-lg"></i> Atras</a></li>
-	<a href="{$_layoutParams.root}administrador/grupos/nuevo" class="btn btn-default"> Nuevo Grupo</a>
+    {if $_acl->permiso('nuevo_grupo')}
+		<a href="{$_layoutParams.root}administrador/grupos/nuevo" class="btn btn-default"> Nuevo Grupo</a>
+    {/if}
 </div>
 
 
@@ -27,7 +29,11 @@
         	<td>{$g.dias}</td>
        		<td>{$g.horario}</td>
             <td style="text-align:center"><a href="{$_layoutParams.root}administrador/grupos/show/{$g.id_grupo}" class="btn btn-primary btn-xs">Ver Grupo</a></td>
-        	<td style="text-align:center"><a href="{$_layoutParams.root}administrador/grupos/delete_grupo/{$g.id_grupo}" class="btn btn-danger btn-xs">Eliminar</a></td>
+        	<td style="text-align:center">
+            	{if $_acl->permiso('super_usuario')}
+            		<a href="{$_layoutParams.root}administrador/grupos/delete_grupo/{$g.id_grupo}" class="btn btn-danger btn-xs">Eliminar</a>
+                {/if}
+            </td>
     	</tr>
 		{/foreach}
     {else}

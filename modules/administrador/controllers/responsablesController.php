@@ -142,11 +142,13 @@ class responsablesController extends administradorController{
             exit;
 		}
 		
-		if(!$this->_alumnos->getAlumno($id_alumno)){
+		$alumno = $this->_alumnos->getAlumno($id_alumno);
+		if(!$alumno){
 			$this->_view->assign('_error', 'Algo salio mal. Por favor intente nuevamente.');
             $this->_view->renderizar('listado', '');
             exit;
 		}
+		$this->permisoSede($alumno['sede']);
 		
 		if(!$this->_responsables->agregarResponsable($id_responsable,$id_alumno)){
 			$this->_view->assign('_error', 'Algo salio mal. No se pudo agregar a la BD.');
@@ -166,11 +168,13 @@ class responsablesController extends administradorController{
             exit;
 		}
 		
-		if(!$this->_alumnos->getAlumno($id_alumno)){
+		$alumno = $this->_alumnos->getAlumno($id_alumno);
+		if(!$alumno){
 			$this->_view->assign('_error', 'Algo salio mal. Por favor intente nuevamente.');
             $this->redireccionar('administrador/alumnos/show/'.$id_alumno);
             exit;
 		}
+		$this->permisoSede($alumno['sede']);
 		
 		if(!$this->_responsables->delete($id_responsable,$id_alumno)){
 			$this->_view->assign('_mensaje', 'No se ha podido eliminar de BD');

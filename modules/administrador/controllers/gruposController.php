@@ -23,7 +23,7 @@ class gruposController extends administradorController{
     }
 	
 	public function nuevo(){
-		$this->_acl->acceso('control_grupos');
+		$this->_acl->acceso('nuevo_grupo');
 		
         $this->_view->assign('titulo', 'Nuevo Grupo');
 		        
@@ -35,7 +35,7 @@ class gruposController extends administradorController{
                 $this->_view->renderizar('nuevo', '');
                 exit;
             }
-			
+						
 			if($this->getTexto('tipo') == 'null'){
                 $this->_view->assign('_error', 'Seleccione el tipo de Grupo.');
                 $this->_view->renderizar('nuevo', '');
@@ -76,7 +76,7 @@ class gruposController extends administradorController{
 	}
 	
 	public function delete_grupo($id_grupo){
-		$this->_acl->acceso('control_usuarios');
+		$this->_acl->acceso('super_usuario');
 		
 		$id = $this->filtrarInt($id_grupo);
 		        
@@ -110,6 +110,8 @@ class gruposController extends administradorController{
 		if(!$grupo){
 			$this->redireccionar('administrador/grupos');
 		}
+		
+		$this->permisoSede($grupo['sede']);
 		
 		$this->_view->assign('alumnos', $this->_grupos->getAlumnosGrupo($id));
 		$this->_view->assign('asistenciasModel', $this->_asistencias);

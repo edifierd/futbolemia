@@ -51,12 +51,13 @@ class registroModel extends Model
 		
         $this->_db->prepare(
                 "insert into usuarios values" .
-                "(null, :usuario, :password, :email, 2, 0, now(), :codigo, :item_id)"
+                "(null, :usuario, :password, :email, :rol , 0, now(), :codigo, :item_id)"
                 )
                 ->execute(array(
                     ':usuario' => $datos['usuario'],
                     ':password' => Hash::getHash('sha1', $datos['password'], HASH_KEY),
                     ':email' => $datos['email'],
+					':rol' => $datos['rol'],
                     ':codigo' => $random,
 					':item_id' => $item_id
                 ));

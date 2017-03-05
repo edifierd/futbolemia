@@ -19,6 +19,23 @@ class profesorModel extends Item_model {
 		return $profesor['id'];
 	}
 	
+	public function getItem($id){
+		$profesor = $this->_db->query("
+				SELECT i.nombre, i.apellido, i.dni
+				FROM ". $this->model_name() ." i
+				WHERE id = ".$id."
+		 	");
+        return $profesor->fetch();
+	}
+	
+	public function eliminar($id){
+		$datos = $this->_db->query("DELETE FROM ". $this->model_name() ." WHERE id = ".$id);
+		if ($datos == false){
+			return false;
+		}
+		return true;
+	}
+	
 	public function find_by_dni($dni){
 		$dni = (int) $dni;
 		$profesor = $this->_db->query("

@@ -13,11 +13,7 @@ class asistenciasController extends administradorController{
 		$this->_alumnos = $this->loadModel('alumnos');
     }
     
-    public function index(){
-		$this->_acl->acceso('control_asistencias');
-
-        $this->_view->renderizar('index');
-    }
+    public function index(){}
 	
 	public function tomarAsistencia($id_grupo){
 		$this->_acl->acceso('control_asistencias');
@@ -32,6 +28,8 @@ class asistenciasController extends administradorController{
 		if(!$grupo){
 			$this->redireccionar('administrador/grupos');
 		}
+		
+		$this->permisoSede($grupo['sede']);
 		
 		$alumnos = $this->_grupos->getAlumnosGrupo($id);
 		$this->_view->assign('alumnos', $alumnos);
@@ -87,6 +85,8 @@ class asistenciasController extends administradorController{
 			$this->redireccionar('administrador/alumnos');
 			exit;
 		}
+		
+		$this->permisoSede($alumno['sede']);
 		
 		if(($this->getInt('buscar') == 1) and ($this->getInt('anio'))){
 			$año = $this->getInt('anio');
