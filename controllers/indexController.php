@@ -6,40 +6,36 @@ class indexController extends Controller
         parent::__construct();
     }
     
-    public function index()
-    {
-        //print_r($this->_view->getLayoutPositions());
-		//$this->_view->assign('widget', $this->_view->widget('menu', 'getMenu'));
-        $this->_view->assign('titulo', 'Inicio');
+    public function index(){
+
+        $this->_view->assign('titulo', 'Futbolemia Ecuelita no competitiva');
 		$this->_view->assign('marcado', '
 								<script type="application/ld+json">
 								{
 								"@context" : "http://schema.org",
 								"@type" : "LocalBusiness",
-								"name" : "Panana Be. Trajes de baño Argentina",
-								"image" : "http://www.pananabe.com.ar/views/layout/pananabe/img/logo.png",
+								"name" : "Futbolemia. Escuela de fútbol no competitiva",
+								"image" : "http://www.futbolemia.com.ar/public/img/logo.png",
 								"telephone" : "",
-								"email" : "info@pananabe.com.ar",
+								"email" : "contacto@futbolemia.com.ar",
 								"address" : {
 								"@type" : "PostalAddress",
-								"addressLocality" : "Brandsen",
+								"addressLocality" : "La Plata",
 								"addressRegion" : "Buenos Aires",
 								"addressCountry" : "Argentina",
-								"postalCode" : "1980"
+								"postalCode" : "1900"
 								},
-								"url" : "http://www.pananabe.com.ar/"
+								"url" : "http://www.futbolemia.com.ar/"
 								}
 								</script>
 							');
-		$this->_view->assign('description', 'Panana Be trajes de baño. Diseños de autor, una delicada confeccion y detalles en terminaciones hacen de un traje de baño final pensado para hombres y mujeres, niños y niñas con estilo propio, ansiosos por vivir y vestir el verano. En Panana Be. Creamos trajes de baño con cortes clasicos y vanguardistas, asi como estampados lineales y florales coloridos, teniendo presente el gusto y eleccion de cada uno. Asi como la banana con gafas, hace referencia al verano y ese toque de onda que esta estacion nos trae. Vestite como quieras, sin excusas. ');
-		$this->_view->assign('keywords', 'Panana Be, vestite como quieras, sin excusas, pananabe, panana be trajes de baño, Argentina, contacto, telefono, correo, redes sociales, facebook, instagram, direccion, consultas, Panana Be., celular , ubicacion, formas de pago, financiacion, mecado pago, tarjetas de credito, mallas, malla, trajes de baño, baño, hombre, mujer, niños, niñas, mallas mujer, bikini,malla bikini, malla hombre, short, dama, caballero, malla dama, malla caballero, traje de baño dama');
-		$this->_view->setCss(array('estilos'));
+		$this->_view->assign('description', 'Futbolemia escuelita de fútbol no competitiva para nenes y nenas de 3 a 14 años. Nos encontramos ubicados en la ciudad de La Plata en nuestras tres sedes Los Hornos, El Retiro y La cumbre. Somos la Epidemia de fútbol mas grande de la ciudad. Veni a conocernos.  ');
+		$this->_view->assign('keywords', 'Futbolemia, Futbolemia La Plata, Futbolemia Argentina, Futbolemia Futbol, Futbolemia nenas, Futbolemia nenes, Futbolemia escuela, Futbolemia escuelita, esculita Futbolemia, futbol nenas, futbol, nenes, de 3 a 14 años, La Plata, Argentina, Buenos Ares, Sedes La Cumbre, sede Los Hornos, sede El Retiro, El Retiro escuelita, Los Hornos escuelita, La Cumbre escuelita, niños y niñas, futbol no competitivo, profesores UNLP ');
+		
         $this->_view->renderizar('index', 'inicio');
     }
 	
-	public function getModel(){
-		
-	}
+	public function getModel($nombre){}
 	
 }
 

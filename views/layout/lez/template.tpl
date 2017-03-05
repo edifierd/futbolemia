@@ -29,7 +29,7 @@
 			}
 			
 			body{
-				background-color:#FFF;
+				background-color: #000;;
 				margin-bottom: 0px;
 			}
 
@@ -40,17 +40,6 @@
 <body>
 	<!-- HEADER -->
 	<header>
-    	<div class="cabecera">
-        	<div class="container" style="margin-top:15px;">
-            	<div class="row">
-                	<div class="col-xs-12 col-sm-12 col-md-3">
-                		<a href="http://www.lezindumentaria.com/"><img src="{$_layoutParams.ruta_img}logo.jpg" style="width:250px; height:auto; margin-right:auto; margin-left:auto;" class="img-responsive"></a>
-                    </div>
-                    <div class="hidden-xs  hidden-sm col-md-9" style="padding-top:60px; color:#000; font-size:55px; "> 
-                    	<p>Indumentaria Masculina</p>
-                    </div>
-            </div>
-    	</div>
     </header>
 
       
@@ -77,27 +66,7 @@
         	</div>
     </div>
         
-    <!-- Footer -->
-    <div class=" piePagina">
-        	<div class="container"  >
-                <div class="row">
-                <div class="col-sm-12 col-sm-8 col-md-8">
-                <h3><u>Contacto:</u></h3>
-       			 <ul>
-  			<li>Cel.: (0221) 15 668-3522 </li>
-            <li>Cel.: (0221) 15 561-0069 </li><br />
-            <li><a href="https://www.facebook.com/lezindumentaria" target="_blank"><img src="{$_layoutParams.ruta_img}facebook.png" /></a> <a href="https://www.instagram.com/lez.indumentaria/" target="_blank"><img src="{$_layoutParams.ruta_img}instagram.png" /></a> <a href="#"><img src="{$_layoutParams.ruta_img}carta.png" /></a></li><br /><br />
-            	</ul>
-                </div>
-                
-            	<div class="hidden-xs col-sm-4 col-md-4">
-            	<div class="fb-like" data-href="https://www.facebook.com/lezindumentaria" data-width="150" 
-                data-layout="box_count" data-action="like" data-size="large" data-show-faces="true" data-share="true" 
-                style="float:left; margin-top:40px; margin-right:auto; margin-left:auto;"></div>
-                </div>
-		
-			</div>
-	</div>            
+         
        
 	<script type="text/javascript" src="{$_layoutParams.root}public/js/jquery-1.11.1.min.js"></script>
 	<script type="text/javascript" src="{$_layoutParams.ruta_js}bootstrap.js"></script>
