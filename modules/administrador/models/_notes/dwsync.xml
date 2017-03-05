@@ -10,4 +10,16 @@
 <file name="gruposModel.php" server="lezindumentaria.com/public_html/" local="131325952062360668" remote="131328002400000000" Dst="0" />
 <file name="cuotasModel.php" server="lezindumentaria.com/public_html/" local="131328993032286691" remote="131328966000000000" Dst="0" />
 <file name="responsablesModel.php" server="lezindumentaria.com/public_html/" local="131323614081610184" remote="131328003000000000" Dst="0" />
+<file name="aclModel.php" server="files.000webhost.com/public_html/" local="131314981976202317" remote="131332158600000000" Dst="0" />
+<file name="alumnosModel.php" server="files.000webhost.com/public_html/" local="131329608047971455" remote="131332158600000000" Dst="0" />
+<file name="asistenciasModel.php" server="files.000webhost.com/public_html/" local="131328986835687520" remote="131332158600000000" Dst="0" />
+<file name="cuotasModel.php" server="files.000webhost.com/public_html/" local="131331234630866409" remote="131332158600000000" Dst="0" />
+<file name="finanzasModel.php" server="files.000webhost.com/public_html/" local="131331324120243794" remote="131332158600000000" Dst="0" />
+<file name="gruposModel.php" server="files.000webhost.com/public_html/" local="131332141027079784" remote="131332252800000000" Dst="0" />
+<file name="loginModel.php" server="files.000webhost.com/public_html/" local="131331645021412960" remote="131332158600000000" Dst="0" />
+<file name="profesorModel.php" server="files.000webhost.com/public_html/" local="131331686768534335" remote="131332158600000000" Dst="0" />
+<file name="registroModel.php" server="files.000webhost.com/public_html/" local="131331340162275061" remote="131332158600000000" Dst="0" />
+<file name="reportesModel.php" server="files.000webhost.com/public_html/" local="131331292436689326" remote="131332158600000000" Dst="0" />
+<file name="responsablesModel.php" server="files.000webhost.com/public_html/" local="131323614081610184" remote="131332158600000000" Dst="0" />
+<file name="userModel.php" server="files.000webhost.com/public_html/" local="131331678687699418" remote="131332158600000000" Dst="0" />
 </dwsync>

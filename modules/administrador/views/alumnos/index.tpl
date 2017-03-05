@@ -26,7 +26,6 @@
 
 <table class="table table-striped">
 	<tr>
-    	<th>ID</th>
     	<th>Apellido Nombre </th>
     	<th>DNI</th>
         <th>Sede y Grupo inscripto</th>
@@ -37,7 +36,6 @@
     	{foreach from=$alumnos item=a}
         	{if $a.estado == 'a'}
     		<tr>
-    			<td>{$a.id_alumno}</td>
 				<td><a href="{$_layoutParams.root}administrador/alumnos/show/{$a.id_alumno}">{$a.apellido} {$a.nombre}</a></td>
         		<td>{$a.dni}</td>
         		<td>{$a.sede} - {$a.tipo} - {$a.horario} </td>
@@ -50,7 +48,6 @@
             </tr>
             {else}
 			<tr style="text-decoration:line-through;">
-    			<td>{$a.id_alumno}</td>
 				<td><a href="{$_layoutParams.root}administrador/alumnos/show/{$a.id_alumno}">{$a.apellido} {$a.nombre}</a></td>
         		<td>{$a.dni}</td>
         		<td>{$a.sede} - {$a.tipo} - {$a.horario} </td>

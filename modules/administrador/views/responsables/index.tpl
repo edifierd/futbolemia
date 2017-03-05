@@ -16,7 +16,6 @@
 
 <table class="table table-striped">
 	<tr>
-    	<th>ID</th>
     	<th>Apellido Nombre</th>
         <th>DNI</th>
     	<th>Correo</th>
@@ -27,7 +26,6 @@
     {if isset($responsables) && count($responsables)}
     	{foreach from=$responsables item=r}
     		<tr>
-    			<td>{$r.id_responsable}</td>
 				<td><a href="{$_layoutParams.root}administrador/responsables/show/{$r.id_responsable}">{$r.apellido} {$r.nombre}</a></td>
         		<td>{$r.dni}</td>
                 <td>{$r.correo}</td>

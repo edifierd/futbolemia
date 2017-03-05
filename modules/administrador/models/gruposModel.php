@@ -38,11 +38,20 @@ class gruposModel extends Model
 		return $datos->fetchall();
 	}
 	
+	public function getGruposSede($sede){
+		if(!$sede){
+			$datos = $this->_db->query("SELECT * FROM grupos WHERE id_grupo != 1 ");
+		} else {
+			$datos = $this->_db->query("SELECT * FROM grupos WHERE sede = '".$sede."' AND id_grupo != 1 ");
+		}
+		return $datos->fetchall();
+	}
+	
 	public function getAlumnosGrupo($id_grupo){
 		$datos = $this->_db->query("SELECT * FROM alumnos WHERE id_grupo = ".$id_grupo." AND id_grupo != 1 ORDER BY apellido ASC, nombre ASC");
 		return $datos->fetchall();
 	}
-	
+
 	
 	// ---------- VALIDACIONES ---------- //
 	

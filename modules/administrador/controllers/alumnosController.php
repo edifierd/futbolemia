@@ -263,18 +263,22 @@ class alumnosController extends administradorController{
 			$this->redireccionar('administrador/alumnos');
 			exit;
 		}
-		$this->permisoSede($alumno['sede']);
+		
 		$this->_view->assign('alumno', $alumno);
 		$this->_view->assign('grupo', $this->_grupos->getGrupo($alumno['id_grupo']));
 		$this->_view->assign('grupos', $this->_grupos->getGruposMenos($alumno['id_grupo']));
 		$this->_view->assign('titulo', 'Reactivar Alumno');
 		
 		if($this->getInt('guardar') == 1){
+			
 			if($this->getInt('grupo') == 0){
                 $this->_view->assign('_error', 'Debe seleccionar un grupo de una Sede.');
                 $this->_view->renderizar('reactivar', '');
                 exit;
             }
+			
+			$grupo = $this->_grupos->getGrupo($this->getInt('grupo'));
+			$this->permisoSede($grupo['sede']);
 			
 			if(!$this->_alumnos->reactivar($id,$this->getInt('grupo'))){
 				$this->_view->assign('_error', 'No se ha podido reactivar el alumno de la BD');

@@ -5,4 +5,10 @@
 <file name="index.tpl" server="lezindumentaria.com/public_html/" local="131310017745201637" remote="131328003600000000" Dst="0" />
 <file name="permisos.tpl" server="lezindumentaria.com/public_html/" local="131310017745201637" remote="131328003600000000" Dst="0" />
 <file name="registro.tpl" server="lezindumentaria.com/public_html/" local="131311376276929903" remote="131328003600000000" Dst="0" />
+<file name="activar.tpl" server="files.000webhost.com/public_html/" local="131310017745045403" remote="131332159200000000" Dst="0" />
+<file name="index.tpl" server="files.000webhost.com/public_html/" local="131310017745201637" remote="131332159200000000" Dst="0" />
+<file name="listado.tpl" server="files.000webhost.com/public_html/" local="131331673746501036" remote="131332159200000000" Dst="0" />
+<file name="perfil.tpl" server="files.000webhost.com/public_html/" local="131331622463475128" remote="131332159200000000" Dst="0" />
+<file name="permisos.tpl" server="files.000webhost.com/public_html/" local="131310017745201637" remote="131332159200000000" Dst="0" />
+<file name="registro.tpl" server="files.000webhost.com/public_html/" local="131331343220359085" remote="131332159200000000" Dst="0" />
 </dwsync>

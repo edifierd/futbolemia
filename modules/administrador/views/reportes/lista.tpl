@@ -38,7 +38,7 @@
 {else}
 <div class="row">
 	{for $i=3 to 12}
-	<div class="col-xs-12 col-sm-4 col-md-3">
+	<div class="col-xs-12 col-sm-4 col-md-4">
     	<div class="panel panel-primary">
   			<div class="panel-heading"><a href="{$_layoutParams.root}administrador/reportes/listaSede/{$sede}/{$anioA}/{$i}" style="color:#FFF;"><h4>{$nombreMes[$i]}</h4></a></div>
   			<div class="panel-body">
