@@ -1,5 +1,5 @@
 
-<div class="btn-group">
+<div class="btn-group" style="margin-bottom:20px;">
 	<a href="javascript:history.back()" class="btn btn-default"> <i class="fa fa-arrow-left fa-lg"></i> Atras</a></li>
     {if $_acl->permiso('nuevo_grupo')}
 		<a href="{$_layoutParams.root}administrador/grupos/nuevo" class="btn btn-default"> Nuevo Grupo</a>

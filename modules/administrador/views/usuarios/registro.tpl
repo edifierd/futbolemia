@@ -53,6 +53,7 @@
 
         <p>
             <button type="submit" class="btn btn-primary">Registrar Usuario</button>
+            <a href="{$_layoutParams.root}administrador/usuarios/listado" class="btn btn-danger" style="margin-left:25px;">Cancelar</a>
         </p>
     </form>
 </div>

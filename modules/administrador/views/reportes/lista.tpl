@@ -2,32 +2,47 @@
 
 <nav class="navbar navbar-default">
   <div class="container-fluid">
-  	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <form class="navbar-form navbar-left" role="search" method="post" action="">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      {if $reportes != false}
+      <ul class="nav navbar-nav">
+      	<li style="text-align:center;">
+        	<a href="{$_layoutParams.root}administrador/reportes/generar/{$anioA}/{$sede}" style="color:#F00;"> Actualizar Reportes </a>
+        </li>
+      </ul>
+      {/if}
+      <form class="navbar-form navbar-left" role="search" method="post" action="" >
         	<input type="hidden" value="1" name="buscar" />
-            <label style="margin-right:15px;">Seleccione un año: </label>
   			<div class="form-group">
-            	<select id="anio" name="anio" style="height:32px; margin-right:15px;">
+            	<label style="margin-right:15px; width:40px;">Año: </label>
+            	<select id="anio" name="anio" style="height:32px; margin-right:15px; width:120px;">
                 {foreach from=$listaAnios item=anio} 
         			<option value="{$anio[1]}" >{$anio[1]}</option>
         		{/foreach}
 				</select>
-  			</div>
+            </div>
             
-            <label style="margin-right:15px;">Sede: </label>
             <div class="form-group">
-            	<select id="sede" name="sede" style="height:32px;">
+            	<label style="margin-right:15px; width:40px;">Sede: </label>
+            	<select id="sede" name="sede" style="height:32px; width:120px;">
                 	<option value="Los_Hornos" >Los Hornos</option>
             		<option value="La_Cumbre" >La Cumbre</option>
                     <option value="El_Retiro" >El Retiro</option>
 				</select>
-  			</div>
-  			<button type="submit" class="btn btn-default" style="margin-left:20px;">Buscar</button>
-            
-            <a href="{$_layoutParams.root}administrador/reportes/generar/{$anioA}/{$sede}" class="btn btn-success" style="margin-left:30px;"> Actualizar Reportes </a>
-		</form>
-    </div>
-  </div>
+            </div>
+            <button type="submit" class="btn btn-default" >Buscar</button>  			
+	  </form>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
 </nav>
 
 
@@ -38,7 +53,7 @@
 {else}
 <div class="row">
 	{for $i=3 to 12}
-	<div class="col-xs-12 col-sm-4 col-md-4">
+	<div class="col-xs-12 col-sm-6 col-md-4">
     	<div class="panel panel-primary">
   			<div class="panel-heading"><a href="{$_layoutParams.root}administrador/reportes/listaSede/{$sede}/{$anioA}/{$i}" style="color:#FFF;"><h4>{$nombreMes[$i]}</h4></a></div>
   			<div class="panel-body">

@@ -1,4 +1,10 @@
+
 <h3>Perfil de persona autorizada a retirar</h3><br>
+
+<div class="btn-group" style="margin-bottom:20px;">
+	<a href="javascript:history.back()" class="btn btn-default"> <i class="fa fa-arrow-left fa-lg"></i> Atras</a></li>
+	<a href="{$_layoutParams.root}administrador/responsables/edit/{$responsable.id_responsable}" class="btn btn-default"> Modificar</a>
+</div>
 
 <div class="row">
 	<div class="col-sm-6">

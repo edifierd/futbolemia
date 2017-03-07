@@ -60,6 +60,7 @@
 
         <p>
             <button type="submit" class="btn btn-primary">Guardar</button>
+            <a href="javascript:history.back()" class="btn btn-danger" style="margin-left:25px;">Cancelar</a>
         </p>
         
         <p>

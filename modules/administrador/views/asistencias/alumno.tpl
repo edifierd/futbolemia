@@ -34,7 +34,18 @@
 
 <nav class="navbar navbar-default">
   <div class="container-fluid">
+  
+  	<div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    
   	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    	
     	<ul class="nav navbar-nav">
         	<li><a href="javascript:history.back()" > <i class="fa fa-arrow-left fa-lg"></i> Atras</a></li>
    	    </ul>

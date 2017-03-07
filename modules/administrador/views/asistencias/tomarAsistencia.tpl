@@ -4,8 +4,6 @@
 
 <h3>Tomar asistencia en {$grupo.sede} {$grupo.tipo} - {$grupo.dias} - {$grupo.horario} </h3><br>
 
-
-        
         
 <table class="table table-striped">
 	<form name="form1" method="post" action="" class="form">

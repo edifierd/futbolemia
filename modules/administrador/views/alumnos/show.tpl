@@ -2,23 +2,39 @@
 	<h3>La ultima actualización de este alumno es del {$alumno.ult_actualizacion|date_format:"%d-%m-%Y"}</h3>
 {/if}
 
-<ul class="nav nav-tabs" style="margin-bottom:15px;">
-  <li><a href="{$_layoutParams.root}administrador/alumnos" > <i class="fa fa-arrow-left fa-lg"></i> Atras</a></li>
-  {if $alumno.estado == 'a'}
-  <li role="presentation"><a href="{$_layoutParams.root}administrador/alumnos/edit/{$alumno.id_alumno}">Modificar Perfil</a></li>
-  <li role="presentation"><a href="{$_layoutParams.root}administrador/responsables/listado/{$alumno.id_alumno}">Agregar Responsable</a></li>
-  {if $_acl->permiso('control_pagos')}
-  	<li role="presentation"><a href="{$_layoutParams.root}administrador/cuotas/alumno/{$alumno.id_alumno}">Pagos</a></li>
-  {/if}
-  <li role="presentation"><a href="{$_layoutParams.root}administrador/asistencias/alumno/{$alumno.id_alumno}">Asistencias</a></li>
-  <li role="presentation">
-  	<a href="{$_layoutParams.root}administrador/alumnos/delete/{$alumno.id_alumno}" style="color:#900;" onClick="javascript: return confirm('¿Estas seguro?');">Suspender</a>
-  </li>
-  {/if}
-  {if $alumno.estado == 'e'}
-  	<li role="presentation"><a href="{$_layoutParams.root}administrador/alumnos/reactivar/{$alumno.id_alumno}"><h3>Reactivar Usuario</h3></a></li>
-  {/if}
-</ul>
+<nav class="navbar navbar-default" style="margin-bottom:15px;">
+  <div class="container-fluid">
+  
+  	<div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    
+  	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    	<ul class="nav navbar-nav" >
+  			<li style="text-align:center;"><a href="{$_layoutParams.root}administrador/alumnos" > <i class="fa fa-arrow-left fa-lg"></i> Atras</a></li>
+  			{if $alumno.estado == 'a'}
+  				<li style="text-align:center;"><a href="{$_layoutParams.root}administrador/alumnos/edit/{$alumno.id_alumno}">Modificar Perfil</a></li>
+  				<li style="text-align:center;"><a href="{$_layoutParams.root}administrador/responsables/listado/{$alumno.id_alumno}">Agregar Responsable</a></li>
+  				{if $_acl->permiso('control_pagos')}
+  					<li style="text-align:center;"><a href="{$_layoutParams.root}administrador/cuotas/alumno/{$alumno.id_alumno}">Pagos</a></li>
+  				{/if}
+  				<li style="text-align:center;"><a href="{$_layoutParams.root}administrador/asistencias/alumno/{$alumno.id_alumno}">Asistencias</a></li>
+  				<li style="text-align:center;">
+  				<a href="{$_layoutParams.root}administrador/alumnos/delete/{$alumno.id_alumno}" style=" color:#C00;" onClick="javascript: return confirm('¿Estas seguro?');">Suspender</a>
+  				</li>
+  			{/if}
+  			{if $alumno.estado == 'e'}
+  				<li style="text-align:center;"><a href="{$_layoutParams.root}administrador/alumnos/reactivar/{$alumno.id_alumno}"><h3>Reactivar Usuario</h3></a></li>
+  			{/if}
+		</ul>
+    </div>
+  </div>
+</nav>
 
 <div class="row">
 	<div class="col-sm-7">
