@@ -1,22 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="errorController.php" server="lezindumentaria.com/public_html/" local="131310017742837902" remote="131328002400000000" Dst="0" />
-<file name="indexController.php" server="lezindumentaria.com/public_html/" local="131310017742837902" remote="131328002400000000" Dst="0" />
-<file name="usuariosController.php" server="lezindumentaria.com/public_html/" local="131312366749878243" remote="131328002400000000" Dst="0" />
-<file name="aclController.php" server="lezindumentaria.com/public_html/" local="131314985874784961" remote="131328002400000000" Dst="0" />
-<file name="alumnosController.php" server="lezindumentaria.com/public_html/" local="131329027173846013" remote="131328965400000000" Dst="0" />
-<file name="asistenciasController.php" server="lezindumentaria.com/public_html/" local="131326956721226758" remote="131328002400000000" Dst="0" />
-<file name="cuotasController.php" server="lezindumentaria.com/public_html/" local="131327098030148212" remote="131328002400000000" Dst="0" />
-<file name="gruposController.php" server="lezindumentaria.com/public_html/" local="131328996514527944" remote="131328965400000000" Dst="0" />
-<file name="responsablesController.php" server="lezindumentaria.com/public_html/" local="131328951299012814" remote="131328965400000000" Dst="0" />
-<file name="aclController.php" server="files.000webhost.com/public_html/" local="131331664721259337" remote="131332158600000000" Dst="0" />
-<file name="alumnosController.php" server="files.000webhost.com/public_html/" local="131332099153866744" remote="131332207200000000" Dst="0" />
-<file name="asistenciasController.php" server="files.000webhost.com/public_html/" local="131331377410000000" remote="131332158600000000" Dst="0" />
-<file name="cuotasController.php" server="files.000webhost.com/public_html/" local="131331392438404894" remote="131332158600000000" Dst="0" />
-<file name="errorController.php" server="files.000webhost.com/public_html/" local="131310017742837902" remote="131332158600000000" Dst="0" />
-<file name="gruposController.php" server="files.000webhost.com/public_html/" local="131331395502747743" remote="131332158600000000" Dst="0" />
-<file name="indexController.php" server="files.000webhost.com/public_html/" local="131332139921411349" remote="131332252800000000" Dst="0" />
-<file name="reportesController.php" server="files.000webhost.com/public_html/" local="131331656885623584" remote="131332158600000000" Dst="0" />
-<file name="responsablesController.php" server="files.000webhost.com/public_html/" local="131331388979421827" remote="131332158600000000" Dst="0" />
-<file name="usuariosController.php" server="files.000webhost.com/public_html/" local="131331684232844384" remote="131332158600000000" Dst="0" />
+<file name="alumnosController.php" server="files.000webhost.com/public_html/" local="131335863535779196" remote="131335973400000000" Dst="0" />
+<file name="responsablesController.php" server="files.000webhost.com/public_html/" local="131334192610000000" remote="131335986600000000" Dst="0" />
 </dwsync>

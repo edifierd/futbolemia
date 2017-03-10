@@ -1,5 +1,4 @@
 <?php
-
 class userModel extends Model{
 	
 	private $_item;
@@ -7,20 +6,20 @@ class userModel extends Model{
     public function __construct(){
         parent::__construct('usuarios');
 		
-		//AGREGO EL ITEM AL USUARIO
-		$user_type_model = USER_TYPE . 'Model';
-		$ruta_user_type_model = ROOT . 'modules' . DS . 'administrador' . DS . 'models' . DS . $user_type_model . '.php';
-        if(is_readable($ruta_user_type_model)){
-            require_once $ruta_user_type_model;
-            $this->_item = new $user_type_model;
-        }
-        else {
-            throw new Exception('Error en USUARIO TYPE --> '.USER_TYPE);
-        }
+		if(USER_TYPE != ''){ //AGREGO EL ITEM AL USUARIO
+			$user_type_model = USER_TYPE . 'Model';
+			$ruta_user_type_model = ROOT . 'modules' . DS . 'administrador' . DS . 'models' . DS . $user_type_model . '.php';
+        	if(is_readable($ruta_user_type_model)){
+            	require_once $ruta_user_type_model;
+            	$this->_item = new $user_type_model;
+        	} else {
+            	throw new Exception('Error en USUARIO TYPE --> '.USER_TYPE);
+        	}
+		}
+		
     }
     
-    public function getUsuarios()
-    {
+    public function getUsuarios(){
         $usuarios = $this->_db->query(
                 "select u.*,r.role from usuarios u, roles r ".
                 "where u.role = r.id_role"
@@ -29,28 +28,29 @@ class userModel extends Model{
     }
     
     public function getUsuario($usuarioID){
-         $usuarios = $this->_db->query(
+    	$datos = $this->_db->query(
                 "select * from usuarios u, roles r ".
                 "where u.role = r.id_role and u.id = $usuarioID"
                 );
-		 $usuario = $usuarios->fetch();
-         return array_merge($usuario,$this->_item->getItem($usuario['item_id']));
+		$usuario = $datos->fetch();
+		$item = array();
+		if(isset($this->_item)){
+			$item = $this->_item->getItem($usuario['item_id']);
+		}
+		return array_merge($usuario,$item);
     }
     
-    public function getPermisosUsuario($usuarioID)
-    {
+    public function getPermisosUsuario($usuarioID){
         $acl = new ACL($usuarioID);
         return $acl->getPermisos();
     }
     
-    public function getPermisosRole($usuarioID)
-    {
+    public function getPermisosRole($usuarioID){
         $acl = new ACL($usuarioID);
         return $acl->getPermisosRole();
     }
     
-    public function eliminarPermiso($usuarioID, $permisoID)
-    {
+    public function eliminarPermiso($usuarioID, $permisoID){
         $this->_db->query(
                 "delete from permisos_usuario where ".
                 "usuario = $usuarioID and permiso = $permisoID"
@@ -70,10 +70,16 @@ class userModel extends Model{
 	}
 	
 	public function eliminar($id){
-		$datos = $this->_db->query("SELECT * FROM usuarios WHERE id = ".$id);
-		$usuario = $datos->fetch();
+		// ELIMINO EL ITEM
+		if(isset($this->_item)){
+			$datos = $this->_db->query("SELECT * FROM usuarios WHERE id = ".$id);
+			$usuario = $datos->fetch();
+			$item = $this->_item->eliminar($usuario['item_id']);
+		} else {
+			$item = true;
+		}
+		// ELIMINO AL USUARIO
 		$user = $this->_db->query("DELETE FROM usuarios WHERE id = ".$id);
-		$item = $this->_item->eliminar($usuario['item_id']);
 		if(($user != false) and $item){
 			return true;
 		} else{
@@ -84,6 +90,91 @@ class userModel extends Model{
 	public function getItem($usuarioID){
 		return $this->_item;
 	}
+	
+	
+// ------------------------------ INICIO DE SESION  ------------------------------ //
+	
+	public function getUsuarioLogin($usuario, $password){
+        $datos = $this->_db->query(
+                "select * from usuarios " .
+                "where usuario = '$usuario' " .
+                "and pass = '" . Hash::getHash('sha1', $password, HASH_KEY) ."'"
+                );
+        
+		if ($datos->rowCount() > 0){
+        	$usuario = $datos->fetch();
+			$item = array();
+			if(isset($this->_item)){
+				$item = $this->_item->getItem($usuario['item_id']);
+			}
+			return array_merge($usuario,$item);
+		}
+		return false;
+    }
+	
+	
+// ------------------------------ REGISTRO ------------------------------ //
+	
+	public function verificarUsuario($usuario){
+        $id = $this->_db->query(
+                "select id, codigo from usuarios where usuario = '$usuario'"
+                );
+        
+        return $id->fetch();
+    }
+	
+	public function verificarEmail($email){
+        $id = $this->_db->query(
+                "select id from usuarios where email = '$email'"
+                );
+        
+        if($id->fetch()){
+            return true;
+        }
+        
+        return false;
+    }
+	
+	public function registrarUsuario($datos){
+		
+		//CREO EL ITEM Y LUEGO SE LO ASIGNO AL USUARIO
+		if(isset($this->_item)){
+			$item_id = $this->_item->setDatos($datos);
+		} else {
+			$item_id = null;
+		}
+		
+    	$random = rand(1782598471, 9999999999);
+		
+        $this->_db->prepare(
+                "insert into usuarios values" .
+                "(null, :usuario, :password, :email, :rol , 0, now(), :codigo, :item_id)"
+                )
+                ->execute(array(
+                    ':usuario' => $datos['usuario'],
+                    ':password' => Hash::getHash('sha1', $datos['password'], HASH_KEY),
+                    ':email' => $datos['email'],
+					':rol' => $datos['rol'],
+                    ':codigo' => $random,
+					':item_id' => $item_id
+                ));
+    }
+	
+	public function getUsuarioByCodigo($id, $codigo){
+		$usuario = $this->_db->query(
+					"select * from usuarios where id = $id and codigo = '$codigo'"
+					);
+					
+		return $usuario->fetch();
+	}
+	
+	public function activarUsuario($id, $codigo){
+		$this->_db->query(
+					"update usuarios set estado = 1 " .
+					"where id = $id and codigo = '$codigo'"
+					);
+	}	
+	
 }
 
 ?>

@@ -8,7 +8,7 @@ class responsablesModel extends Model{
 	
 	public function insertarResponsable($parentesco,$dni,$nombre,$apellido,$tel_fijo,$tel_celular,$direccion,$correo,$id_alumno){
 		$fecha_actual=date(DATE_ATOM);;
-		$rta = $this->_db->query("INSERT INTO responsables VALUES(null,'".$nombre."','".$apellido."',".$dni.",".$tel_fijo.",".$tel_celular.",'".$direccion."','".$correo."','".$parentesco."','".$fecha_actual."')");
+		$rta = $this->_db->query("INSERT INTO responsables VALUES(null,'".$nombre."','".$apellido."',".$dni.",'".$tel_fijo."','".$tel_celular."','".$direccion."','".$correo."','".$parentesco."','".$fecha_actual."')");
 		$responsable = $this->getResponsableByDni($dni);
 		$rta = $this->_db->query("INSERT INTO alumnos_responsables VALUES(null,".$id_alumno.",".$responsable['id_responsable'].")");
 		return $rta;
@@ -21,7 +21,7 @@ class responsablesModel extends Model{
 	public function edit($id_responsable,$nombre,$apellido,$tel_fijo,$tel_celular,$direccion,$correo){
 		$id_responsable = (int) $id_responsable;
         
-		$sql = "UPDATE responsables SET `nombre` = '".$nombre."',`apellido` = '".$apellido."',`tel_fijo` = ".$tel_fijo.", `tel_celular` = ".$tel_celular.",`direccion` = '".$direccion."',
+		$sql = "UPDATE responsables SET `nombre` = '".$nombre."',`apellido` = '".$apellido."',`tel_fijo` = '".$tel_fijo."', `tel_celular` = '".$tel_celular."',`direccion` = '".$direccion."',
 										`correo` = '".$correo."' WHERE `id_responsable` = ".$id_responsable;
         return $this->_db->query($sql);
 	}

@@ -189,6 +189,18 @@ class alumnosController extends administradorController{
 		if($this->getInt('guardar') == 1){
             $this->_view->assign('datos', $_POST);
 			
+			if($this->getDni('dni') == 0 or !$this->getDni('dni')){
+                $this->_view->assign('_error', 'Debe introducir un número valido de DNI del alumno.');
+                $this->_view->renderizar('edit', 'alumno');
+                exit;
+            }
+			
+			if($this->_alumnos->getAlumnoByDni($this->getDni('dni'))){
+                $this->_view->assign('_error', 'Este alumno ya existe en nuestros registros.');
+                $this->_view->renderizar('edit', 'alumno');
+                exit;
+            }
+			
 			if(!$this->validarDate($this->getPostParam('nacimiento'))){
 				$this->_view->assign('_error', 'No es una fecha de nacimiento valida.');
                 $this->_view->renderizar('edit', 'alumno');
@@ -220,6 +232,7 @@ class alumnosController extends administradorController{
 			}
 			
 			if(!$this->_alumnos->edit($id_alumno,
+									  $this->getDni('dni'),
 									  $this->getPostParam('nacimiento'),
 									  $this->getTexto('colegio'),
 								      $obra_social,
@@ -293,6 +306,19 @@ class alumnosController extends administradorController{
 		}
 		
 		$this->_view->renderizar('reactivar', '');
+	}
+	
+	
+	public function permisoSede($sede){
+		if ($sede == 'Los Hornos'){
+			$this->_acl->acceso('control_los_hornos');
+		} else if ($sede == 'El Retiro'){
+			$this->_acl->acceso('control_el_retiro');
+		} else if ($sede == 'La Cumbre'){
+			$this->_acl->acceso('control_la_cumbre');
+		} else {
+		    $this->_acl->acceso('super_usuario');
+		}
 	}
     
     

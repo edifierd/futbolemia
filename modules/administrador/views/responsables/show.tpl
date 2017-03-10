@@ -15,7 +15,7 @@
             </div>
   			<div class="panel-body">
     			<ul class="list-group">
-  					<li class="list-group-item">Apellido y Nombre: <b>{$responsable.apellido} {$responsable.nombre}</b></li>
+  					<li class="list-group-item">Apellido y Nombre: <b>{$responsable.apellido} {$responsable.nombre} - {$responsable.parentesco}</b></li>
   					<li class="list-group-item">DNI: {$responsable.dni}</li>
   					<li class="list-group-item">Teléfono Fijo:  {$responsable.tel_fijo}</li>
   					<li class="list-group-item">Teléfono celular: {$responsable.tel_celular} </li>

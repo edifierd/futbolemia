@@ -121,7 +121,17 @@ class gruposController extends administradorController{
 		$this->_view->renderizar('show', '');
 	}
 	
-	
+	public function permisoSede($sede){
+		if ($sede == 'Los Hornos'){
+			$this->_acl->acceso('control_los_hornos');
+		} else if ($sede == 'El Retiro'){
+			$this->_acl->acceso('control_el_retiro');
+		} else if ($sede == 'La Cumbre'){
+			$this->_acl->acceso('control_la_cumbre');
+		} else {
+		    $this->_acl->acceso('super_usuario');
+		}
+	}
     
     
 }

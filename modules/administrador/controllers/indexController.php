@@ -30,6 +30,18 @@ class indexController extends administradorController{
 		$this->_view->assign('titulo', 'Panel de Administración');
 		$this->_view->renderizar('index', '');
 	}
+	
+	public function permisoSede($sede){
+		if ($sede == 'Los Hornos'){
+			$this->_acl->acceso('control_los_hornos');
+		} else if ($sede == 'El Retiro'){
+			$this->_acl->acceso('control_el_retiro');
+		} else if ($sede == 'La Cumbre'){
+			$this->_acl->acceso('control_la_cumbre');
+		} else {
+		    $this->_acl->acceso('super_usuario');
+		}
+	}
 }
 
 ?>

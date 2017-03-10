@@ -119,7 +119,11 @@
             	{foreach from=$responsables item=r}
                 	<div class="row" style="margin:2px; margin-bottom:5px; border: solid 1px #CCCCCC;">
                     	<div class="col-xs-10">
-                    		<h4>{$r.nombre} {$r.apellido} - {$r.parentesco}</h4>
+                    		<h4>
+                            	<a href="{$_layoutParams.root}administrador/responsables/show/{$r.id_responsable}">
+                                	{$r.nombre} {$r.apellido} - {$r.parentesco}
+                                </a>
+                            </h4>
                         	Teléfono Fijo: {$r.tel_fijo} <br />
                         	Teléfono Celular {$r.tel_celular} <br />
                         	Dirección: {$r.direccion} <br />

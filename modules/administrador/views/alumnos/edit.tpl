@@ -13,7 +13,7 @@
         
         <p>
             <label>DNI: </label>
-            <label>{$dni}</label>
+            <input type="text" name="dni" value="{$datos.dni|default:""}" />
         </p>
         
         <p>
@@ -52,6 +52,7 @@
         	<div class="col-md-12">
             	<label>Certificado de aptitud física: (SOLO IMAGENES .jpg .png)</label>
                 <input id="imagen1" type="file" accept="image/*" onchange="mostrarFoto(enviar('imagen1','alumnos',new Array({$id_alumno},'borrar')),1,'alumnos'); "/>
+                <input type="hidden" value="{$datos.certificado_fisico}" name="certificado_fisico" />
             </div>
             <div class="col-md-12">
             	{if $datos.certificado_fisico != ''}

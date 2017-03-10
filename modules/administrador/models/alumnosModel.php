@@ -20,9 +20,9 @@ class alumnosModel extends Model{
         return $this->_db->query("UPDATE alumnos SET `estado` = 'e', `id_grupo` = 1 WHERE `id_alumno` = ".$id);
     }
 	
-	public function edit($id_alumno,$nacimiento,$colegio,$obra_social,$numero_afiliado,$observacion_medica,$id_grupo){
+	public function edit($id_alumno,$dni,$nacimiento,$colegio,$obra_social,$numero_afiliado,$observacion_medica,$id_grupo){
 		$id_alumno = (int) $id_alumno;
-		$sql = "UPDATE alumnos SET `nacimiento` = '".$nacimiento."',`colegio` = '".$colegio."',`obra_social` = '".$obra_social."', `num_afiliado` = '".$numero_afiliado."',`observacion_medica` = '".$observacion_medica."',`id_grupo` = ".$id_grupo." WHERE `id_alumno` = ".$id_alumno;
+		$sql = "UPDATE alumnos SET `dni` = ".$dni.", `nacimiento` = '".$nacimiento."',`colegio` = '".$colegio."',`obra_social` = '".$obra_social."', `num_afiliado` = '".$numero_afiliado."',`observacion_medica` = '".$observacion_medica."',`id_grupo` = ".$id_grupo." WHERE `id_alumno` = ".$id_alumno;
         $sql = $this->_db->query($sql);
 		return $sql;
 	}

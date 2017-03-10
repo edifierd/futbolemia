@@ -3,15 +3,11 @@
 class usuariosController extends administradorController
 {
     private $_usuarios;
-	private $_login;
-	private $_registro;
 	private $_aclm;
     
     public function __construct(){
         parent::__construct();
         $this->_usuarios = $this->loadModel('user');
-		$this->_login = $this->loadModel('login');
-		$this->_registro = $this->loadModel('registro');
 		$this->_aclm = $this->loadModel('acl');
     }
 	
@@ -39,7 +35,7 @@ class usuariosController extends administradorController
                 exit;
             }
             
-            $row = $this->_login->getUsuario(
+            $row = $this->_usuarios->getUsuarioLogin(
                     $this->getAlphaNum('usuario'),
                     $this->getSql('pass')
                     );
@@ -98,7 +94,7 @@ class usuariosController extends administradorController
                 exit;
             }
             
-            if($this->_registro->verificarUsuario($this->getAlphaNum('usuario'))){
+            if($this->_usuarios->verificarUsuario($this->getAlphaNum('usuario'))){
                 $this->_view->assign('_error', 'El usuario ' . $this->getAlphaNum('usuario') . ' ya existe');
                 $this->_view->renderizar('registro', 'registro');
                 exit;
@@ -110,7 +106,7 @@ class usuariosController extends administradorController
                 exit;
             }
             
-            if($this->_registro->verificarEmail($this->getPostParam('email'))){
+            if($this->_usuarios->verificarEmail($this->getPostParam('email'))){
                 $this->_view->assign('_error', 'Esta direccion de correo ya esta registrada');
                 $this->_view->renderizar('registro', 'registro');
                 exit;
@@ -153,9 +149,9 @@ class usuariosController extends administradorController
 			$datos['dni'] = $this->getDni('dni');
 			$datos['password'] = $this->getPostParam('confirmar');
 			$datos['rol'] = $this->getInt('rol');
-            $this->_registro->registrarUsuario($datos);
+            $this->_usuarios->registrarUsuario($datos);
             
-            $usuario = $this->_registro->verificarUsuario($this->getAlphaNum('usuario'));
+            $usuario = $this->_usuarios->verificarUsuario($this->getAlphaNum('usuario'));
 			
             if(!$usuario){
                 $this->_view->assign('_error', 'Error al registrar el usuario');
@@ -201,7 +197,7 @@ class usuariosController extends administradorController
             exit;   
             }
 
-        $row = $this->_registro->getUsuario(
+        $row = $this->_usuarios->getUsuarioByCodigo(
                             $this->filtrarInt($id),
                             $this->filtrarInt($codigo)
                             );
@@ -218,19 +214,19 @@ class usuariosController extends administradorController
             exit;
         }
 
-        $this->_registro->activarUsuario(
+        $this->_usuarios->activarUsuario(
                             $this->filtrarInt($id),
                             $this->filtrarInt($codigo)
                             );
 
-        $row = $this->_registro->getUsuario(
+        $row = $this->_usuarios->getUsuarioByCodigo(
                             $this->filtrarInt($id),
                             $this->filtrarInt($codigo)
                             );
 
         if($row['estado'] == 0){
-            $this->_view->assign('_error', 'Error al activar la cuenta, por favor intente mas tarde');
-            $this->_view->renderizar('activar', 'registro');
+            $this->_view->assign('_error', 'No se ha podido activar la cuenta');
+            $this->_view->renderizar('registro', 'registro');
             exit;
         }
 
