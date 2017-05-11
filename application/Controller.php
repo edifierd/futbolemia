@@ -51,7 +51,7 @@ abstract class Controller
             return $modelo;
         }
         else {
-            throw new Exception('Error de modelo - No se ha enconado el nombre de modelo indicado a cargar.');
+            throw new Exception('Error de modelo - No se ha encontrado el nombre de modelo indicado a cargar. --> '.$modelo);
         }
     }
 	
@@ -269,7 +269,7 @@ abstract class Controller
 			//$parametro = json_decode(stripslashes($_POST['datos']),true);
 			$parametro = $_POST['datos'];
 
-			$modelo->modificarImagen($nombre.".jpg",$parametro[0]); 
+			if($modelo->modificarImagen($nombre.".jpg",$parametro)){
 			//$modelo->modificarImagen($parametro[0],array(1)); 
 			// El modelo debe contener este metodo en el cual recibe el nombre de la imagen y un Array de datos auxiliares
 			
@@ -279,6 +279,7 @@ abstract class Controller
             $thumb->image_x = $thumb->image_dst_x / 2;
             $thumb->file_name_body_pre = 'thumb_';
             $thumb->process($ruta . 'thumb' . DS);
+			}
 				
 		}
 	}

@@ -17,6 +17,7 @@ class alumnosController extends administradorController{
 		if($nombre == 'alumnos'){
 			return $this->_alumnos;
 		}
+		return false;
 	}
     
     public function index(){
@@ -50,11 +51,21 @@ class alumnosController extends administradorController{
 		
 		if($this->getInt('guardar') == 1){
 			if($this->_alumnos->setNota($id_alumno, $this->getTexto('notas'))){
-				$this->_view->assign('_emensaje', 'Nota guardada correctamente.');
+				$this->_view->assign('_mensaje', 'Nota guardada correctamente.');
 			} else {
 				$this->_view->assign('_error', 'Algo salio mal. No se guardo la nota.');
 			}
 		}
+		
+		if($this->getInt('eliminar') == 1){
+			if($this->_alumnos->eliminarImagen($id_alumno)){
+				$this->_view->assign('_mensaje', 'Se elimino el certificado.');
+			} else {
+				$this->_view->assign('_error', 'Algo salio mal. No se guardo eliminar el cetificado.');
+			}
+		}
+		
+		
 		
 		$this->_view->assign('alumno', $this->_alumnos->getAlumno($id_alumno));
 		$this->_view->assign('responsables', $this->_alumnos->getResponsables($id_alumno));
@@ -181,7 +192,6 @@ class alumnosController extends administradorController{
 		$this->_view->assign('id_alumno', $id_alumno);
 		$this->_view->assign('nombre', $alumno['nombre']);
 		$this->_view->assign('apellido', $alumno['apellido']);
-		$this->_view->assign('dni', $alumno['dni']);
 		$this->_view->assign('datos', $alumno);
 		$this->_view->setJsPlugin(array('canvas-to-blob.min','resize','process','validaciones'),'imgUploader');
 		$this->_view->assign('titulo', 'Editar Alumno');
@@ -189,13 +199,14 @@ class alumnosController extends administradorController{
 		if($this->getInt('guardar') == 1){
             $this->_view->assign('datos', $_POST);
 			
-			if($this->getDni('dni') == 0 or !$this->getDni('dni')){
+			$dni = $this->getDni('dni');
+			if( $dni == 0 or !$dni){
                 $this->_view->assign('_error', 'Debe introducir un número valido de DNI del alumno.');
                 $this->_view->renderizar('edit', 'alumno');
                 exit;
             }
 			
-			if($this->_alumnos->getAlumnoByDni($this->getDni('dni'))){
+			if(($alumno['dni'] != $dni) and ($this->_alumnos->getAlumnoByDni($dni))){
                 $this->_view->assign('_error', 'Este alumno ya existe en nuestros registros.');
                 $this->_view->renderizar('edit', 'alumno');
                 exit;
@@ -307,7 +318,6 @@ class alumnosController extends administradorController{
 		
 		$this->_view->renderizar('reactivar', '');
 	}
-	
 	
 	public function permisoSede($sede){
 		if ($sede == 'Los Hornos'){

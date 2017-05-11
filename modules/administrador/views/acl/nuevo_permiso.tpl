@@ -20,5 +20,5 @@
         </tr>
     </table>
         
-    <p><button type="submit" class="btn btn-primary"><li class="icon-ok icon-white"> </li> Guardar</button></p>
+    <p><button type="submit" class="btn btn-primary"></li> Guardar</button></p>
 </form>

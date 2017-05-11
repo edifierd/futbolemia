@@ -2,6 +2,8 @@
 	cant = 0;
 
 	$("#btnvalidarfotos").click(verificarFotos);
+	
+	$('#imagen1Carga').hide();
 
 	
 	function verificarFotos(){
@@ -15,6 +17,10 @@
 	function mostrarFoto(fotoNombre,numFoto,controlador){
 		if( fotoNombre != ''){
         	cant+=1;
+			
+			$('#imagen'+numFoto+'Foto').hide();
+			$('#imagen'+numFoto+'Carga').show();
+			
 			ruta = _root_+'public/img/'+controlador+'/upl_'+fotoNombre+'.jpg';
 			setTimeout(function() {
 				var ajax = $.ajax({
@@ -27,7 +33,9 @@
                     alert("No se ha podido cargar el archivo");
                   }
                 });
-       	   	}, 2500);
+				$('#imagen'+numFoto+'Foto').show();
+				$('#imagen'+numFoto+'Carga').hide();
+       	   	}, 10000);
         }
 	}
 	

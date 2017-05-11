@@ -2,10 +2,6 @@
 
 class alumnosModel extends Model{
 	
-	public function hello(){
-		return "hola desde el modelo Alumnos";
-	}
-	
     public function __construct() {
         parent::__construct('alumnos');
     }
@@ -31,10 +27,29 @@ class alumnosModel extends Model{
 		$id_alumno = (int) $datosAuxiliares[0];
 		
 		$alumno = $this->getAlumno($id_alumno);
-		unlink(ROOT.'public/img/alumnos/'.$alumno['certificado_fisico']);
-		unlink(ROOT.'public/img/alumnos/thumb/thumb_'.$alumno['certificado_fisico']);
+		
+		//Elimino las imagenes viejas
+		if($alumno['certificado_fisico'] != ''){
+			unlink(ROOT.'public/img/alumnos/'.$alumno['certificado_fisico']);
+			unlink(ROOT.'public/img/alumnos/thumb/thumb_'.$alumno['certificado_fisico']);
+		}
 		
 		$sql = "UPDATE alumnos SET `certificado_fisico` = '".$nombreImagen."' WHERE `id_alumno` = ".$id_alumno;
+		$sql = $this->_db->query($sql);
+		return $sql;
+	}
+	
+	public function eliminarImagen($id_alumno){
+				
+		$alumno = $this->getAlumno($id_alumno);
+		
+		//Elimino las imagenes viejas
+		if($alumno['certificado_fisico'] != ''){
+			unlink(ROOT.'public/img/alumnos/'.$alumno['certificado_fisico']);
+			unlink(ROOT.'public/img/alumnos/thumb/thumb_'.$alumno['certificado_fisico']);
+		}
+		
+		$sql = "UPDATE alumnos SET `certificado_fisico` = null WHERE `id_alumno` = ".$id_alumno;
 		$sql = $this->_db->query($sql);
 		return $sql;
 	}
@@ -42,6 +57,8 @@ class alumnosModel extends Model{
 	public function reactivar($id_alumno,$id_grupo){
 		return $this->_db->query("UPDATE alumnos SET `estado` = 'a', `id_grupo` = ".$id_grupo." WHERE `id_alumno` = ".$id_alumno);
 	}
+	
+	
 	
 	// ---------- GETTERS AND SETTERS ---------- //
 	

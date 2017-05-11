@@ -71,7 +71,17 @@
         
         <div class="panel panel-default">
   			<div class="panel-heading">
-            	Certificado de aptitud física
+            	<div class="row">
+                	<div class="col-xs-10">Certificado de aptitud física</div>
+                    <div class="col-xs-2">
+                    	{if $alumno.certificado_fisico != ''}
+                		<form name="form1" method="post" action="" class="form">
+                			<input type="hidden" value="1" name="eliminar" />
+                    		<button type="submit" class="btn btn-danger btn-xs" style="" ><i class="fa fa-trash fa-2x"></i></button>
+               			</form>
+                        {/if}
+                    </div>
+                </div>
             </div>
  		    <div class="panel-body" style="text-align:center;">
         		{if $alumno.certificado_fisico != ''}

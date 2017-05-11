@@ -57,17 +57,16 @@ function enviar(inputName, controlador, data) {
 }
 		
 function redimensionarImagen(data, controlador) {
-	
-	var jsonStringArray = JSON.stringify(data); //No lo etsoy usando era para enviar el array lo mande dirctamente
+
+	//var jsonStringArray = JSON.stringify(data); //No lo estoy usando era para enviar el array lo mande dirctamente
 			
 	//Verifico que sea un archivo valido
     if (!(typeof imagenes[imagen_actual] !== 'object') || !(imagenes[imagen_actual] == null)){
 		
 		fotoNombre = new Date().getTime().toString(16);
 		
-    	// Redimensionando
+		// Redimensionando
     	resize.photo(imagenes[imagen_actual], 1000, 'dataURL', function (imagen) { //Antes decia 800 en rojo
-		
     		// Enviando imagen al servidor
     		$.post(_root_ + 'administrador/' + controlador + '/uploader', {imagen: imagen, 
 																		   nombre: fotoNombre, 
