@@ -25,7 +25,7 @@
     	<tr>
     		<td>{$g.id_grupo}</td>
         	<td><a href="{$_layoutParams.root}administrador/grupos/show/{$g.id_grupo}">{$g.sede}</a></td>
-        	<td>{$g.tipo}</td>
+        	<td>{$controller->getTipoGrupo($g.tipo)}</td>
         	<td>{$g.dias}</td>
        		<td>{$g.horario}</td>
             <td style="text-align:center"><a href="{$_layoutParams.root}administrador/grupos/show/{$g.id_grupo}" class="btn btn-primary btn-xs">Ver Grupo</a></td>

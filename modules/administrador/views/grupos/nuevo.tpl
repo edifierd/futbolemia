@@ -20,6 +20,8 @@
             	<option value="null" >Seleccione...</option>
         		<option value="Jardin" >Jardin</option>
                 <option value="1y2" >1° y 2° Grado</option>
+                <option value="3" >3° Grado</option>
+                <option value="4" >4° Grado</option>
                 <option value="3y4" >3° y 4° Grado</option>
 				<option value="5y6" >5° y 6° Grado</option>
 			</select>
