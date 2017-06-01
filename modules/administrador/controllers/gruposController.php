@@ -135,6 +135,7 @@ class gruposController extends administradorController{
 		}
 	}
 
+
 	// -----------  METODOS AUCILIARES PARA LA VISTA  -----------  //
 
 	public function getTipoGrupo($tipo){

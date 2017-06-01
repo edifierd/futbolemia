@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2017-05-16 20:45:21
+<?php /* Smarty version Smarty-3.1.8, created on 2017-06-01 23:29:19
          compiled from "C:\xampp\htdocs\futbolemia\modules\administrador\views\alumnos\show.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:19697591b48c1097348-25864932%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:297645930872fe8eee4-13179854%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '7af9a6371523c994c29988cdf78ec4478d85f921' => 
     array (
       0 => 'C:\\xampp\\htdocs\\futbolemia\\modules\\administrador\\views\\alumnos\\show.tpl',
-      1 => 1494592492,
+      1 => 1496352226,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '19697591b48c1097348-25864932',
+  'nocache_hash' => '297645930872fe8eee4-13179854',
   'function' => 
   array (
   ),
@@ -25,9 +25,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.8',
-  'unifunc' => 'content_591b48c130e741_67078490',
+  'unifunc' => 'content_5930873000ec33_21366549',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_591b48c130e741_67078490')) {function content_591b48c130e741_67078490($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include 'C:\\xampp\\htdocs\\futbolemia\\libs\\smarty\\libs\\plugins\\modifier.date_format.php';
+<?php if ($_valid && !is_callable('content_5930873000ec33_21366549')) {function content_5930873000ec33_21366549($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include 'C:\\xampp\\htdocs\\futbolemia\\libs\\smarty\\libs\\plugins\\modifier.date_format.php';
 ?><?php if ($_smarty_tpl->tpl_vars['alumno']->value['estado']=='e'){?>
 	<h3>La ultima actualización de este alumno es del <?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['alumno']->value['ult_actualizacion'],"%d-%m-%Y");?>
 </h3>
@@ -35,7 +35,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 <nav class="navbar navbar-default" style="margin-bottom:15px;">
   <div class="container-fluid">
-  
+
   	<div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
@@ -44,7 +44,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <span class="icon-bar"></span>
       </button>
     </div>
-    
+
   	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     	<ul class="nav navbar-nav" >
   			<li style="text-align:center;"><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
@@ -104,11 +104,11 @@ administrador/alumnos/reactivar/<?php echo $_smarty_tpl->tpl_vars['alumno']->val
 				</ul>
   			</div>
 		</div>
-            
+
 		<div class="panel panel-default">
   			<div class="panel-heading">
             	<form name="form1" method="post" action="" class="form">
-                	NOTAS 
+                	NOTAS
                     <?php if ($_smarty_tpl->tpl_vars['alumno']->value['estado']=='a'){?>
                 	<button type="submit" class="btn btn-primary btn-xs" style="margin-left:10px;" >Guardar</button>
                     <?php }?>
@@ -122,7 +122,7 @@ administrador/alumnos/reactivar/<?php echo $_smarty_tpl->tpl_vars['alumno']->val
  Esto sirve para mostrar los saltos de linea-->
             </div>
 		</div>
-        
+
         <div class="panel panel-default">
   			<div class="panel-heading">
             	<div class="row">
@@ -152,7 +152,7 @@ public/img/alumnos/<?php echo $_smarty_tpl->tpl_vars['alumno']->value['certifica
             </div>
 		</div>
 	</div>
-    
+
     <div class="col-sm-5">
     	<div class="panel panel-default">
   			<div class="panel-heading">
@@ -171,7 +171,7 @@ administrador/grupos/show/<?php echo $_smarty_tpl->tpl_vars['alumno']->value['id
 "> <?php echo $_smarty_tpl->tpl_vars['alumno']->value['sede'];?>
 </a></li>
   					<li class="list-group-item">Grupo: <?php echo $_smarty_tpl->tpl_vars['alumno']->value['tipo'];?>
-</li>
+ Grado</li>
   					<li class="list-group-item">Dias: <?php echo $_smarty_tpl->tpl_vars['alumno']->value['dias'];?>
 </li>
   					<li class="list-group-item">Horario: <?php echo $_smarty_tpl->tpl_vars['alumno']->value['horario'];?>
@@ -181,10 +181,10 @@ administrador/grupos/show/<?php echo $_smarty_tpl->tpl_vars['alumno']->value['id
                 <?php }?>
   			</div>
 		</div>
-        
+
         <div class="panel panel-default">
   			<div class="panel-heading">
-            	Responsables 
+            	Responsables
                 <?php if ($_smarty_tpl->tpl_vars['alumno']->value['estado']=='a'){?>
                 	<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 administrador/responsables/listado/<?php echo $_smarty_tpl->tpl_vars['alumno']->value['id_alumno'];?>
@@ -193,7 +193,7 @@ administrador/responsables/listado/<?php echo $_smarty_tpl->tpl_vars['alumno']->
             </div>
  			<div class="panel-body">
             	<ul class="list-group">
-                
+
             	<?php  $_smarty_tpl->tpl_vars['r'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['r']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['responsables']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['r']->key => $_smarty_tpl->tpl_vars['r']->value){
@@ -223,7 +223,7 @@ administrador/responsables/show/<?php echo $_smarty_tpl->tpl_vars['r']->value['i
                         	<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 administrador/responsables/edit/<?php echo $_smarty_tpl->tpl_vars['r']->value['id_responsable'];?>
 /<?php echo $_smarty_tpl->tpl_vars['alumno']->value['id_alumno'];?>
-" 
+"
                                class="btn btn-primary btn-xs" style="margin-top: 10px;"><i class="fa fa-pencil fa-2x"></i></a>
                         	<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 administrador/responsables/delete/<?php echo $_smarty_tpl->tpl_vars['r']->value['id_responsable'];?>

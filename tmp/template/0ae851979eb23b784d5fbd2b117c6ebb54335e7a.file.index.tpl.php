@@ -1,22 +1,20 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2017-06-01 01:20:45
+<?php /* Smarty version Smarty-3.1.8, created on 2017-06-01 23:27:58
          compiled from "C:\xampp\htdocs\futbolemia\modules\administrador\views\grupos\index.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:5755591b489db538d6-52629217%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:27666593086de7be012-14835004%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '0ae851979eb23b784d5fbd2b117c6ebb54335e7a' => 
     array (
       0 => 'C:\\xampp\\htdocs\\futbolemia\\modules\\administrador\\views\\grupos\\index.tpl',
-      1 => 1496272621,
+      1 => 1496352226,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '5755591b489db538d6-52629217',
+  'nocache_hash' => '27666593086de7be012-14835004',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.8',
-  'unifunc' => 'content_591b489dc8a484_37394361',
   'variables' => 
   array (
     '_acl' => 0,
@@ -26,8 +24,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'controller' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.8',
+  'unifunc' => 'content_593086de7e38a0_49137090',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_591b489dc8a484_37394361')) {function content_591b489dc8a484_37394361($_smarty_tpl) {?>
+<?php if ($_valid && !is_callable('content_593086de7e38a0_49137090')) {function content_593086de7e38a0_49137090($_smarty_tpl) {?>
 <div class="btn-group" style="margin-bottom:20px;">
 	<a href="javascript:history.back()" class="btn btn-default"> <i class="fa fa-arrow-left fa-lg"></i> Atras</a></li>
     <?php if ($_smarty_tpl->tpl_vars['_acl']->value->permiso('nuevo_grupo')){?>

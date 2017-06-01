@@ -16,20 +16,20 @@ class cuotasModel extends Model{
 
   private function in_arreglo($aguja,$pajar){
     foreach ($pajar as $value){
-        if ($value[0] == $aguja){
-          return true;
-        }
+      if($value['fecha'] == $aguja){
+        return true;
+      }
     }
     return false;
   }
 
-	private function getUltimaDeuda($id_alumno){
-		$retorno = array();
+	private function getUltimaDeuda($id_alumno){  //RETORNO $retorno['fecha']
+		$retorno = array(array('fecha' => date("m/Y")));
 		$rta = $this->_db->query("
-      SELECT fecha_mes AS fecha FROM cuotas WHERE id_alumno = ".$id_alumno." AND MONTH(fecha_mes) = MONTH(NOW()) AND YEAR(fecha_mes) = YEAR(NOW())"
+      SELECT DATE_FORMAT(fecha_mes,'%m/%Y') AS fecha FROM cuotas WHERE id_alumno = ".$id_alumno." AND MONTH(fecha_mes) = MONTH(NOW()) AND YEAR(fecha_mes) = YEAR(NOW())"
     );
-		if ($rta->rowCount() == 0){
-			$retorno = array(array('fecha' => date("m/Y")));
+		if ($rta->rowCount() > 0){
+      $retorno = array();
 		}
 		return $retorno;
 	}
@@ -45,17 +45,18 @@ class cuotasModel extends Model{
 					WHERE c.id_alumno = a.id_alumno
 					AND YEAR(c.fecha_mes) = YEAR(a.fecha) AND MONTH(c.fecha_mes) = MONTH(a.fecha)
 				)
-			GROUP BY MONTH(a.fecha) ");
+			GROUP BY MONTH(a.fecha) "
+    );
 		if ($rta->rowCount() > 0){
       $mesesAdeudados = $rta->fetchall();
-      $this->in_arreglo($ultimaDeuda[0]['fecha'],$mesesAdeudados);
-      if(!$this->in_arreglo($ultimaDeuda[0]['fecha'],$mesesAdeudados)){
-        $retorno = array_merge ($mesesAdeudados,$ultimaDeuda);
-      } else {
-        $retorno = $mesesAdeudados;
+      $retorno = $mesesAdeudados;
+      if(!empty($ultimaDeuda)){
+        if(!$this->in_arreglo($ultimaDeuda[0]['fecha'],$mesesAdeudados)){
+          $retorno = array_merge ($mesesAdeudados,$ultimaDeuda);
+        }
       }
 		} else {
-			$retorno = $this->getUltimaDeuda($id_alumno);
+			$retorno = $ultimaDeuda;
 		}
 		return $retorno;
 	}
