@@ -25,12 +25,12 @@
   			<div class="form-group">
             	<label style="margin-right:15px; width:40px;">Año: </label>
             	<select id="anio" name="anio" style="height:32px; margin-right:15px; width:120px;">
-                {foreach from=$listaAnios item=anio} 
+                {foreach from=$listaAnios item=anio}
         			<option value="{$anio[1]}" >{$anio[1]}</option>
         		{/foreach}
 				</select>
             </div>
-            
+
             <div class="form-group">
             	<label style="margin-right:15px; width:40px;">Sede: </label>
             	<select id="sede" name="sede" style="height:32px; width:120px;">
@@ -39,7 +39,7 @@
                     <option value="El_Retiro" >El Retiro</option>
 				</select>
             </div>
-            <button type="submit" class="btn btn-default" >Buscar</button>  			
+            <button type="submit" class="btn btn-default" >Buscar</button>
 	  </form>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -71,7 +71,7 @@
         				<input type="hidden" value="1" name="guardar" />
                         <input type="hidden" value="{$finanzas[$i].id_finanza}" name="id_finanza" />
                         <tr><th>RECAUDADO</th>
-                        	<td style="text-align:center;">$ {$reportes[$i].recaudado}</td>
+                        	<td style="text-align:center;">${$reportes[$i].recaudado}</td>
                         </tr>
                         <tr><th colspan="2">GASTO COMPLEJO</th></tr>
                         <tr>
@@ -88,13 +88,14 @@
                         	<td colspan="2" style="text-align:center;">
                             <input type="number" name="camisetas" value="{$finanzas[$i].camisetas|default:"0"}" style="text-align:right; width:100%;" /></td>
                         </tr>
-                        <tr><th>GANANCIAS</th>
+                        <tr style="padding:0;">
+                          <th style="margin: 0 3px;">GANANCIAS</th>
                         	{$total = $reportes[$i].recaudado - $finanzas[$i].complejo - $finanzas[$i].profesores}
-                            {if $total > 0}
-                        		<td style="text-align:center; color:#090;"><b>$ {$total}</b></td>
-                            {else}
-                            	<td style="text-align:center; color:#C00"><b>$ {$total}</b></td>
-                            {/if}
+                          {if $total > 0}
+                      		  <td style="text-align:center; color:#090;"><b>${$total}</b></td>
+                          {else}
+                          	<td style="text-align:center; color:#C00"><b>${$total}</b></td>
+                          {/if}
                         </tr>
                         <tr>
                         	<td colspan="2" style="text-align:center;">
