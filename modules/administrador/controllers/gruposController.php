@@ -135,10 +135,7 @@ class gruposController extends administradorController{
 		    $this->_acl->acceso('super_usuario');
 		}
 	}
-<<<<<<< HEAD
 
-
-=======
 
 	// -----------  METODOS AUCILIARES PARA LA VISTA  -----------  //
 
@@ -167,7 +164,6 @@ class gruposController extends administradorController{
 		return $nombre;
 	}
 
->>>>>>> 1a62851ff5aac7435cddae34ca49a22321b7ac33
 }
 
 ?>
