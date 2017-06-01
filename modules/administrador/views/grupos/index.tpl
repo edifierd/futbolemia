@@ -12,18 +12,16 @@
 
 <table class="table">
 	<tr>
-		<th>Id</th>
     	<th>Sede</th>
     	<th>Tipo Grupo</th>
     	<th>Dias</th>
     	<th>Horario</th>
         <th colspan="2" style="text-align:center;">Acciones</th>
     </tr>
-	
+
     {if isset($grupos) && count($grupos)}
     	{foreach from=$grupos item=g}
     	<tr>
-    		<td>{$g.id_grupo}</td>
         	<td><a href="{$_layoutParams.root}administrador/grupos/show/{$g.id_grupo}">{$g.sede}</a></td>
         	<td>{$controller->getTipoGrupo($g.tipo)}</td>
         	<td>{$g.dias}</td>
@@ -43,5 +41,3 @@
 	{/if}
 
 </table>
-
-

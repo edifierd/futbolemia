@@ -7,26 +7,26 @@
         <META name="description" content="{$description}">
     	<META name="keywords" content="{$keywords}">
         <link rel="icon" type="image/png" href="{$_layoutParams.ruta_img}icono.ico" />
-        <link href="{$_layoutParams.ruta_css}bootstrap.min.css" rel="stylesheet" type="text/css"> 
-        <link href="{$_layoutParams.ruta_css}bootstrap-select.min.css" rel="stylesheet" type="text/css"> 
-        <link href="{$_layoutParams.ruta_css}font-awesome.min.css" rel="stylesheet" type="text/css"> 
-        <link href="{$_layoutParams.ruta_css}template.css" rel="stylesheet" type="text/css">   
-        
+        <link href="{$_layoutParams.ruta_css}bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="{$_layoutParams.ruta_css}bootstrap-select.min.css" rel="stylesheet" type="text/css">
+        <link href="{$_layoutParams.ruta_css}font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="{$_layoutParams.ruta_css}template.css" rel="stylesheet" type="text/css">
+
         {if isset($_layoutParams.css) && count($_layoutParams.css)}
 			{foreach item=css from=$_layoutParams.css}
                 <link href="{$css}" rel="stylesheet" type="text/css">
 			{/foreach}
 		{/if}
-        
-        {$marcado}
-        
-</head>
-    
-<body>
 
+        {$marcado}
+
+</head>
+
+<body>
+  <a href="{$_layoutParams.root}administrador/versiones" style="float:right; margin-right: 30px; margin-top:30px;">Versiones</a>
 	<div id="wrapper">
         <div class="overlay"></div>
-    
+
         <!-- Sidebar -->
         {if $_acl->permiso('admin_access')}
         <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
@@ -104,7 +104,7 @@
                 <span style=" margin-left:35px;"><b>MENÚ</b></span>
             </button>
             {/if}
-            
+
             <div class="" style="margin-left: 25px;"> <!-- Elimine la clase container !!!!!!!!!!!!!!!!!!!!!!!!! -->
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
@@ -115,7 +115,7 @@
                     					<b><h3>¡ Para el correcto funcionamiento debe tener el soporte para javascript habilitado !</h3></b>
                    					</div>
                 				</noscript>
-                    
+
                 				{if isset($_error)}
                     				<div id="_errl" class="alert alert-danger" style="margin-top:20px;">
                         				<a class="close" data-dismiss="alert">x</a>
@@ -130,13 +130,13 @@
                     				</div>
                 				{/if}
         					</div>
-                            
+
                             {include file=$_contenido}
-						</div>               
+						</div>
                     </div>
                 </div>
             </div>
-            
+
         </div>
         <!-- /#page-content-wrapper -->
 
@@ -151,13 +151,13 @@
     <script type="text/javascript">
     	var _root_ = '{$_layoutParams.root}';
     </script>
-        
+
     {if isset($_layoutParams.js_plugin) && count($_layoutParams.js_plugin)}
     	{foreach item=plg from=$_layoutParams.js_plugin}
         	<script src="{$plg}" type="text/javascript"></script>
         {/foreach}
 	{/if}
-        
+
 	{if isset($_layoutParams.js) && count($_layoutParams.js)}
 		{foreach item=js from=$_layoutParams.js}
 			<script src="{$js}" type="text/javascript"></script>

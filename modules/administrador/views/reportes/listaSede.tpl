@@ -32,6 +32,7 @@
         <th style="text-align:center;">VOLVIERON</th>
         <th style="text-align:center;">PAGARON</th>
         <th style="text-align:center;">DEBEN</th>
+        <th style="text-align:center;">INSCRIPCIONES</th>
         <th style="text-align:center;">RECAUDADO</th>
     </tr>
     {foreach from=$reportes item=r}
@@ -44,6 +45,7 @@
             <td>{$r.volvieron}</td>
             <td>{$r.pagaron}</td>
             <td>{$r.deben}</td>
+            <td>${$inscripciones->getMontoInscripcionesGrupo($mes,$anioA,$r.id_grupo)}</td>
             {if $r.recaudado > 0}
             	<td style="color:#3C0;">$ {$r.recaudado}</td>
             {else}

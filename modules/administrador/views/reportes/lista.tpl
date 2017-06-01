@@ -73,6 +73,9 @@
                         <tr><th>RECAUDADO</th>
                         	<td style="text-align:center;">${$reportes[$i].recaudado}</td>
                         </tr>
+                        <tr><th>INSCRIPCIONES</th>
+                        	<td style="text-align:center;">${$inscripciones[$i].monto}</td>
+                        </tr>
                         <tr><th colspan="2">GASTO COMPLEJO</th></tr>
                         <tr>
                         	<td colspan="2" style="text-align:center;">
