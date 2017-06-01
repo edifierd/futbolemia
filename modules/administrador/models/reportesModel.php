@@ -68,7 +68,7 @@ class reportesModel extends Model{
 	
 	public function getDiferenciaChicosMes($id_grupo,$año,$mes){
 		$mesActual = $this->getCantidadChicos($id_grupo,$año,$mes);
-		if($mes = 1){
+		if($mes = 3){
 			$año = $año - 1;
 			$mes = 12;
 		} else {
@@ -197,7 +197,9 @@ class reportesModel extends Model{
 			}
 		} else {
 			$datos = $this->_db->query(
-					  "SELECT * FROM reportes r INNER JOIN grupos g ON r.id_grupo = g.id_grupo WHERE g.sede = '".$sede."' AND YEAR(fecha) = '".$año."' AND MONTH(fecha) = '".$mes."' "
+					  "SELECT * FROM reportes r INNER JOIN grupos g ON r.id_grupo = g.id_grupo 
+					   WHERE g.sede = '".$sede."' AND YEAR(fecha) = '".$año."' AND MONTH(fecha) = '".$mes."' 
+					   ORDER BY g.tipo"
 				);
 		    $reportes = $datos->fetchall();
 		}

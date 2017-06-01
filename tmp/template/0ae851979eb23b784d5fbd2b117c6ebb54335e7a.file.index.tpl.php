@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2017-05-16 20:44:45
+<?php /* Smarty version Smarty-3.1.8, created on 2017-06-01 01:20:45
          compiled from "C:\xampp\htdocs\futbolemia\modules\administrador\views\grupos\index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:5755591b489db538d6-52629217%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '0ae851979eb23b784d5fbd2b117c6ebb54335e7a' => 
     array (
       0 => 'C:\\xampp\\htdocs\\futbolemia\\modules\\administrador\\views\\grupos\\index.tpl',
-      1 => 1494592492,
+      1 => 1496272621,
       2 => 'file',
     ),
   ),
@@ -15,16 +15,17 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.8',
+  'unifunc' => 'content_591b489dc8a484_37394361',
   'variables' => 
   array (
     '_acl' => 0,
     '_layoutParams' => 0,
     'grupos' => 0,
     'g' => 0,
+    'controller' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.8',
-  'unifunc' => 'content_591b489dc8a484_37394361',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_591b489dc8a484_37394361')) {function content_591b489dc8a484_37394361($_smarty_tpl) {?>
 <div class="btn-group" style="margin-bottom:20px;">
@@ -62,7 +63,7 @@ $_smarty_tpl->tpl_vars['g']->_loop = true;
 administrador/grupos/show/<?php echo $_smarty_tpl->tpl_vars['g']->value['id_grupo'];?>
 "><?php echo $_smarty_tpl->tpl_vars['g']->value['sede'];?>
 </a></td>
-        	<td><?php echo $_smarty_tpl->tpl_vars['g']->value['tipo'];?>
+        	<td><?php echo $_smarty_tpl->tpl_vars['controller']->value->getTipoGrupo($_smarty_tpl->tpl_vars['g']->value['tipo']);?>
 </td>
         	<td><?php echo $_smarty_tpl->tpl_vars['g']->value['dias'];?>
 </td>

@@ -4,7 +4,7 @@
 
 <nav class="navbar navbar-default" style="margin-bottom:15px;">
   <div class="container-fluid">
-  
+
   	<div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
@@ -13,7 +13,7 @@
         <span class="icon-bar"></span>
       </button>
     </div>
-    
+
   	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     	<ul class="nav navbar-nav" >
   			<li style="text-align:center;"><a href="{$_layoutParams.root}administrador/alumnos" > <i class="fa fa-arrow-left fa-lg"></i> Atras</a></li>
@@ -52,11 +52,11 @@
 				</ul>
   			</div>
 		</div>
-            
+
 		<div class="panel panel-default">
   			<div class="panel-heading">
             	<form name="form1" method="post" action="" class="form">
-                	NOTAS 
+                	NOTAS
                     {if $alumno.estado == 'a'}
                 	<button type="submit" class="btn btn-primary btn-xs" style="margin-left:10px;" >Guardar</button>
                     {/if}
@@ -68,7 +68,7 @@
                 <!--{$alumno.notas|nl2br} Esto sirve para mostrar los saltos de linea-->
             </div>
 		</div>
-        
+
         <div class="panel panel-default">
   			<div class="panel-heading">
             	<div class="row">
@@ -94,7 +94,7 @@
             </div>
 		</div>
 	</div>
-    
+
     <div class="col-sm-5">
     	<div class="panel panel-default">
   			<div class="panel-heading">
@@ -107,7 +107,7 @@
             	{if $alumno.estado == 'a'}
             	<ul class="list-group">
   					<li class="list-group-item">Nombre Sede: <a href="{$_layoutParams.root}administrador/grupos/show/{$alumno.id_grupo}"> {$alumno.sede}</a></li>
-  					<li class="list-group-item">Grupo: {$alumno.tipo}</li>
+  					<li class="list-group-item">Grupo: {$alumno.tipo} Grado</li>
   					<li class="list-group-item">Dias: {$alumno.dias}</li>
   					<li class="list-group-item">Horario: {$alumno.horario}</li>
 
@@ -115,17 +115,17 @@
                 {/if}
   			</div>
 		</div>
-        
+
         <div class="panel panel-default">
   			<div class="panel-heading">
-            	Responsables 
+            	Responsables
                 {if $alumno.estado == 'a'}
                 	<a href="{$_layoutParams.root}administrador/responsables/listado/{$alumno.id_alumno}" class="btn btn-primary btn-xs" style="margin-left:10px;">Agregar NUEVO</a>
                 {/if}
             </div>
  			<div class="panel-body">
             	<ul class="list-group">
-                
+
             	{foreach from=$responsables item=r}
                 	<div class="row" style="margin:2px; margin-bottom:5px; border: solid 1px #CCCCCC;">
                     	<div class="col-xs-10">
@@ -140,7 +140,7 @@
                         </div>
                         <div class="col-xs-2">
                         	{if $alumno.estado == 'a'}
-                        	<a href="{$_layoutParams.root}administrador/responsables/edit/{$r.id_responsable}/{$alumno.id_alumno}" 
+                        	<a href="{$_layoutParams.root}administrador/responsables/edit/{$r.id_responsable}/{$alumno.id_alumno}"
                                class="btn btn-primary btn-xs" style="margin-top: 10px;"><i class="fa fa-pencil fa-2x"></i></a>
                         	<a href="{$_layoutParams.root}administrador/responsables/delete/{$r.id_responsable}/{$alumno.id_alumno}" onClick="javascript: return confirm('¿Estas seguro?');"
                                class="btn btn-danger btn-xs" style="margin-top: 10px;" ><i class="fa fa-trash fa-2x"></i></a>

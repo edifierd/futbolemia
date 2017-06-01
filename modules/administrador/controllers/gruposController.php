@@ -14,12 +14,13 @@ class gruposController extends administradorController{
     }
 
     public function index(){
-			$this->_acl->acceso('control_grupos');
+		$this->_acl->acceso('control_grupos');
 
-			$this->_view->assign('titulo', 'Lista Grupos');
-			$this->_view->assign('grupos', $this->_grupos->getGrupos());
+        $this->_view->assign('titulo', 'Lista Grupos');
+		$this->_view->assign('grupos', $this->_grupos->getGrupos());
+		$this->_view->assign('controller', $this);
 
-			$this->_view->renderizar('index');
+        $this->_view->renderizar('index');
     }
 
 	public function nuevo(){
@@ -117,7 +118,8 @@ class gruposController extends administradorController{
 		$this->_view->assign('asistenciasModel', $this->_asistencias);
 		$this->_view->assign('cuotasModel', $this->_cuotas);
 		$this->_view->assign('grupo', $grupo);
-		$this->_view->assign('titulo', "Alumnos de ".$grupo['sede']."-".$grupo['tipo'] );
+		$this->_view->assign('titulo', "Alumnos de ".$grupo['sede']."-".$this->getTipoGrupo($grupo['tipo']));
+		$this->_view->assign('controller', $this);
 		$this->_view->renderizar('show', '');
 	}
 
@@ -133,6 +135,32 @@ class gruposController extends administradorController{
 		}
 	}
 
+	// -----------  METODOS AUCILIARES PARA LA VISTA  -----------  //
+
+	public function getTipoGrupo($tipo){
+		$nombre = 'Sin Asignar';
+		switch ($tipo) {
+    		case 'Jardin':
+        		$nombre = "Jardin";
+        		break;
+    		case '1y2':
+        		$nombre = "1° y 2° Grado";
+        		break;
+    		case '3':
+        		$nombre = "3° Grado";
+        		break;
+			case '4':
+        		$nombre = "4° Grado";
+        		break;
+			case '3y4':
+        		$nombre = "3° y 4° Grado";
+        		break;
+			case '5y6':
+        		$nombre = "5° y 6° Grado";
+        		break;
+		}
+		return $nombre;
+	}
 
 }
 
