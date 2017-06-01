@@ -4,7 +4,7 @@
 	<a href="{$_layoutParams.root}administrador/asistencias/tomarAsistencia/{$grupo.id_grupo}" class="btn btn-default">Tomar Asistencia</a>
 </div>
 
-<h3>Listado alumnos {$grupo.sede} {$controller->getTipoGrupo($grupo.tipo)} - {$grupo.dias} - {$grupo.horario} </h3><br>
+<h3>Listado alumnos {$grupo.sede} {$grupo.tipo} - {$grupo.dias} - {$grupo.horario} </h3><br>
 
 
 <table class="table table-striped">
@@ -19,7 +19,6 @@
     	{foreach from=$alumnos item=a}
     		<tr style="text-align:center;">
 					<td><a href="{$_layoutParams.root}administrador/alumnos/show/{$a.id_alumno}">{$a.apellido} {$a.nombre}</a></td>
-
         		<td>
                  <b>{$asistenciasModel->getCantAsistenciasAlumno($a.id_alumno,false,true)}</b> asistencias de
                  <b>{$asistenciasModel->getCantClasesAlumno($a.id_alumno,false,true)}</b> clases.

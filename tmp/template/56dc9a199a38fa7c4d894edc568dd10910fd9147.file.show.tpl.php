@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2017-06-01 01:24:46
+<?php /* Smarty version Smarty-3.1.8, created on 2017-06-01 02:32:58
          compiled from "C:\xampp\htdocs\futbolemia\modules\administrador\views\grupos\show.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:15512591b48a3335833-78306328%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '56dc9a199a38fa7c4d894edc568dd10910fd9147' => 
     array (
       0 => 'C:\\xampp\\htdocs\\futbolemia\\modules\\administrador\\views\\grupos\\show.tpl',
-      1 => 1496273080,
+      1 => 1496277170,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   array (
     '_layoutParams' => 0,
     'grupo' => 0,
-    'controller' => 0,
     'alumnos' => 0,
     'a' => 0,
     'asistenciasModel' => 0,
@@ -41,7 +40,7 @@ administrador/asistencias/tomarAsistencia/<?php echo $_smarty_tpl->tpl_vars['gru
 </div>
 
 <h3>Listado alumnos <?php echo $_smarty_tpl->tpl_vars['grupo']->value['sede'];?>
- <?php echo $_smarty_tpl->tpl_vars['controller']->value->getTipoGrupo($_smarty_tpl->tpl_vars['grupo']->value['tipo']);?>
+ <?php echo $_smarty_tpl->tpl_vars['grupo']->value['tipo'];?>
  - <?php echo $_smarty_tpl->tpl_vars['grupo']->value['dias'];?>
  - <?php echo $_smarty_tpl->tpl_vars['grupo']->value['horario'];?>
  </h3><br>
@@ -67,7 +66,6 @@ administrador/alumnos/show/<?php echo $_smarty_tpl->tpl_vars['a']->value['id_alu
 "><?php echo $_smarty_tpl->tpl_vars['a']->value['apellido'];?>
  <?php echo $_smarty_tpl->tpl_vars['a']->value['nombre'];?>
 </a></td>
-
         		<td>
                  <b><?php echo $_smarty_tpl->tpl_vars['asistenciasModel']->value->getCantAsistenciasAlumno($_smarty_tpl->tpl_vars['a']->value['id_alumno'],false,true);?>
 </b> asistencias de
