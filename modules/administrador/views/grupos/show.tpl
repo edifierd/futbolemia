@@ -4,7 +4,7 @@
 	<a href="{$_layoutParams.root}administrador/asistencias/tomarAsistencia/{$grupo.id_grupo}" class="btn btn-default">Tomar Asistencia</a>
 </div>
 
-<h3>Listado alumnos {$grupo.sede} {$grupo.tipo} - {$grupo.dias} - {$grupo.horario} </h3><br>
+<h3>Listado alumnos {$grupo.sede} {$controller->getTipoGrupo($grupo.tipo)} - {$grupo.dias} - {$grupo.horario} </h3><br>
 
 
 <table class="table table-striped">
@@ -18,7 +18,9 @@
     {if isset($alumnos) && count($alumnos)}
     	{foreach from=$alumnos item=a}
     		<tr style="text-align:center;">
+
 					<td><a href="{$_layoutParams.root}administrador/alumnos/show/{$a.id_alumno}">{$a.apellido} {$a.nombre}</a></td>
+
         		<td>
                  <b>{$asistenciasModel->getCantAsistenciasAlumno($a.id_alumno,false,true)}</b> asistencias de
                  <b>{$asistenciasModel->getCantClasesAlumno($a.id_alumno,false,true)}</b> clases.
@@ -26,6 +28,7 @@
                 <td>
 										{assign var="cuotas" value=$cuotasModel->getMesesAdeudados($a.id_alumno)}
 
+                	{$cuotasModel->getMesesImpagos($a.id_alumno)}
                 </td>
                 <td style="text-align:center;"><a href="{$_layoutParams.root}administrador/asistencias/alumno/{$a.id_alumno}" class="btn btn-primary btn-xs">Asistencias Alumno</a></td>
                 <td style="text-align:center;">

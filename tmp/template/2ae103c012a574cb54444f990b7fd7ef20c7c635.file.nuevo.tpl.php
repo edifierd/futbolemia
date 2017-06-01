@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2017-06-01 01:00:09
+<?php /* Smarty version Smarty-3.1.8, created on 2017-06-01 14:09:03
          compiled from "C:\xampp\htdocs\futbolemia\modules\administrador\views\grupos\nuevo.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2003592f4af9c86b94-57178223%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '2ae103c012a574cb54444f990b7fd7ef20c7c635' => 
     array (
       0 => 'C:\\xampp\\htdocs\\futbolemia\\modules\\administrador\\views\\grupos\\nuevo.tpl',
-      1 => 1494592492,
+      1 => 1496318228,
       2 => 'file',
     ),
   ),
@@ -15,13 +15,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.8',
+  'unifunc' => 'content_592f4af9e91e44_54017958',
   'variables' => 
   array (
     'datos' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.8',
-  'unifunc' => 'content_592f4af9e91e44_54017958',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_592f4af9e91e44_54017958')) {function content_592f4af9e91e44_54017958($_smarty_tpl) {?><h2>Dar de alta grupo</h2>
 
