@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2017-05-16 20:45:21
+<?php /* Smarty version Smarty-3.1.8, created on 2017-06-01 02:36:10
          compiled from "C:\xampp\htdocs\futbolemia\modules\administrador\views\alumnos\show.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:19697591b48c1097348-25864932%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '7af9a6371523c994c29988cdf78ec4478d85f921' => 
     array (
       0 => 'C:\\xampp\\htdocs\\futbolemia\\modules\\administrador\\views\\alumnos\\show.tpl',
-      1 => 1494592492,
+      1 => 1496277251,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.8',
+  'unifunc' => 'content_591b48c130e741_67078490',
   'variables' => 
   array (
     'alumno' => 0,
@@ -24,8 +26,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'r' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.8',
-  'unifunc' => 'content_591b48c130e741_67078490',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_591b48c130e741_67078490')) {function content_591b48c130e741_67078490($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include 'C:\\xampp\\htdocs\\futbolemia\\libs\\smarty\\libs\\plugins\\modifier.date_format.php';
 ?><?php if ($_smarty_tpl->tpl_vars['alumno']->value['estado']=='e'){?>

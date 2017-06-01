@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2017-05-30 05:37:38
+<?php /* Smarty version Smarty-3.1.8, created on 2017-06-01 04:04:09
          compiled from "C:\xampp\htdocs\futbolemia\modules\administrador\views\grupos\show.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:15512591b48a3335833-78306328%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '56dc9a199a38fa7c4d894edc568dd10910fd9147' => 
     array (
       0 => 'C:\\xampp\\htdocs\\futbolemia\\modules\\administrador\\views\\grupos\\show.tpl',
-      1 => 1496115448,
+      1 => 1496282646,
       2 => 'file',
     ),
   ),
@@ -25,13 +25,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'a' => 0,
     'asistenciasModel' => 0,
     'cuotasModel' => 0,
-    'cuotas' => 0,
-    'c' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_591b48a3414a73_49452555')) {function content_591b48a3414a73_49452555($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include 'C:\\xampp\\htdocs\\futbolemia\\libs\\smarty\\libs\\plugins\\modifier.date_format.php';
-?>
+<?php if ($_valid && !is_callable('content_591b48a3414a73_49452555')) {function content_591b48a3414a73_49452555($_smarty_tpl) {?>
 <div class="btn-group">
 	<a href="javascript:history.back()" class="btn btn-default"> <i class="fa fa-arrow-left fa-lg"></i> Atras</a></li>
 	<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
@@ -74,53 +71,7 @@ administrador/alumnos/show/<?php echo $_smarty_tpl->tpl_vars['a']->value['id_alu
                 </td>
                 <td>
 										<?php $_smarty_tpl->tpl_vars["cuotas"] = new Smarty_variable($_smarty_tpl->tpl_vars['cuotasModel']->value->getMesesAdeudados($_smarty_tpl->tpl_vars['a']->value['id_alumno']), null, 0);?>
-                		<?php if (!$_smarty_tpl->tpl_vars['cuotas']->value){?>
-                    	<b style="color:#390">Sin Deuda</b>
-                    <?php }elseif((count($_smarty_tpl->tpl_vars['cuotas']->value))>1){?>
-											<button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModal<?php echo $_smarty_tpl->tpl_vars['a']->value['id_alumno'];?>
-">Ver Deuda</button>
-											<div id="myModal<?php echo $_smarty_tpl->tpl_vars['a']->value['id_alumno'];?>
-" class="modal fade" role="dialog">
-												<div class="modal-dialog">
 
-													<!-- Modal content-->
-													<div class="modal-content">
-														<div class="modal-header">
-															<button type="button" class="close" data-dismiss="modal">&times;</button>
-															<h4 class="modal-title"> Meses adeudados de: <?php echo $_smarty_tpl->tpl_vars['a']->value['apellido'];?>
- <?php echo $_smarty_tpl->tpl_vars['a']->value['nombre'];?>
- </h4>
-														</div>
-														<div class="modal-body">
-															<ul class="list-group">
-																<?php  $_smarty_tpl->tpl_vars['c'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['c']->_loop = false;
- $_from = $_smarty_tpl->tpl_vars['cuotas']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
-foreach ($_from as $_smarty_tpl->tpl_vars['c']->key => $_smarty_tpl->tpl_vars['c']->value){
-$_smarty_tpl->tpl_vars['c']->_loop = true;
-?>
-																	<!-- <li class="list-group-item"><b><?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['c']->value['fecha'],"%m");?>
- / <?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['c']->value['fecha'],"%Y");?>
-</b></li> -->
-																	<li class="list-group-item"><b><?php echo $_smarty_tpl->tpl_vars['c']->value['fecha'];?>
-</b></li>
-																<?php } ?>
-															</ul>
-														</div>
-														<div class="modal-footer">
-															<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-administrador/cuotas/alumno/<?php echo $_smarty_tpl->tpl_vars['a']->value['id_alumno'];?>
-" class="btn btn-primary">Pagar Deuda</a>
-															<button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-														</div>
-													</div>
-
-												</div>
-											</div>
-										<?php }else{ ?>
-											<!-- (<?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['cuotas']->value[0]['fecha'],"%m");?>
-) -->
-											<b style="color:#FF0000">Mes Actual</b>
-                    <?php }?>
                 </td>
                 <td style="text-align:center;"><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 administrador/asistencias/alumno/<?php echo $_smarty_tpl->tpl_vars['a']->value['id_alumno'];?>

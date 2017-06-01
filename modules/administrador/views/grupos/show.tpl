@@ -25,39 +25,7 @@
                 </td>
                 <td>
 										{assign var="cuotas" value=$cuotasModel->getMesesAdeudados($a.id_alumno)}
-                		{if ! $cuotas }
-                    	<b style="color:#390">Sin Deuda</b>
-                    {elseif ($cuotas|@count) > 1}
-											<button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModal{$a.id_alumno}">Ver Deuda</button>
-											<div id="myModal{$a.id_alumno}" class="modal fade" role="dialog">
-												<div class="modal-dialog">
 
-													<!-- Modal content-->
-													<div class="modal-content">
-														<div class="modal-header">
-															<button type="button" class="close" data-dismiss="modal">&times;</button>
-															<h4 class="modal-title"> Meses adeudados de: {$a.apellido} {$a.nombre} </h4>
-														</div>
-														<div class="modal-body">
-															<ul class="list-group">
-																{foreach from=$cuotas item=c}
-																	<!-- <li class="list-group-item"><b>{$c.fecha|date_format:"%m"} / {$c.fecha|date_format:"%Y"}</b></li> -->
-																	<li class="list-group-item"><b>{$c.fecha}</b></li>
-																{/foreach}
-															</ul>
-														</div>
-														<div class="modal-footer">
-															<a href="{$_layoutParams.root}administrador/cuotas/alumno/{$a.id_alumno}" class="btn btn-primary">Pagar Deuda</a>
-															<button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-														</div>
-													</div>
-
-												</div>
-											</div>
-										{else}
-											<!-- ({$cuotas[0].fecha|date_format:"%m"}) -->
-											<b style="color:#FF0000">Mes Actual</b>
-                    {/if}
                 </td>
                 <td style="text-align:center;"><a href="{$_layoutParams.root}administrador/asistencias/alumno/{$a.id_alumno}" class="btn btn-primary btn-xs">Asistencias Alumno</a></td>
                 <td style="text-align:center;">
