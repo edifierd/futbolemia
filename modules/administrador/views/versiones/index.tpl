@@ -2,7 +2,7 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">Versión 1.1.1 Beta</h3>
+    <h3 class="panel-title">Versión 1.1.4 Beta</h3>
   </div>
   <div class="panel-body" style="margin:0;padding:0;">
     <ul class="list-group">
@@ -10,6 +10,7 @@
       <li class="list-group-item">*Se mejoro el buscador de inicio.</li>
       <li class="list-group-item">*Se mejoro el buscador en el listado alumnos.</li>
       <li class="list-group-item">*Se mejoro la visualizacion de los responsables en el perfil del alumno.</li>
+      <li class="list-group-item">*Se mejoro la selección de asistencias. Ahora se puede seleccionar clickeando en la fila.</li>
     </ul>
   </div>
 </div>
