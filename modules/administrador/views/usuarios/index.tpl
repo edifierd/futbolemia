@@ -1,31 +1,23 @@
-<style type="text/css">
-    table.table td { vertical-align: middle; }
-    table.table td input { margin: 0; }
-</style>
-
-<h2 class="hidden-xs">BIENVENIDO AL PANEL DE ADMINISTRACIÓN</h2>
-<h4 class="visible-xs"><b>PANEL DE ADMINISTRACIÓN</b></h4>
-
-<h3 class="hidden-xs">Iniciar Sesi&oacute;n</h3>
-<h4 class="visible-xs">Iniciar Sesi&oacute;n</h4>
-
-<form name="form1" method="post" action="">
-    <input type="hidden" value="1" name="enviar" />
-    
-    <div class="row" style="margin-top:20px;">
-    	<div class="col-xs-4 col-sm-2 col-md-1">
-        	Usuario
+<div class="row" style="margin-top:20px">
+  <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+    <form name="form1" method="post" action="" role="form">
+      <input type="hidden" value="1" name="enviar" />
+      <fieldset>
+        <h2>Administración Futbolemia</h2>
+        <hr class="colorgraph">
+        <div class="form-group">
+          <input type="text" name="usuario" value="{$datos.usuario|default:""}" id="email" class="form-control input-lg" placeholder="Usuario" />
         </div>
-        <div class="col-xs-8 col-sm-10 col-md-11">
-        	<input type="text" name="usuario" value="{$datos.usuario|default:""}" />
+        <div class="form-group">
+          <input type="password" name="pass" id="password" class="form-control input-lg" placeholder="Contraseña"/>
         </div>
-        <div class="col-xs-4 col-sm-2 col-md-1" style="margin-top:15px;">
-        	Contraseña:
+        <hr class="colorgraph">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            <input type="submit" class="btn btn-lg btn-success btn-block" value="Iniciar Sesión">
+          </div>
         </div>
-        <div class="col-xs-8 col-sm-10 col-md-11" style="margin-top:15px;">
-        	<input type="password" name="pass" />
-        </div>
-		<div class="col-xs-6 col-sm-6 col-md-6">
-    		<p><button type="submit" class="btn btn-primary" style="margin-left:25%; margin-top:25px;"><li class="glyphicon glyphicon-ok" style="margin-right:7px;"> </li> Entrar</button></p>
-        </div>
-</form>
+      </fieldset>
+    </form>
+  </div>
+</div>
