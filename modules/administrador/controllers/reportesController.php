@@ -35,6 +35,7 @@ class reportesController extends administradorController{
 		} else if (!$año and !$sede){
 			$reportes = false;
 			$finanzas = false;
+			$inscripciones = false;
 			$this->_view->assign('sede', '');
 			$this->_view->assign('anioA', '');
 		} else {

@@ -27,6 +27,7 @@ class indexController extends administradorController{
 
 			$this->_view->assign('grupos',$this->_grupos->getGruposSede($sede));
 			$this->_view->assign('titulo', 'Panel de Administración');
+			$this->_view->setJs(array('index'));
 			$this->_view->renderizar('index', '');
 	 }
 
