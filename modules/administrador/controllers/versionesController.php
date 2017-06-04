@@ -9,6 +9,7 @@ class versionesController extends administradorController{
 
   public function index(){
 		$this->_acl->acceso('control_alumnos');
+	  	$this->_view->assign('titulo', 'Versiones');
 		$this->_view->renderizar('index');
   }
 
