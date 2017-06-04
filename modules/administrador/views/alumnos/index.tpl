@@ -2,8 +2,8 @@
 
 <nav class="navbar navbar-default">
   <div class="container-fluid">
-  
-  	<div class="navbar-header">
+
+    <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
@@ -11,25 +11,33 @@
         <span class="icon-bar"></span>
       </button>
     </div>
-    
-  	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    	<ul class="nav navbar-nav">
-        	<li><a href="javascript:history.back()" > <i class="fa fa-arrow-left fa-lg"></i> Atras</a></li>
-        	<li><a href="{$_layoutParams.root}administrador/alumnos/nuevo" > Nuevo Alumno</a></li>
-   	    </ul>
-        <form class="navbar-form navbar-left" role="search" method="post" action="">
-        	<input type="hidden" value="1" name="buscar" />
-  			<div class="form-group">
-            	<select id="sede" name="sede" style="height:32px;">
-                	<option value="todos" >Todos</option>
-            		<option value="La Cumbre" >La Cumbre</option>
-                    <option value="Los Hornos" >Los Hornos</option>
-                    <option value="El Retiro" >El Retiro</option>
-				</select>
-    			<input type="text" class="form-control" placeholder="Nombre o Apellido o DNI..." name="casillero" id="casillero">
-  			</div>
-  			<button type="submit" class="btn btn-default">Buscar</button>
-		</form>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="javascript:history.back()" > <i class="fa fa-arrow-left fa-lg"></i> Atras</a></li>
+        <li><a href="{$_layoutParams.root}administrador/alumnos/nuevo" > Nuevo Alumno</a></li>
+      </ul>
+      <form role="search" method="post" action="{$_layoutParams.root}administrador/alumnos/index" class="navbar-form navbar-left">
+        <input type="hidden" value="1" name="buscar" />
+        <div class="input-group">
+          <div class="input-group-btn search-panel">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+              <span id="search_concept">Todas las sedes</span> <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#todos">Todas las sedes</a></li>
+              <li><a href="#La Cumbre">La Cumbre</a></li>
+              <li><a href="#Los Hornos">Los Hornos</a></li>
+              <li><a href="#El Retiro">El Retiro</a></li>
+            </ul>
+          </div>
+          <input type="hidden" name="sede" value="todos" id="sede">
+          <input type="text" class="form-control" placeholder="Nombre, Apellido o DNI de un alumno" name="casillero" id="casillero">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+          </span>
+        </div>
+      </form>
     </div>
   </div>
 </nav>
@@ -41,7 +49,7 @@
         <th>Sede y Grupo inscripto</th>
         <th colspan="2" style="text-align:center;">Acciones</th>
     </tr>
-	
+
     {if isset($alumnos) && count($alumnos)}
     	{foreach from=$alumnos item=a}
         	{if $a.estado == 'a'}
