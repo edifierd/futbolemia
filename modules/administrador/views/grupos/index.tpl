@@ -21,20 +21,23 @@
 
     {if isset($grupos) && count($grupos)}
     	{foreach from=$grupos item=g}
-    	<tr>
+    	<tr id="fila{$g.id_grupo}">
         	<td><a href="{$_layoutParams.root}administrador/grupos/show/{$g.id_grupo}">{$g.sede}</a></td>
         	<td>{$controller->getTipoGrupo($g.tipo)}</td>
         	<td>{$g.dias}</td>
        		<td>{$g.horario}</td>
             <td style="text-align:center"><a href="{$_layoutParams.root}administrador/grupos/show/{$g.id_grupo}" class="btn btn-primary btn-xs">Ver Grupo</a></td>
         	<td style="text-align:center">
-            	{if $_acl->permiso('super_usuario')}
-            		<a href="{$_layoutParams.root}administrador/grupos/delete_grupo/{$g.id_grupo}" class="btn btn-danger btn-xs">Eliminar</a>
+						{* {if $_acl->permiso('super_usuario')}
+							<a href="{$_layoutParams.root}administrador/grupos/delete_grupo/{$g.id_grupo}" class="btn btn-danger btn-xs eliminar">Eliminar</a>
+							{/if} *}
+							{if $_acl->permiso('super_usuario')}
+							<a href="#" idGrupo="{$g.id_grupo}" class="btn btn-danger btn-xs delete">Eliminar</a>
                 {/if}
             </td>
     	</tr>
 		{/foreach}
-    {else}
+		{else}
     	<tr>
         	<td colspan="6" style="text-align:center; padding-top: 22px;"><h3>No se encontraron grupos</h3></td>
         </tr>

@@ -25,11 +25,15 @@
 				{/if}
 				<li style="text-align:center;"><a href="{$_layoutParams.root}administrador/asistencias/alumno/{$alumno.id_alumno}">Asistencias</a></li>
 				<li style="text-align:center;">
-					<a href="{$_layoutParams.root}administrador/alumnos/delete/{$alumno.id_alumno}" style=" color:#C00;" onClick="javascript: return confirm('¿Estas seguro?');">Suspender</a>
+					{* <a href="{$_layoutParams.root}administrador/alumnos/delete/{$alumno.id_alumno}" style=" color:#C00;" onClick="javascript: return confirm('¿Estas seguro?');">Suspender</a> *}
+					<a href="#" idAlumno="{$alumno.id_alumno}" class="suspender">
+						<i class="fa fa-minus-circle fa-lg" aria-hidden="true"></i>
+						Suspender
+					</a>
 				</li>
 				{/if}
 				{if $alumno.estado == 'e'}
-				<li style="text-align:center;"><a href="{$_layoutParams.root}administrador/alumnos/reactivar/{$alumno.id_alumno}"><h3>Reactivar Usuario</h3></a></li>
+				<li style="text-align:center;"><a href="{$_layoutParams.root}administrador/alumnos/reactivar/{$alumno.id_alumno}"><b style="color:red;">Reactivar Usuario</b></a></li>
 				{/if}
 			</ul>
 		</div>
@@ -142,8 +146,7 @@
 									{if $alumno.estado == 'a'}
 									<a href="{$_layoutParams.root}administrador/responsables/edit/{$r.id_responsable}/{$alumno.id_alumno}"
 									class="btn btn-primary btn-xs" ><i class="fa fa-pencil fa-2x"></i></a>
-									<a href="{$_layoutParams.root}administrador/responsables/delete/{$r.id_responsable}/{$alumno.id_alumno}" onClick="javascript: return confirm('¿Estas seguro?');"
-									class="btn btn-danger btn-xs" style="margin-top: 10px;" ><i class="fa fa-trash fa-2x"></i></a>
+									<button type="button" name="button" idResponsable="{$r.id_responsable}" idAlumno="{$alumno.id_alumno}" class="btn btn-danger btn-xs delete" style="margin-top: 10px;"><i class="fa fa-trash fa-2x"></i></button>
 									{/if}
 								</div>
 							</div>

@@ -14,13 +14,12 @@ class gruposController extends administradorController{
     }
 
     public function index(){
-		$this->_acl->acceso('control_grupos');
-
-        $this->_view->assign('titulo', 'Lista Grupos');
-		$this->_view->assign('grupos', $this->_grupos->getGrupos());
-		$this->_view->assign('controller', $this);
-
-        $this->_view->renderizar('index');
+			$this->_acl->acceso('control_grupos');
+			$this->_view->assign('titulo', 'Lista Grupos');
+			$this->_view->assign('grupos', $this->_grupos->getGrupos());
+			$this->_view->assign('controller', $this);
+			$this->_view->setJs(array('index'));
+			$this->_view->renderizar('index');
     }
 
 	public function nuevo(){

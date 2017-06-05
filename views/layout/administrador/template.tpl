@@ -10,6 +10,7 @@
       <link href="{$_layoutParams.ruta_css}bootstrap.min.css" rel="stylesheet" type="text/css">
       <link href="{$_layoutParams.ruta_css}bootstrap-select.min.css" rel="stylesheet" type="text/css">
       <link href="{$_layoutParams.ruta_css}font-awesome.min.css" rel="stylesheet" type="text/css">
+      <link href="{$_layoutParams.ruta_css}sweetalert2.min.css" rel="stylesheet" type="text/css">
       <link href="{$_layoutParams.ruta_css}template.css" rel="stylesheet" type="text/css">
 
       {if isset($_layoutParams.css) && count($_layoutParams.css)}
@@ -150,6 +151,7 @@
       <script type="text/javascript" src="{$_layoutParams.root}public/js/jquery-1.11.1.min.js"></script>
       <script type="text/javascript" src="{$_layoutParams.ruta_js}bootstrap.min.js"></script>
       <script type="text/javascript" src="{$_layoutParams.ruta_js}bootstrap-select.min.js"></script>
+      <script type="text/javascript" src="{$_layoutParams.ruta_js}sweetalert2.min.js"></script>
       <script type="text/javascript" src="{$_layoutParams.ruta_js}menu.js"></script>
       <script type="text/javascript">
       var _root_ = '{$_layoutParams.root}';

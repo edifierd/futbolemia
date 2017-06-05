@@ -6,6 +6,7 @@
   </div>
   <div class="panel-body" style="margin:0;padding:0;">
     <ul class="list-group">
+      <li class="list-group-item">*Se mejoro la visualización de las alertas. - Interfaz</li>
       <li class="list-group-item">*Se actualizaron los montos e inscripciones. - Base de Datos </li>
       <li class="list-group-item">*Correccion de error casilla de asistencia. - Interfaz </li>
     </ul>
@@ -33,7 +34,7 @@
   </div>
   <div class="panel-body" style="margin:0;padding:0;">
     <ul class="list-group">
-      <li class="list-group-item">*Se agregaron los grupos 3 y 3 año - Funcionalidad</li>
+      <li class="list-group-item">*Se agregaron los grupos 3 y 4 años - Funcionalidad</li>
       <li class="list-group-item">*Se agrego los meses adeudados por alumno en el listado de grupo - Funcionalidad</li>
       <li class="list-group-item">*Se agrego un nuevo rol Administrador - Funcionalidad</li>
       <li class="list-group-item">*Se agrego un sistema de pago de inscripciones - Funcionalidad</li>
