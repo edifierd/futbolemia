@@ -7,15 +7,15 @@ class cuotasController extends administradorController{
 	private $_asistencias;
 	private $_inscripciones;
 
-    public function __construct() {
-        parent::__construct();
-				$this->_cuotas = $this->loadModel('cuotas');
-				$this->_alumnos = $this->loadModel('alumnos');
-				$this->_asistencias = $this->loadModel('asistencias');
-				$this->_inscripciones = $this->loadModel('inscripciones');
-    }
+  public function __construct() {
+      parent::__construct();
+			$this->_cuotas = $this->loadModel('cuotas');
+			$this->_alumnos = $this->loadModel('alumnos');
+			$this->_asistencias = $this->loadModel('asistencias');
+			$this->_inscripciones = $this->loadModel('inscripciones');
+  }
 
-    public function index(){}
+  public function index(){}
 
 	public function alumno($id_alumno){
 		$this->_acl->acceso('control_pagos');
@@ -96,6 +96,24 @@ class cuotasController extends administradorController{
 		}
 
 		$this->_view->renderizar('alumno');
+	}
+
+	public function actualizacion(){
+		$this->permisoSede($alumno['sede']);
+		$montos = array(550,525,350,325);
+		foreach ($montos as $monto) {
+			$alumnos = $this->_cuotas->getCuotasByMonto($monto);
+			foreach ($alumnos as $alumno) {
+				$this->_cuotas->updateMonto($alumno['id_cuota'],$alumno['monto'] - 100);
+				if(!$this->_inscripciones->getInscripcion($alumno['id_alumno'])){
+					if(!$this->_inscripciones->insertarInscripcion($alumno['id_alumno'],100)){
+						echo $alumno['nombre']." (".$alumno['id_alumno'].") Monto: $".$alumno['monto']." | inscripcion: $". 100 ;
+					}
+				}
+			}
+		}
+		$this->_view->assign('_mensaje', 'Se actualizo correctamente la BD.');
+		$this->_view->renderizar('actualizacion');
 	}
 
 

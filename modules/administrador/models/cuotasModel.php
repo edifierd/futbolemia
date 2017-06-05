@@ -87,7 +87,16 @@ class cuotasModel extends Model{
 		return $cuotasMes;
 	}
 
+  public function getCuotasByMonto($monto){
+    $datos = $this->_db->query(
+      "SELECT * FROM alumnos a INNER JOIN cuotas c ON a.id_alumno = c.id_alumno WHERE c.monto = ".$monto
+    );
+    return $datos->fetchall();
+  }
 
+  public function updateMonto($id_cuota,$monto){
+    $this->_db->query("UPDATE cuotas SET `monto` = ".$monto." WHERE id_cuota = ".$id_cuota);
+  }
 
 	// ---------- VALIDACIONES ---------- //
 

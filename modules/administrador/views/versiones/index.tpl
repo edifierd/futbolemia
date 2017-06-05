@@ -2,6 +2,18 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
+    <h3 class="panel-title">Versión 1.1.7 Beta </h3>
+  </div>
+  <div class="panel-body" style="margin:0;padding:0;">
+    <ul class="list-group">
+      <li class="list-group-item">*Se actualizaron los montos e inscripciones. - Base de Datos </li>
+      <li class="list-group-item">*Correccion de error casilla de asistencia. - Interfaz </li>
+    </ul>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
     <h3 class="panel-title">Versión 1.1.5 Beta (4/6/2017)</h3>
   </div>
   <div class="panel-body" style="margin:0;padding:0;">
