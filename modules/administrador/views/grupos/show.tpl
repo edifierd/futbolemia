@@ -16,7 +16,7 @@
 
     {if isset($alumnos) && count($alumnos)}
     	{foreach from=$alumnos item=a}
-    		<tr style="text-align:center;">
+    		<tr style="text-align:center;" id="fila{$a.id_alumno}">
 					<td><a href="{$_layoutParams.root}administrador/alumnos/show/{$a.id_alumno}">{$a.apellido} {$a.nombre}</a></td>
 
         		<td>
@@ -62,10 +62,10 @@
                 </td>
                 <td style="text-align:center;"><a href="{$_layoutParams.root}administrador/asistencias/alumno/{$a.id_alumno}" class="btn btn-info btn-xs">Asistencias Alumno</a></td>
                 <td style="text-align:center;">
-                	<a href="{$_layoutParams.root}administrador/alumnos/delete/{$a.id_alumno}" class="btn btn-danger btn-xs"
-                       onClick="javascript: return confirm('¿Estas seguro?');">
-                    	Suspender
-                  </a>
+									<a href="#" idAlumno="{$a.id_alumno}" idGrupoo="{$grupo.id_grupo}" class="btn btn-danger btn-xs suspender">
+							      <i class="fa fa-minus-circle fa-lg" aria-hidden="true"></i>
+							      Suspender
+							    </a>
                 </td>
             </tr>
 		{/foreach}

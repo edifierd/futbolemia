@@ -113,12 +113,14 @@ class gruposController extends administradorController{
 
 		$this->permisoSede($grupo['sede']);
 
+
 		$this->_view->assign('alumnos', $this->_grupos->getAlumnosGrupo($id));
 		$this->_view->assign('asistenciasModel', $this->_asistencias);
 		$this->_view->assign('cuotasModel', $this->_cuotas);
 		$this->_view->assign('grupo', $grupo);
 		$this->_view->assign('titulo', "Alumnos de ".$grupo['sede']."-".$this->getTipoGrupo($grupo['tipo']));
 		$this->_view->assign('controller', $this);
+		$this->_view->setJs(array('show'));
 		$this->_view->renderizar('show', '');
 	}
 
