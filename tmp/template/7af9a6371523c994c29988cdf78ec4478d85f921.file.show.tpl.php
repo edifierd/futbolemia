@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2017-06-06 18:12:00
+<?php /* Smarty version Smarty-3.1.8, created on 2017-06-16 21:38:03
          compiled from "C:\xampp\htdocs\futbolemia\modules\administrador\views\alumnos\show.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:263265936d450539b34-92943583%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '7af9a6371523c994c29988cdf78ec4478d85f921' => 
     array (
       0 => 'C:\\xampp\\htdocs\\futbolemia\\modules\\administrador\\views\\alumnos\\show.tpl',
-      1 => 1496690157,
+      1 => 1497641881,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.8',
+  'unifunc' => 'content_5936d4506aba62_66008827',
   'variables' => 
   array (
     'alumno' => 0,
@@ -24,8 +26,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'r' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.8',
-  'unifunc' => 'content_5936d4506aba62_66008827',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5936d4506aba62_66008827')) {function content_5936d4506aba62_66008827($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include 'C:\\xampp\\htdocs\\futbolemia\\libs\\smarty\\libs\\plugins\\modifier.date_format.php';
 ?><?php if ($_smarty_tpl->tpl_vars['alumno']->value['estado']=='e'){?>
@@ -47,34 +47,34 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav" >
-				<li style="text-align:center;"><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+				<li><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 administrador/alumnos" > <i class="fa fa-arrow-left fa-lg"></i> Atras</a></li>
 				<?php if ($_smarty_tpl->tpl_vars['alumno']->value['estado']=='a'){?>
-				<li style="text-align:center;"><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+					<li><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 administrador/alumnos/edit/<?php echo $_smarty_tpl->tpl_vars['alumno']->value['id_alumno'];?>
-">Modificar Perfil</a></li>
-				<li style="text-align:center;"><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-administrador/responsables/listado/<?php echo $_smarty_tpl->tpl_vars['alumno']->value['id_alumno'];?>
-">Agregar Responsable</a></li>
-				<?php if ($_smarty_tpl->tpl_vars['_acl']->value->permiso('control_pagos')){?>
-				<li style="text-align:center;"><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+">Modificar</a></li>
+					<?php if ($_smarty_tpl->tpl_vars['_acl']->value->permiso('control_pagos')){?>
+					<li><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 administrador/cuotas/alumno/<?php echo $_smarty_tpl->tpl_vars['alumno']->value['id_alumno'];?>
 ">Pagos</a></li>
-				<?php }?>
-				<li style="text-align:center;"><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+					<?php }?>
+					<li><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 administrador/asistencias/alumno/<?php echo $_smarty_tpl->tpl_vars['alumno']->value['id_alumno'];?>
 ">Asistencias</a></li>
-				<li style="text-align:center;">
-					
-					<a href="#" idAlumno="<?php echo $_smarty_tpl->tpl_vars['alumno']->value['id_alumno'];?>
+					<li><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+administrador/responsables/listado/<?php echo $_smarty_tpl->tpl_vars['alumno']->value['id_alumno'];?>
+">Agregar Responsable</a></li>
+					<li>
+						
+						<a href="#" idAlumno="<?php echo $_smarty_tpl->tpl_vars['alumno']->value['id_alumno'];?>
 " class="suspender">
-						<i class="fa fa-minus-circle fa-lg" aria-hidden="true"></i>
-						Suspender
-					</a>
-				</li>
+							<i class="fa fa-minus-circle fa-lg" aria-hidden="true"></i>
+							Suspender
+						</a>
+					</li>
 				<?php }?>
 				<?php if ($_smarty_tpl->tpl_vars['alumno']->value['estado']=='e'){?>
-				<li style="text-align:center;"><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+				<li><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 administrador/alumnos/reactivar/<?php echo $_smarty_tpl->tpl_vars['alumno']->value['id_alumno'];?>
 "><b style="color:red;">Reactivar Usuario</b></a></li>
 				<?php }?>

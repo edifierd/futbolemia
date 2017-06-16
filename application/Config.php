@@ -27,7 +27,7 @@ define('ADMIN_LAYOUT', 'administrador');
 
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
-define('DB_PASS', '1234');
+define('DB_PASS', '');
 define('DB_NAME', 'futbolemia');
 define('DB_CHAR', 'utf8');
 

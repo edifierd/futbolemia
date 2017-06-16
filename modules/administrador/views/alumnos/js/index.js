@@ -25,10 +25,8 @@ $('.suspender').click(function(event){
       type: 'GET',
       success: function(jqXHR) {
         //Exito
-        setTimeout(function(){
-          var url = _root_+"administrador/alumnos";
-          $(location).attr('href',url);
-        }, 2000);
+        var alumnoTr = $("#fila"+id_alumno);
+        alumnoTr.remove();
       },
       error: function() {
         //Error
@@ -43,7 +41,6 @@ $('.suspender').click(function(event){
       title: '¡Alumno suspendido!',
       text: "¡Aguarde sera redireccionado!",
       type: 'success',
-      showConfirmButton: false,
     }).then();
   })
 });

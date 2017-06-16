@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2017-06-06 18:11:56
+<?php /* Smarty version Smarty-3.1.8, created on 2017-06-16 21:31:16
          compiled from "C:\xampp\htdocs\futbolemia\modules\administrador\views\alumnos\index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:211445936d44c654130-31696712%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'a8e2a0accc2d718e5bbaa525e8270c3e9ab81332' => 
     array (
       0 => 'C:\\xampp\\htdocs\\futbolemia\\modules\\administrador\\views\\alumnos\\index.tpl',
-      1 => 1496690600,
+      1 => 1497641439,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.8',
+  'unifunc' => 'content_5936d44c713684_56960651',
   'variables' => 
   array (
     '_layoutParams' => 0,
@@ -22,8 +24,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'a' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.8',
-  'unifunc' => 'content_5936d44c713684_56960651',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5936d44c713684_56960651')) {function content_5936d44c713684_56960651($_smarty_tpl) {?><h3>Listado de Alumnos</h3><br>
 
@@ -86,7 +86,8 @@ foreach ($_from as $_smarty_tpl->tpl_vars['a']->key => $_smarty_tpl->tpl_vars['a
 $_smarty_tpl->tpl_vars['a']->_loop = true;
 ?>
   <?php if ($_smarty_tpl->tpl_vars['a']->value['estado']=='a'){?>
-  <tr>
+  <tr id="fila<?php echo $_smarty_tpl->tpl_vars['a']->value['id_alumno'];?>
+">
     <td><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 administrador/alumnos/show/<?php echo $_smarty_tpl->tpl_vars['a']->value['id_alumno'];?>
 "><?php echo $_smarty_tpl->tpl_vars['a']->value['apellido'];?>

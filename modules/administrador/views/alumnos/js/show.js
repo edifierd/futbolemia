@@ -14,10 +14,7 @@ $('.suspender').click(function(event){
       type: 'GET',
       success: function(jqXHR) {
         //Exito
-        setTimeout(function(){
-          var url = _root_+"administrador/alumnos/show/"+id_alumno;
-          $(location).attr('href',url);
-        }, 2000);
+        location.reload();
       },
       error: function() {
         //Error
@@ -32,7 +29,6 @@ $('.suspender').click(function(event){
       title: '¡Alumno suspendido!',
       text: "¡Aguarde sera redireccionado!",
       type: 'success',
-      showConfirmButton: false,
     }).then();
   })
 });

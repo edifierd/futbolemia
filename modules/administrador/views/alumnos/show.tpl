@@ -16,24 +16,24 @@
 
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav" >
-				<li style="text-align:center;"><a href="{$_layoutParams.root}administrador/alumnos" > <i class="fa fa-arrow-left fa-lg"></i> Atras</a></li>
+				<li><a href="{$_layoutParams.root}administrador/alumnos" > <i class="fa fa-arrow-left fa-lg"></i> Atras</a></li>
 				{if $alumno.estado == 'a'}
-				<li style="text-align:center;"><a href="{$_layoutParams.root}administrador/alumnos/edit/{$alumno.id_alumno}">Modificar Perfil</a></li>
-				<li style="text-align:center;"><a href="{$_layoutParams.root}administrador/responsables/listado/{$alumno.id_alumno}">Agregar Responsable</a></li>
-				{if $_acl->permiso('control_pagos')}
-				<li style="text-align:center;"><a href="{$_layoutParams.root}administrador/cuotas/alumno/{$alumno.id_alumno}">Pagos</a></li>
-				{/if}
-				<li style="text-align:center;"><a href="{$_layoutParams.root}administrador/asistencias/alumno/{$alumno.id_alumno}">Asistencias</a></li>
-				<li style="text-align:center;">
-					{* <a href="{$_layoutParams.root}administrador/alumnos/delete/{$alumno.id_alumno}" style=" color:#C00;" onClick="javascript: return confirm('¿Estas seguro?');">Suspender</a> *}
-					<a href="#" idAlumno="{$alumno.id_alumno}" class="suspender">
-						<i class="fa fa-minus-circle fa-lg" aria-hidden="true"></i>
-						Suspender
-					</a>
-				</li>
+					<li><a href="{$_layoutParams.root}administrador/alumnos/edit/{$alumno.id_alumno}">Modificar</a></li>
+					{if $_acl->permiso('control_pagos')}
+					<li><a href="{$_layoutParams.root}administrador/cuotas/alumno/{$alumno.id_alumno}">Pagos</a></li>
+					{/if}
+					<li><a href="{$_layoutParams.root}administrador/asistencias/alumno/{$alumno.id_alumno}">Asistencias</a></li>
+					<li><a href="{$_layoutParams.root}administrador/responsables/listado/{$alumno.id_alumno}">Agregar Responsable</a></li>
+					<li>
+						{* <a href="{$_layoutParams.root}administrador/alumnos/delete/{$alumno.id_alumno}" style=" color:#C00;" onClick="javascript: return confirm('¿Estas seguro?');">Suspender</a> *}
+						<a href="#" idAlumno="{$alumno.id_alumno}" class="suspender">
+							<i class="fa fa-minus-circle fa-lg" aria-hidden="true"></i>
+							Suspender
+						</a>
+					</li>
 				{/if}
 				{if $alumno.estado == 'e'}
-				<li style="text-align:center;"><a href="{$_layoutParams.root}administrador/alumnos/reactivar/{$alumno.id_alumno}"><b style="color:red;">Reactivar Usuario</b></a></li>
+				<li><a href="{$_layoutParams.root}administrador/alumnos/reactivar/{$alumno.id_alumno}"><b style="color:red;">Reactivar Usuario</b></a></li>
 				{/if}
 			</ul>
 		</div>
