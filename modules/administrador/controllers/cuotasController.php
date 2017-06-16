@@ -99,14 +99,13 @@ class cuotasController extends administradorController{
 	}
 
 	public function actualizacion(){
-		$this->permisoSede($alumno['sede']);
 		$montos = array(550,525,350,325);
 		foreach ($montos as $monto) {
 			$alumnos = $this->_cuotas->getCuotasByMonto($monto);
 			foreach ($alumnos as $alumno) {
 				$this->_cuotas->updateMonto($alumno['id_cuota'],$alumno['monto'] - 100);
 				if(!$this->_inscripciones->getInscripcion($alumno['id_alumno'])){
-					if(!$this->_inscripciones->insertarInscripcion($alumno['id_alumno'],100)){
+					if(!$this->_inscripciones->insertarInscripcionFecha($alumno['id_alumno'],100,$alumno['fecha_mes'])){
 						echo $alumno['nombre']." (".$alumno['id_alumno'].") Monto: $".$alumno['monto']." | inscripcion: $". 100 ;
 					}
 				}
