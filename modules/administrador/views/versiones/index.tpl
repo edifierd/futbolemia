@@ -7,6 +7,7 @@
   <div class="panel-body" style="margin:0;padding:0;">
     <ul class="list-group">
       <li class="list-group-item">*Corrección de errores de redireccionamiento - Funcionalidad</li>
+      <li class="list-group-item">*Se salio de la version Beta</li>
     </ul>
   </div>
 </div>
