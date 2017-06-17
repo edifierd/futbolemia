@@ -3,7 +3,7 @@
     <form name="form1" method="post" action="" role="form">
       <input type="hidden" value="1" name="enviar" />
       <fieldset>
-        <h2>Administración Futbolemia</h2>
+        <p class="h2">Administración Futbolemia</p>
         <hr class="colorgraph">
         <div class="form-group">
           <input type="text" name="usuario" value="{$datos.usuario|default:""}" id="email" class="form-control input-lg" placeholder="Usuario" />

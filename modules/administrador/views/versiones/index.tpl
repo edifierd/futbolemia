@@ -2,6 +2,17 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
+    <h3 class="panel-title">Versión 1.1.8 </h3>
+  </div>
+  <div class="panel-body" style="margin:0;padding:0;">
+    <ul class="list-group">
+      <li class="list-group-item">*Corrección de errores de redireccionamiento - Funcionalidad</li>
+    </ul>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
     <h3 class="panel-title">Versión 1.1.7 Beta (7/6/2017)</h3>
   </div>
   <div class="panel-body" style="margin:0;padding:0;">

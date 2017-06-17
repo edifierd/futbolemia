@@ -53,7 +53,7 @@
   {if isset($alumnos) && count($alumnos)}
   {foreach from=$alumnos item=a}
   {if $a.estado == 'a'}
-  <tr>
+  <tr id="fila{$a.id_alumno}">
     <td><a href="{$_layoutParams.root}administrador/alumnos/show/{$a.id_alumno}">{$a.apellido} {$a.nombre}</a></td>
     <td>{$a.dni}</td>
     <td>{$a.sede} - {$a.tipo} - {$a.horario} </td>
