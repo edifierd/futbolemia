@@ -6,14 +6,14 @@ class asistenciasController extends administradorController{
 	private $_grupos;
 	private $_alumnos;
 
-    public function __construct() {
-        parent::__construct();
-		$this->_asistencias = $this->loadModel('asistencias');
-		$this->_grupos = $this->loadModel('grupos');
-		$this->_alumnos = $this->loadModel('alumnos');
-    }
+  public function __construct() {
+      parent::__construct();
+			$this->_asistencias = $this->loadModel('asistencias');
+			$this->_grupos = $this->loadModel('grupos');
+			$this->_alumnos = $this->loadModel('alumnos');
+  }
 
-    public function index(){}
+  public function index(){}
 
 	public function tomarAsistencia($id_grupo){
 		$this->_acl->acceso('control_asistencias');
