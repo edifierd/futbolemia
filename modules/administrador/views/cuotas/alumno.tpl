@@ -18,7 +18,8 @@
         <input type="hidden" value="1" name="buscar" />
         <label style="margin-right:15px;">Seleccione un año: </label>
         <div class="form-group">
-          <select id="anio" name="anio" style="height:32px; margin-right:15px;">
+          <select id="anio" name="anio" class="form-control">
+            <option value="{$anioSelected}" selected>{$anioSelected} (Seleccionado)</option>
             {foreach from=$listaAnios item=anio}
             <option value="{$anio[1]}" >{$anio[1]}</option>
             {/foreach}
@@ -80,6 +81,7 @@
           <form name="form1" method="post" action="" class="form">
             <input type="hidden" value="1" name="pagar" />
             <input type="hidden" value="{$i}" name="mes" />
+            <input type="hidden" value="{$anioSelected}" name="anioSelected" />
             {if $cuotas[$i] == 'impago'}
             <input type="number" name="monto{$i}" value="{$datos.monto|default:""}" class="form-control" placeholder="$" />
             {else}

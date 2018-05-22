@@ -11,19 +11,12 @@ class inscripcionesModel extends Model{
 		$rta = $this->_db->query("INSERT INTO inscripciones VALUES(null,'".$fecha_actual."',".$id_alumno.",".$monto.")");
 		return $rta;
 	}
-	
+
 	public function insertarInscripcionFecha($id_alumno,$monto,$fecha){
 		//$fecha_actual=date(DATE_ATOM);
 		$rta = $this->_db->query("INSERT INTO inscripciones VALUES(null,'".$fecha."',".$id_alumno.",".$monto.")");
 		return $rta;
 	}
-
-  public function insertarInscripcionFecha($id_alumno,$monto,$fecha){
-		//$fecha_actual=date(DATE_ATOM);
-		$rta = $this->_db->query("INSERT INTO inscripciones VALUES(null,'".$fecha."',".$id_alumno.",".$monto.")");
-		return $rta;
-	}
-
 
 	// ---------- GETTERS AND SETTERS ---------- //
 

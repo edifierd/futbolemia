@@ -2,6 +2,18 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
+    <h3 class="panel-title">Versión 1.1.9 </h3>
+  </div>
+  <div class="panel-body" style="margin:0;padding:0;">
+    <ul class="list-group">
+      <li class="list-group-item">*Se corrigio un error por el cual no se podia marcar como pago meses de otros años - Funcionalidad</li>
+      <li class="list-group-item">*Se corrigio el registro de pagos del Alumno 'Mancinelli Giuliano' - Base de Datos</li>
+    </ul>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
     <h3 class="panel-title">Versión 1.1.8 </h3>
   </div>
   <div class="panel-body" style="margin:0;padding:0;">

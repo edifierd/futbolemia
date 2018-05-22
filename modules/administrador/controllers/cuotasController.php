@@ -42,9 +42,11 @@ class cuotasController extends administradorController{
 		$this->_view->assign('inscripcion', $this->_inscripciones->getInscripcion($id_alumno));
 		$this->_view->assign('nombreMes', $this->getListaMeses());
 		$this->_view->assign('listaAnios', $this->getListaAnios(50));
+		$this->_view->assign('anioSelected', $año);
 
 		if($this->getInt('pagar') == 1){
 			$this->_view->assign('datos', $_POST);
+			$año = $this->getInt('anioSelected');
 
 			if(!$this->getInt('mes')){
 				$this->_view->assign('_error', 'El valor ingresado no parece ser un número de mes valido.');

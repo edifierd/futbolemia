@@ -1,3 +1,3 @@
-/aplication/Config.php
-/index.php
-/tmp/*
+index.php
+tmp/*
+Config.php
