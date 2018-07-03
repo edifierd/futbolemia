@@ -71,10 +71,14 @@
       <td>{$nombreMes[$i]}</td>
       <td>{$cantAsistencias[$i]} de {count($asistencias[$i])} Clases
         <td>
-          {if $cuotas[$i] == 'impago'}
-          <span style="color:#C00;">Adeuda</span>
+          {if $cantAsistencias[$i] > 0}
+            {if $cuotas[$i] == 'impago'}
+              <span style="color:#C00;">Adeuda</span>
+            {else}
+              <span style="color:#090;">Pagado ({$cuotas[$i].fecha_pago|date_format:"%d-%m-%Y"})</span>
+            {/if}
           {else}
-          <span style="color:#090;">Pagado ({$cuotas[$i].fecha_pago|date_format:"%d-%m-%Y"})</span>
+            <span style="color:#C00;"></span>
           {/if}
         </td>
         <td>

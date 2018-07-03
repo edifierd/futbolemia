@@ -34,12 +34,17 @@ class cuotasModel extends Model{
 		return $retorno;
 	}
 
+//
+// Agregue en la consula SQL la siguiente condicion
+// AND a.valor = 'presente'
+//
 	public function getMesesAdeudados($id_alumno){
 		$retorno = array();
     $ultimaDeuda = $this->getUltimaDeuda($id_alumno);
 		$rta = $this->_db->query("
 			SELECT DATE_FORMAT(a.fecha,'%m/%Y') AS fecha FROM asistencias a
 			WHERE a.id_alumno = ".$id_alumno."
+      AND a.valor = 'presente'
 			AND NOT EXISTS (
 					SELECT * FROM cuotas c
 					WHERE c.id_alumno = a.id_alumno
