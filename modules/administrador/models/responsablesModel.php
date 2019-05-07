@@ -7,7 +7,7 @@ class responsablesModel extends Model{
     }
 	
 	public function insertarResponsable($parentesco,$dni,$nombre,$apellido,$tel_fijo,$tel_celular,$direccion,$correo,$id_alumno){
-		$fecha_actual=date(DATE_ATOM);;
+		$fecha_actual=date("Y-m-d");;
 		$rta = $this->_db->query("INSERT INTO responsables VALUES(null,'".$nombre."','".$apellido."',".$dni.",'".$tel_fijo."','".$tel_celular."','".$direccion."','".$correo."','".$parentesco."','".$fecha_actual."')");
 		$responsable = $this->getResponsableByDni($dni);
 		$rta = $this->_db->query("INSERT INTO alumnos_responsables VALUES(null,".$id_alumno.",".$responsable['id_responsable'].")");

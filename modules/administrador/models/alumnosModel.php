@@ -7,7 +7,7 @@ class alumnosModel extends Model{
     }
 	
 	public function insertarAlumno($dni, $nombre, $apellido, $nacimiento, $colegio, $obra_social, $numero_afiliado, $observacion_medica, $notas, $id_grupo){
-		$fecha_actual=date(DATE_ATOM);
+		$fecha_actual=date("Y-m-d");
 		$rta = $this->_db->query("INSERT INTO alumnos VALUES(null,'".$nombre."','".$apellido."',".$dni.",'".$nacimiento."','".$colegio."','".$observacion_medica."','".$obra_social."','".$numero_afiliado."',null,'".$notas."','".$fecha_actual."','a',".$id_grupo.")");
 		return $rta;
 	}

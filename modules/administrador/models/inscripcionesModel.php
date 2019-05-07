@@ -7,13 +7,13 @@ class inscripcionesModel extends Model{
   }
 
   public function insertarInscripcion($id_alumno,$monto){
-		$fecha_actual=date(DATE_ATOM);
+		$fecha_actual=date("Y-m-d");
 		$rta = $this->_db->query("INSERT INTO inscripciones VALUES(null,'".$fecha_actual."',".$id_alumno.",".$monto.")");
 		return $rta;
 	}
 
 	public function insertarInscripcionFecha($id_alumno,$monto,$fecha){
-		//$fecha_actual=date(DATE_ATOM);
+		//$fecha_actual=date("Y-m-d");
 		$rta = $this->_db->query("INSERT INTO inscripciones VALUES(null,'".$fecha."',".$id_alumno.",".$monto.")");
 		return $rta;
 	}
