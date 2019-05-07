@@ -67,7 +67,7 @@ class cuotasController extends administradorController{
 				exit;
 			}
 
-			if(!$this->_cuotas->insertarCuota($id_alumno,$monto,$año.'-'.$this->getInt('mes').'-01',date(DATE_ATOM))){
+			if(!$this->_cuotas->insertarCuota($id_alumno,$monto,$año.'-'.$this->getInt('mes').'-01',date("Y-m-d"))){
 				$this->_view->assign('_error', 'Algo salio mal. Intente nuevamente con el pago.');
 				$this->_view->renderizar('alumno');
 				exit;
