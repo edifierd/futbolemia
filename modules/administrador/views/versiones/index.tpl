@@ -2,6 +2,20 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
+    <h3 class="panel-title">Versión 1.1.10 </h3>
+  </div>
+  <div class="panel-body" style="margin:0;padding:0;">
+    <ul class="list-group">
+      <li class="list-group-item">*Se corrigio un error en la generación de fechas que impedia insertar un pago - Funcionalidad</li>
+      <li class="list-group-item">*Se corrigio un error en la generación de fechas que impedia insertar una inscripción - Funcionalidad</li>
+      <li class="list-group-item">*Se corrigio un error en el esquema de la tabla Finanzas (valores por defecto en complejo y profesores) - Base de Datos</li>
+      <li class="list-group-item">*Se genero un backup de la información a la fecha 9/05/2019 - Sistema</li>
+    </ul>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
     <h3 class="panel-title">Versión 1.1.9 </h3>
   </div>
   <div class="panel-body" style="margin:0;padding:0;">
