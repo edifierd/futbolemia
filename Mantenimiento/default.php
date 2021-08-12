@@ -1,10 +1,10 @@
 <?PHP
 
-define('APP_NAME', 'Panana Be Argentina');
-define('APP_SLOGAN', 'Panana Be Trajes de Baño');
-define('URL', 'www.pananabe.com.ar');
-define('FACEBOOK', 'https://www.facebook.com/pananabeok');
-define('INSTAGRAM', 'https://www.instagram.com/pananabeok/');
+define('APP_NAME', 'FUTBOLEMIA');
+define('APP_SLOGAN', 'Escuelita de futbol infantil');
+define('URL', 'www.futbolemia.com.ar');
+define('FACEBOOK', '');
+define('INSTAGRAM', '');
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -55,7 +55,7 @@ body {
 
 <body>
 
-	<div class="barraSuperior">
+	<!-- <div class="barraSuperior">
     	<div style="float:right; margin-right: 75px; margin-top: 10px;">
         	<a href="<?php echo INSTAGRAM; ?>" title="Instagram <?php echo APP_NAME; ?>" target="_blank">
             	<img src="instagram.png" style="margin-right:10px; height:40px; width:40px;" />
@@ -69,9 +69,10 @@ body {
             	<img src="carta.png" style="margin-right:10px; height:40px; width:40px;" />
             </a>
 		</div>
-	</div>
+	</div> -->
     
     <h1><?php echo APP_NAME; ?></h1>
+	<?php echo APP_SLOGAN; ?>
     
   	<img src="enConstruccion.png" style=" margin: 0 auto; margin-top: 3%;" class="img-responsive" 
     	 alt="Nos encontramos en Construccion" 
@@ -80,7 +81,7 @@ body {
     
 
 	<div class="barraNegra">
-        <?php echo APP_SLOGAN; ?> le informa que nos encontramos en mantenimiento, vuelva pronto !
+        <?php echo APP_NAME; ?> le informa el sistema se encuentra momentáneamente fura de servicio.
 	</div>
 
 </body>

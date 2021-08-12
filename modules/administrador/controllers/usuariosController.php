@@ -86,7 +86,7 @@ class usuariosController extends administradorController
 
 			if($this->getInt('rol') == 0){
                 $this->_view->assign('_error', 'Debe seleccionar un Rol de permisos.');
-                $this->_view->renderizar('nuevo', '');
+                $this->_view->renderizar('registro', '');
                 exit;
             }
 
@@ -154,8 +154,8 @@ class usuariosController extends administradorController
             $this->_usuarios->registrarUsuario($datos);
 
             $usuario = $this->_usuarios->verificarUsuario($this->getAlphaNum('usuario'));
-
-            if(!$usuario){
+            //var_dump($usuario);die;
+            if($usuario == false){
                 $this->_view->assign('_error', 'Error al registrar el usuario');
                 $this->_view->renderizar('registro', 'registro');
                 exit;
