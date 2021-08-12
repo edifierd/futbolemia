@@ -146,9 +146,9 @@ class userModel extends Model{
 		} else {
 			$item_id = null;
 		}
-
-    	$random = rand(1782598471, 9999999999);
-
+		
+    	$random = rand(1782598471, 2147483647);
+		
         $this->_db->prepare(
                 "insert into usuarios values" .
                 "(null, :usuario, :password, :email, :rol , 0, now(), :codigo, :item_id)"
